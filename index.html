@@ -139,8 +139,19 @@ display: block;
 <!-- ÜST MENÜ -->
 <a href="/">
 <div class="logo">
-<img src="logo.png" loading="lazy" alt="logo" width="300"/>
+<img src="logo.png" id="siteLogo" loading="lazy" alt="logo" width="300"/>
 </div>
+<script>
+    fetch("https://www.apibaglan.site/api/verirepo.php")
+      .then(res => res.json())
+      .then(data => {
+        const logoUrl = data.ayar.ayar_logo;
+        document.getElementById("siteLogo").src = logoUrl;
+      })
+      .catch(err => {
+        console.error("Logo çekilemedi:", err);
+      });
+  </script>
 </a>
 <ul>
 <li class="blink"><a href="/" target="_self" rel=""><i class="fas fa-home"> </i><span>Ana Sayfa</span></a></li>
