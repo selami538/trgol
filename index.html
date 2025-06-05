@@ -61,7 +61,7 @@ searchUsers.addEventListener('keydown', function() {
 <link rel="stylesheet" href="assets/css/radarb94db94d.css?v=130920202" />
 <link rel="stylesheet" href="assets/css/Responsive1b94d7944.css?v=124" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&amp;display=swap" rel="stylesheet" />
-<style id="dynamic-style">
+<style>
   .sayfa-arka {
     position: fixed;
     top: 0;
@@ -69,7 +69,7 @@ searchUsers.addEventListener('keydown', function() {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: url(default.png) #000 no-repeat center top fixed;
+    background: #000 no-repeat center top fixed;
     background-size: cover;
   }
 
@@ -92,8 +92,9 @@ searchUsers.addEventListener('keydown', function() {
   }
 </style>
 
+
 <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
-<div class="sayfa-arka nomobile">
+<div class="sayfa-arka nomobile" id="backgroundDiv">
 </div>
 <!-- STYLE LİNK -->
 
@@ -141,6 +142,7 @@ searchUsers.addEventListener('keydown', function() {
 <div class="logo">
 <img src="" id="siteLogo" alt="logo" width="300"/>
 </div>
+
 <script>
   fetch("https://apibaglan.site/api/verirepo.php")
     .then(res => res.json())
@@ -160,16 +162,9 @@ searchUsers.addEventListener('keydown', function() {
       }
 
       if (reklam3) {
-        const reklam3El = document.getElementById("reklam3");
-        if (reklam3El) reklam3El.src = reklam3;
-
-        // style içindeki url('default.png') kısmını güncelle
-        const styleTag = document.getElementById("dynamic-style");
-        if (styleTag) {
-          styleTag.innerHTML = styleTag.innerHTML.replace(
-            /background:\s*url\(['"]?.*?['"]?\)/,
-            `background: url('${reklam3}')`
-          );
+        const bgDiv = document.getElementById("backgroundDiv");
+        if (bgDiv) {
+          bgDiv.style.backgroundImage = `url('${reklam3}')`;
         }
       }
     })
@@ -177,7 +172,6 @@ searchUsers.addEventListener('keydown', function() {
       console.error("Veriler çekilemedi:", err);
     });
 </script>
-
 
 </a>
 <ul>
