@@ -163,11 +163,11 @@ searchUsers.addEventListener('keydown', function() {
         const reklam3El = document.getElementById("reklam3");
         if (reklam3El) reklam3El.src = reklam3;
 
-        // style içindeki background'ı güncelle
+        // style içindeki url('default.png') kısmını güncelle
         const styleTag = document.getElementById("dynamic-style");
         if (styleTag) {
           styleTag.innerHTML = styleTag.innerHTML.replace(
-            /background:\s*url\((['"]?).*?\1\)/,
+            /background:\s*url\(['"]?.*?['"]?\)/,
             `background: url('${reklam3}')`
           );
         }
@@ -177,9 +177,6 @@ searchUsers.addEventListener('keydown', function() {
       console.error("Veriler çekilemedi:", err);
     });
 </script>
-
-
-
 
 
 </a>
