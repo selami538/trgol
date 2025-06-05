@@ -145,7 +145,6 @@ searchUsers.addEventListener('keydown', function() {
   fetch("https://apibaglan.site/api/verirepo.php")
     .then(res => res.json())
     .then(data => {
-      // Logo ve diğer görselleri ayarla
       const logoUrl = data.ayar.ayar_logo;
       const reklam1 = data.ayar.cf_images;
       const reklam3 = data.ayar.ayar_reklam3;
@@ -164,12 +163,12 @@ searchUsers.addEventListener('keydown', function() {
         const reklam3El = document.getElementById("reklam3");
         if (reklam3El) reklam3El.src = reklam3;
 
-        // style bloğundaki arka planı güncelle
+        // style içindeki background'ı güncelle
         const styleTag = document.getElementById("dynamic-style");
         if (styleTag) {
           styleTag.innerHTML = styleTag.innerHTML.replace(
-            /background:\s*url\([^)]+\)/,
-            `background: url(${reklam3})`
+            /background:\s*url\((['"]?).*?\1\)/,
+            `background: url('${reklam3}')`
           );
         }
       }
@@ -178,6 +177,7 @@ searchUsers.addEventListener('keydown', function() {
       console.error("Veriler çekilemedi:", err);
     });
 </script>
+
 
 
 
