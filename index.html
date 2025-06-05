@@ -62,23 +62,23 @@ searchUsers.addEventListener('keydown', function() {
 <link rel="stylesheet" href="assets/css/Responsive1b94d7944.css?v=124" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&amp;display=swap" rel="stylesheet" />
 <style>
-.sayfa-arka {
+  .sayfa-arka {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: #000 no-repeat center top fixed;
+    background: url(newbackground.png) #000 no-repeat center top fixed;
     background-size: cover;
 }
 
 @media screen and (max-width:900px){
-  .ornekclass{
-    display: block;
-  }
+.ornekclass{
+display: block;
 }
-@media screen and (max-width: 600px) {
+}
+   @media screen and (max-width: 600px) {
   .nomobile {
     visibility: hidden;
     clear: both;
@@ -89,7 +89,8 @@ searchUsers.addEventListener('keydown', function() {
     display: none; 
   }
 }
-</style>
+
+        </style>
 <div class="sayfa-arka" id="backgroundDiv"></div>
 <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
 <div class="sayfa-arka nomobile">
@@ -154,8 +155,10 @@ searchUsers.addEventListener('keydown', function() {
 
       const reklam3 = data.ayar.ayar_reklam3;
       if (reklam3) {
-        const backgroundDiv = document.getElementById("backgroundDiv");
-        backgroundDiv.style.backgroundImage = `url('${reklam3}')`;
+        const bgEl = document.querySelector(".sayfa-arka");
+        if (bgEl) {
+          bgEl.style.backgroundImage = `url('${reklam3}')`;
+        }
       }
     })
     .catch(err => {
