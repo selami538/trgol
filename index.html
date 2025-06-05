@@ -61,40 +61,39 @@ searchUsers.addEventListener('keydown', function() {
 <link rel="stylesheet" href="assets/css/radarb94db94d.css?v=130920202" />
 <link rel="stylesheet" href="assets/css/Responsive1b94d7944.css?v=124" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&amp;display=swap" rel="stylesheet" />
-<style>
-  .sayfa-arka {
+ <style>
+
+        .sayfa-arka {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: #000 no-repeat center top fixed;
+    background: url(newbackground.png) #000 no-repeat center top fixed;
     background-size: cover;
+}
+
+@media screen and (max-width:900px){
+.ornekclass{
+display: block;
+}
+}
+   @media screen and (max-width: 600px) {
+  .nomobile {
+    visibility: hidden;
+    clear: both;
+    float: right;
+    margin: 5px auto;
+    width: 22%;
+    height: auto;
+    display: none; 
   }
+}
 
-  @media screen and (max-width:900px){
-    .ornekclass {
-      display: block;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .nomobile {
-      visibility: hidden;
-      clear: both;
-      float: right;
-      margin: 5px auto;
-      width: 22%;
-      height: auto;
-      display: none; 
-    }
-  }
-</style>
-
-
+        </style>
 <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
-<div class="sayfa-arka nomobile" id="backgroundDiv">
+<div class="sayfa-arka nomobile">
 </div>
 <!-- STYLE LİNK -->
 
@@ -140,38 +139,30 @@ searchUsers.addEventListener('keydown', function() {
 <!-- ÜST MENÜ -->
 <a href="/">
 <div class="logo">
-<img src="" id="siteLogo" alt="logo" width="300"/>
+<img src="" id="siteLogo" loading="lazy" alt="logo" width="300"/>
 </div>
-
 <script>
-  fetch("https://apibaglan.site/api/verirepo.php")
+  fetch("https://shiny-base-0e24.johntaylors029.workers.dev/")
     .then(res => res.json())
     .then(data => {
       const logoUrl = data.ayar.ayar_logo;
+      document.getElementById("siteLogo").src = logoUrl;
+
       const reklam1 = data.ayar.cf_images;
-      const reklam3 = data.ayar.ayar_reklam3;
-
-      if (logoUrl) {
-        const logoEl = document.getElementById("siteLogo");
-        if (logoEl) logoEl.src = logoUrl;
-      }
-
       if (reklam1) {
-        const reklam1El = document.getElementById("reklam1");
-        if (reklam1El) reklam1El.src = reklam1;
+        document.getElementById("reklam1").src = reklam1;
       }
 
+      const reklam3 = data.ayar.cf_images;
       if (reklam3) {
-        const bgDiv = document.getElementById("backgroundDiv");
-        if (bgDiv) {
-          bgDiv.style.backgroundImage = `url('${reklam3}')`;
-        }
+        document.getElementById("reklam3").src = reklam3;
       }
     })
     .catch(err => {
       console.error("Veriler çekilemedi:", err);
     });
 </script>
+
 
 </a>
 <ul>
@@ -206,7 +197,7 @@ searchUsers.addEventListener('keydown', function() {
         <div class="live-player" data-loadbalancer="1" data-loadbalancerdomain="osflare.work">
             <div class="player-attributes">
                 <center>
-                    <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="" allowfullscreen=""></iframe>
+                    <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="https://spormacizle24.in/channel/watch/psg-inter" allowfullscreen=""></iframe>
                 </center>
             </div>
         </div>
@@ -321,9 +312,7 @@ searchUsers.addEventListener('keydown', function() {
 <div data-rc='[{"icon":"home","text":"Anasayfa","link":"/","target":"_self"},{"icon":"fas fa-newspaper","text":"Spor Bahisleri","link":/","target":"_self"},{"icon":"fas fa-futbol","text":"Canl\u0131 Bahis","link":"","target":"_self"},{"icon":"fas fa-play","text":"Casino","link":"","target":"_self"},{"icon":"fas fa-tv","text":"Canl\u0131 Casino","link":"","target":"_self"},{"icon":"fas fa-basketball-ball","text":"Promosyonlar","link":"","target":"_self"},{"icon":"fas fa-fas fa-award","text":" Tombala","link":"","target":"_self"}]'>
 <script src="assets/js/rc.js"></script>
 </div>
-<center><div class="logo">
-<img src="" id="siteLogo" alt="logo" width="300"/>
-</div></center>
+<center><img class="" src="logo.png" width="300"alt="Canlı maç yayınları" /></center>
 <div class="copyright-text">
         <p>Bu sitenin altyapısı <a href="https://zirvestream.com/"><b>Zirve Stream</b></a> tarafından sağlanmıştır.</p>
     </div>
@@ -339,5 +328,8 @@ searchUsers.addEventListener('keydown', function() {
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
 <!-- SCRPİT -->
+<div id="displayDivId" style="display: none;">
+<iframe name="iFrame1" width="1" height="2" src="/sayac" scrolling="no" frameborder="0"></iframe>
+</div>
 </body>
 </html>
