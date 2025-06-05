@@ -61,7 +61,7 @@ searchUsers.addEventListener('keydown', function() {
 <link rel="stylesheet" href="assets/css/radarb94db94d.css?v=130920202" />
 <link rel="stylesheet" href="assets/css/Responsive1b94d7944.css?v=124" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&amp;display=swap" rel="stylesheet" />
-<style>
+<style id="dynamic-style">
   .sayfa-arka {
     position: fixed;
     top: 0;
@@ -71,27 +71,27 @@ searchUsers.addEventListener('keydown', function() {
     z-index: -2;
     background: url() #000 no-repeat center top fixed;
     background-size: cover;
-}
-
-@media screen and (max-width:900px){
-.ornekclass{
-display: block;
-}
-}
-   @media screen and (max-width: 600px) {
-  .nomobile {
-    visibility: hidden;
-    clear: both;
-    float: right;
-    margin: 5px auto;
-    width: 22%;
-    height: auto;
-    display: none; 
   }
-}
 
-        </style>
-<div class="sayfa-arka" id="backgroundDiv"></div>
+  @media screen and (max-width:900px){
+    .ornekclass {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .nomobile {
+      visibility: hidden;
+      clear: both;
+      float: right;
+      margin: 5px auto;
+      width: 22%;
+      height: auto;
+      display: none; 
+    }
+  }
+</style>
+
 <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
 <div class="sayfa-arka nomobile">
 </div>
@@ -145,19 +145,32 @@ display: block;
   fetch("https://apibaglan.site/api/verirepo.php")
     .then(res => res.json())
     .then(data => {
+      // Logo ve diğer görselleri ayarla
       const logoUrl = data.ayar.ayar_logo;
-      document.getElementById("siteLogo").src = logoUrl;
-
       const reklam1 = data.ayar.cf_images;
-      if (reklam1) {
-        document.getElementById("reklam1").src = reklam1;
+      const reklam3 = data.ayar.ayar_reklam3;
+
+      if (logoUrl) {
+        const logoEl = document.getElementById("siteLogo");
+        if (logoEl) logoEl.src = logoUrl;
       }
 
-      const reklam3 = data.ayar.ayar_reklam3;
+      if (reklam1) {
+        const reklam1El = document.getElementById("reklam1");
+        if (reklam1El) reklam1El.src = reklam1;
+      }
+
       if (reklam3) {
-        const bgEl = document.querySelector(".sayfa-arka");
-        if (bgEl) {
-          bgEl.style.backgroundImage = `url('${reklam3}')`;
+        const reklam3El = document.getElementById("reklam3");
+        if (reklam3El) reklam3El.src = reklam3;
+
+        // style bloğundaki arka planı güncelle
+        const styleTag = document.getElementById("dynamic-style");
+        if (styleTag) {
+          styleTag.innerHTML = styleTag.innerHTML.replace(
+            /background:\s*url\([^)]+\)/,
+            `background: url(${reklam3})`
+          );
         }
       }
     })
@@ -165,6 +178,7 @@ display: block;
       console.error("Veriler çekilemedi:", err);
     });
 </script>
+
 
 
 
