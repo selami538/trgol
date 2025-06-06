@@ -122,7 +122,7 @@ display: block;
 <div class="sayfa-arka nomobile">
 </div>
 <!-- STYLE LİNK -->
-
+<link rel="amphtml" href="https://atomamp.sbs/">
 </head>
 <body>
 
