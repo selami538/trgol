@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/" />
-<title>Dengebet TV | Canlı Maç izle, Beinsports izle</title>
+<title id="title"></title>
 <meta name="description" content="Dengebet TV ile bedava hd donmadan canlı maç izle. Dengebet altyapısı ile kurulan Dengebet TV ile tüm canlı müsabakaları izleyebilirsiniz." />
 <meta name="keywords" content="Dengebet TV, Dengebet, Dengebet tv, canlı maç izle, bein sports izle" />
 <meta property="og:title" content="Dengebet TV" />
@@ -315,6 +315,13 @@ display: block;
                                       list2 = document.querySelectorAll("#reklam1")
         list2.forEach(q => {
             q.src = reklam1;
+        })
+      }
+          const title = data.ayar.ayar_title;
+      if (title) {
+                                      list5 = document.querySelectorAll("#title")
+        list5.forEach(q => {
+            q.src = title;
         })
       }
 
