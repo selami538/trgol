@@ -69,14 +69,11 @@ searchUsers.addEventListener('keydown', function() {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background-color: #000;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
+    background: url('newbackground.png') #000 no-repeat center top fixed;
     background-size: cover;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width:900px) {
     .ornekclass {
       display: block;
     }
@@ -95,31 +92,30 @@ searchUsers.addEventListener('keydown', function() {
   }
 </style>
 
+<div class="sayfa-arka nomobile">
+  <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam"
+     style="display:block; width:100%; height:100%;"></a>
+</div>
 
 <script>
   fetch("https://shiny-base-0e24.johntaylors029.workers.dev/")
     .then(res => res.json())
     .then(data => {
-      const logoUrl = data.ayar.ayar_logo;
-      document.getElementById("siteLogo").src = logoUrl;
+      // Reklam3 arka plan URL'sini al
+      const reklam3 = data.ayar_reklam3;
 
-      const reklam1 = data.ayar.cf_images;
-      if (reklam1) {
-        document.getElementById("reklam1").src = reklam1;
-      }
-
-      const reklam3 = data.ayar_reklam3; // reklam3 verisini ayar_reklam3'ten al
       if (reklam3) {
-        document.querySelector(".sayfa-arka").style.backgroundImage = `url('${reklam3}')`;
+        const bgElement = document.querySelector(".sayfa-arka");
+        if (bgElement) {
+          bgElement.style.background = `url('${reklam3}') #000 no-repeat center top fixed`;
+          bgElement.style.backgroundSize = "cover";
+        }
       }
     })
     .catch(err => {
       console.error("Veriler çekilemedi:", err);
     });
 </script>
-<a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
-<div class="sayfa-arka nomobile">
-</div>
 <!-- STYLE LİNK -->
 
 </head>
