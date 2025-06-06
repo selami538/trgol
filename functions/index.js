@@ -223,8 +223,8 @@ ${
 <div style="margin: 10px; text-align: center;">
   ${
     hrefreklam4 
-      ? `<a href="${hrefreklam4}" target="_blank"><img class="ads-img" src="${reklam2}" width="100%"/></a>` 
-      : `<img class="ads-img" src="${reklam2}" width="100%"/>`
+      ? `<a href="${hrefreklam4}" target="_blank"><img class="ads-img" src="${reklam4}" width="100%"/></a>` 
+      : `<img class="ads-img" src="${reklam4}" width="100%"/>`
   }
 </div>
 
