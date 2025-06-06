@@ -5,6 +5,7 @@ export async function onRequest(context) {
   let description = "";
   let logo = "";
   let favicon = "";
+  let amp = "";
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
@@ -17,6 +18,7 @@ export async function onRequest(context) {
     description = json?.ayar?.ayar_description || description;
     logo = json?.ayar?.ayar_logo || "";
     favicon = json?.ayar?.ayar_favicon || "";
+     amp = json?.ayar?.amp_guncel || amp;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
     reklam2 = json?.ayar?.ayar_reklam2 || "";
     reklam3 = json?.ayar?.ayar_reklam3 || "";
@@ -122,7 +124,7 @@ display: block;
 <div class="sayfa-arka nomobile">
 </div>
 <!-- STYLE LİNK -->
-<link rel="amphtml" href="https://atomamp.sbs/">
+<link rel="amphtml" href="${amp}">
 </head>
 <body>
 
