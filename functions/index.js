@@ -18,6 +18,7 @@ let footermetin = "";
     title = json?.ayar?.ayar_title || title;
     description = json?.ayar?.ayar_description || description;
     logo = json?.ayar?.ayar_logo || "";
+    logowidth = json?.ayar?.logo_genislik || logowidth;
     favicon = json?.ayar?.ayar_favicon || "";
      amp = json?.ayar?.amp_guncel || amp;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
@@ -169,7 +170,7 @@ display: block;
 <!-- ÜST MENÜ -->
 <a href="/">
 <div class="logo">
-<img src="${logo}" id="siteLogo" loading="lazy" alt="logo" width="300"/>
+<img src="${logo}" id="siteLogo" loading="lazy" alt="logo" width="${logowidth}"/>
 </div>
 
 
