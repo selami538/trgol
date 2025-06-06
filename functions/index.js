@@ -6,6 +6,7 @@ export async function onRequest(context) {
   let logo = "";
   let favicon = "";
   let amp = "";
+let footermetin = "";
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
@@ -19,6 +20,7 @@ export async function onRequest(context) {
     logo = json?.ayar?.ayar_logo || "";
     favicon = json?.ayar?.ayar_favicon || "";
      amp = json?.ayar?.amp_guncel || amp;
+    footermetin = json?.ayar?.ayar_footermetin || footermetin;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
     reklam2 = json?.ayar?.ayar_reklam2 || "";
     reklam3 = json?.ayar?.ayar_reklam3 || "";
@@ -314,7 +316,7 @@ display: block;
 </div>
 <center><img class="" src="${logo}" width="300"alt="Canlı maç yayınları" /></center>
 <div class="copyright-text">
-        <p>Bu sitenin altyapısı <a href="https://zirvestream.com/"><b>Zirve Stream</b></a> tarafından sağlanmıştır.</p>
+        <p>${footermetin}</p>
     </div>
 </footer>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
