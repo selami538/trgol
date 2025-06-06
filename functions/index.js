@@ -13,8 +13,10 @@ export async function onRequest(context) {
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
+  let reklam4 = "";
   let hrefreklam1 = "";
   let hrefreklam2 = "";
+  let hrefreklam4 = "";
   let hrefpageskin = "";
 
   try {
@@ -36,7 +38,8 @@ export async function onRequest(context) {
     hrefreklam2 = json?.ayar?.ayar_alt || hrefreklam2;
     reklam3 = json?.ayar?.ayar_reklam3 || "";
     hrefpageskin = json?.ayar?.ayar_pageskin || hrefpageskin;
-
+    reklam4 = json?.ayar?.ayar_reklamust2 || "";
+    hrefreklam4 = json?.ayar?.ayar_ust2 || hrefreklam4;
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
@@ -214,6 +217,14 @@ ${
     hrefreklam1 
       ? `<a href="${hrefreklam1}" target="_blank"><img class="ads-img" src="${reklam1}" width="100%"/></a>` 
       : `<img class="ads-img" src="${reklam1}" width="100%"/>`
+  }
+</div>
+
+<div style="margin: 10px; text-align: center;">
+  ${
+    hrefreklam4 
+      ? `<a href="${hrefreklam4}" target="_blank"><img class="ads-img" src="${reklam2}" width="100%"/></a>` 
+      : `<img class="ads-img" src="${reklam2}" width="100%"/>`
   }
 </div>
 
