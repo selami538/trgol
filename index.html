@@ -17,31 +17,6 @@
 <meta property="og:type" content="website" />
 <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 <meta name="twitter:widgets:theme" content="dark">
-     <script>
-  fetch("https://apibaglan.site/api/verirepo.php")
-    .then(res => res.json())
-    .then(data => {
-      const logoUrl = data.ayar.ayar_logo;
-      document.getElementById("siteLogo").src = logoUrl;
-
-      const reklam1 = data.ayar.ayar_reklam1;
-      if (reklam1) {
-        document.getElementById("reklam1").src = reklam1;
-      }
-
-      const reklam2 = data.ayar.ayar_reklam2;
-      if (reklam2) {
-        document.getElementById("reklam2").src = reklam2;
-      }
-           const reklam3 = data.ayar.ayar_reklam3;
-      if (reklam3) {
-        document.getElementById("reklam3").src = reklam3;
-      }
-    })
-    .catch(err => {
-      console.error("Veriler çekilemedi:", err);
-    });
-</script>
 <style>
 .container-grid {
     display: grid;
@@ -299,10 +274,10 @@ display: block;
 
 <!-- footer reklam -->
 <div class="reklam-3" style="max-width:100%;height:100%;margin:0 auto;">
-    <a href="https://dng.bet/" target="_blank">
+   
         <img src="" id="reklam2" alt="reklamlar"/>
-    </a>
-</div></div>
+ 
+</div>
 <!-- footer reklam bitis-->
 <footer>
   <div class="footer-links">
@@ -331,7 +306,31 @@ display: block;
 <script src="assets/js/playeroptions238603860.js?v=1"></script>
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
-  
+     <script>
+  fetch("https://apibaglan.site/api/verirepo.php")
+    .then(res => res.json())
+    .then(data => {
+      const logoUrl = data.ayar.ayar_logo;
+      document.getElementById("siteLogo").src = logoUrl;
+
+      const reklam1 = data.ayar.ayar_reklam1;
+      if (reklam1) {
+        document.getElementById("reklam1").src = reklam1;
+      }
+
+      const reklam2 = data.ayar.ayar_reklam2;
+      if (reklam2) {
+        document.getElementById("reklam2").src = reklam2;
+      }
+           const reklam3 = data.ayar.ayar_reklam3;
+      if (reklam3) {
+        document.getElementById("reklam3").src = reklam3;
+      }
+    })
+    .catch(err => {
+      console.error("Veriler çekilemedi:", err);
+    });
+</script>
 <!-- SCRPİT -->
 </div>
 </body>
