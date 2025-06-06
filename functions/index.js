@@ -309,9 +309,11 @@ display: block;
 <!-- Sekmeler Arasında Geçiş İçin JavaScript -->
 
 <div class="reklam-3" style="max-width:100%;height:100%;margin:0 auto;">
-    <a href="${hrefreklam2}" target="_blank">
-        <center><img src="${reklam2}"  alt="reklamlar" /></center>
-    </a>
+  ${
+    hrefreklam2
+      ? `<a href="${hrefreklam2}" target="_blank"><center><img src="${reklam2}" alt="reklamlar" /></center></a>`
+      : `<center><img src="${reklam2}" alt="reklamlar" /></center>`
+  }
 </div></div>
 <!-- footer reklam bitis-->
 <footer>
