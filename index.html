@@ -275,7 +275,7 @@ display: block;
 <!-- footer reklam -->
 <div class="reklam-3" style="max-width:100%;height:100%;margin:0 auto;">
    
-        <img src="" id="reklam3" alt="reklamlar"/>
+        <img src="" id="reklam2" alt="reklamlar"/>
  
 </div>
 <!-- footer reklam bitis-->
@@ -322,7 +322,7 @@ display: block;
       if (reklam2) {
         document.getElementById("reklam2").src = reklam2;
       }
-           const reklam3 = data.ayar.ayar_reklam3;
+           const reklam3 = data.ayar.ayar_reklam3 || null;
       if (reklam3) {
         document.getElementById("reklam3").src = reklam3;
       }
