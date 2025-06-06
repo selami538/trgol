@@ -69,7 +69,7 @@ searchUsers.addEventListener('keydown', function() {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: url('newbackground.png') #000 no-repeat center top fixed;
+    background: url('') #000 no-repeat center top fixed;
     background-size: cover;
   }
 
@@ -98,7 +98,7 @@ searchUsers.addEventListener('keydown', function() {
 </div>
 
 <script>
-  fetch("https://shiny-base-0e24.johntaylors029.workers.dev/")
+  fetch("https://apibaglan.site/api/verirepo.php")
     .then(res => res.json())
     .then(data => {
       // Reklam3 arka plan URL'sini al
