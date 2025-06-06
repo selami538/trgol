@@ -312,21 +312,33 @@ display: block;
     .then(res => res.json())
     .then(data => {
       const logoUrl = data.ayar.ayar_logo;
-      document.getElementById("siteLogo").src = logoUrl;
+      list1 = document.querySelectorAll("#siteLogo")
+        list1.forEach(q => {
+            q.src = logoUrl;
+        })
 
       const reklam1 = data.ayar.ayar_reklam1;
       if (reklam1) {
-        document.getElementById(#reklam1").src = reklam1;
+                                      list2 = document.querySelectorAll("#reklam1")
+        list2.forEach(q => {
+            q.src = reklam1;
+        })
       }
 
       const reklam2 = data.ayar.ayar_reklam2;
         console.log(reklam2)
       if (reklam2) {
-        document.getElementById("reklam2").src = reklam2;
+                                              list3 = document.querySelectorAll("#reklam2")
+        list3.forEach(q => {
+            q.src = reklam2;
+        })
       }
            const reklam3 = data.ayar.ayar_reklam3 || null;
       if (reklam3) {
-        document.getElementById("reklam3").src = reklam3;
+                                              list4 = document.querySelectorAll("#reklam3")
+        list4.forEach(q => {
+            q.src = reklam3;
+        })
       }
       
     })
