@@ -96,7 +96,7 @@ searchUsers.addEventListener('keydown', function() {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: url(newbackground.png) #000 no-repeat center top fixed;
+    background: url(${reklam3}) #000 no-repeat center top fixed;
     background-size: cover;
 }
 
