@@ -307,6 +307,7 @@ display: block;
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
      <script>
+         window.addEventListener("DOMContentLoaded", function () {
   fetch("https://apibaglan.site/api/verirepo.php")
     .then(res => res.json())
     .then(data => {
@@ -332,6 +333,8 @@ display: block;
     .catch(err => {
       console.error("Veriler çekilemedi:", err);
     });
+             });
+
 </script>
 <!-- SCRPİT -->
 </div>
