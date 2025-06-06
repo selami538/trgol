@@ -299,55 +299,54 @@ display: block;
 <script src="assets/js/playeroptions238603860.js?v=1"></script>
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
-     <script>
-         window.addEventListener("DOMContentLoaded", function () {
-  fetch("https://apibaglan.site/api/verirepo.php")
-    .then(res => res.json())
-    .then(data => {
-      const logoUrl = data.ayar.ayar_logo;
-      list1 = document.querySelectorAll("#siteLogo")
+   <script>
+  window.addEventListener("DOMContentLoaded", function () {
+    fetch("https://apibaglan.site/api/verirepo.php")
+      .then(res => res.json())
+      .then(data => {
+        const logoUrl = data.ayar.ayar_logo;
+        list1 = document.querySelectorAll("#siteLogo");
         list1.forEach(q => {
-            q.src = logoUrl;
-        })
+          q.src = logoUrl;
+        });
 
-      const reklam1 = data.ayar.ayar_reklam1;
-      if (reklam1) {
-                                      list2 = document.querySelectorAll("#reklam1")
-        list2.forEach(q => {
+        const reklam1 = data.ayar.ayar_reklam1;
+        if (reklam1) {
+          list2 = document.querySelectorAll("#reklam1");
+          list2.forEach(q => {
             q.src = reklam1;
-        })
-      }
-          const title = data.ayar.ayar_title;
-      if (title) {
-                                      list5 = document.querySelectorAll("#title")
-        list5.forEach(q => {
-            q.src = title;
-        })
-      }
+          });
+        }
 
-      const reklam2 = data.ayar.ayar_reklam2;
-        console.log(reklam2)
-      if (reklam2) {
-                                              list3 = document.querySelectorAll("#reklam2")
-        list3.forEach(q => {
+        // ✅ Title güncelleme (src değil, document.title kullanılır)
+        const title = data.ayar.ayar_title;
+        if (title) {
+          document.title = title;
+        }
+
+        const reklam2 = data.ayar.ayar_reklam2;
+        if (reklam2) {
+          list3 = document.querySelectorAll("#reklam2");
+          list3.forEach(q => {
             q.src = reklam2;
-        })
-      }
-           const reklam3 = data.ayar.ayar_reklam3 || null;
-      if (reklam3) {
-                                              list4 = document.querySelectorAll("#reklam3")
-        list4.forEach(q => {
-            q.src = reklam3;
-        })
-      }
-      
-    })
-    .catch(err => {
-      console.error("Veriler çekilemedi:", err);
-    });
-             });
+          });
+        }
 
+        const reklam3 = data.ayar.ayar_reklam3 || null;
+        if (reklam3) {
+          list4 = document.querySelectorAll("#reklam3");
+          list4.forEach(q => {
+            q.src = reklam3;
+          });
+        }
+
+      })
+      .catch(err => {
+        console.error("Veriler çekilemedi:", err);
+      });
+  });
 </script>
+
 <!-- SCRPİT -->
 </div>
 </body>
