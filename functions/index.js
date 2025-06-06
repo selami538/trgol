@@ -8,7 +8,8 @@ export async function onRequest(context) {
   let logoheight = "";
   let favicon = "";
   let amp = "";
-let footermetin = "";
+  let pageskincolor = "";
+  let footermetin = "";
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
@@ -24,6 +25,7 @@ let footermetin = "";
     logoheight = json?.ayar?.logo_height || logoheight;
     favicon = json?.ayar?.ayar_favicon || "";
      amp = json?.ayar?.amp_guncel || amp;
+    pageskincolor = json?.ayar?.ayar_pcolor || pageskincolor;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
     reklam2 = json?.ayar?.ayar_reklam2 || "";
@@ -104,7 +106,7 @@ searchUsers.addEventListener('keydown', function() {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: url(${reklam3}) #000 no-repeat center top fixed;
+    background: url(${reklam3}) ${pageskincolor} no-repeat center top fixed;
     background-size: cover;
 }
 
