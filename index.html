@@ -278,6 +278,30 @@ display: block;
         <center><img src="" id="reklam3" alt="reklamlar" /></center>
     </a>
 </div></div>
+      <script>
+  fetch("https://apibaglan.site/api/verirepo.php")
+  .then(res => res.json())
+  .then(data => {
+    const logoUrl = data.ayar.ayar_logo;
+    document.getElementById("siteLogo").src = logoUrl;
+
+    const reklam1 = data.ayar.ayar_reklam1;
+    if (reklam1) {
+      document.getElementById("reklam1").src = reklam1;
+    }
+
+    const reklam3 = data.ayar.ayar_reklam2;
+    console.log("Reklam3 URL:", reklam3); // <- BURASI
+
+    if (reklam3) {
+      document.getElementById("reklam3").src = reklam3;
+    }
+  })
+  .catch(err => {
+    console.error("Veriler çekilemedi:", err);
+  });
+
+</script>
 <!-- footer reklam bitis-->
 <footer>
   <div class="footer-links">
