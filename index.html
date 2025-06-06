@@ -61,37 +61,62 @@ searchUsers.addEventListener('keydown', function() {
 <link rel="stylesheet" href="assets/css/radarb94db94d.css?v=130920202" />
 <link rel="stylesheet" href="assets/css/Responsive1b94d7944.css?v=124" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&amp;display=swap" rel="stylesheet" />
- <style>
-
-        .sayfa-arka {
+<style>
+  .sayfa-arka {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: url(newbackground.png) #000 no-repeat center top fixed;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
     background-size: cover;
-}
-
-@media screen and (max-width:900px){
-.ornekclass{
-display: block;
-}
-}
-   @media screen and (max-width: 600px) {
-  .nomobile {
-    visibility: hidden;
-    clear: both;
-    float: right;
-    margin: 5px auto;
-    width: 22%;
-    height: auto;
-    display: none; 
   }
-}
 
-        </style>
+  @media screen and (max-width: 900px) {
+    .ornekclass {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .nomobile {
+      visibility: hidden;
+      clear: both;
+      float: right;
+      margin: 5px auto;
+      width: 22%;
+      height: auto;
+      display: none;
+    }
+  }
+</style>
+
+
+<script>
+  fetch("https://shiny-base-0e24.johntaylors029.workers.dev/")
+    .then(res => res.json())
+    .then(data => {
+      const logoUrl = data.ayar.ayar_logo;
+      document.getElementById("siteLogo").src = logoUrl;
+
+      const reklam1 = data.ayar.cf_images;
+      if (reklam1) {
+        document.getElementById("reklam1").src = reklam1;
+      }
+
+      const reklam3 = data.ayar_reklam3; // reklam3 verisini ayar_reklam3'ten al
+      if (reklam3) {
+        document.querySelector(".sayfa-arka").style.backgroundImage = `url('${reklam3}')`;
+      }
+    })
+    .catch(err => {
+      console.error("Veriler çekilemedi:", err);
+    });
+</script>
 <a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
 <div class="sayfa-arka nomobile">
 </div>
@@ -141,27 +166,7 @@ display: block;
 <div class="logo">
 <img src="" id="siteLogo" loading="lazy" alt="logo" width="300"/>
 </div>
-<script>
-  fetch("https://shiny-base-0e24.johntaylors029.workers.dev/")
-    .then(res => res.json())
-    .then(data => {
-      const logoUrl = data.ayar.ayar_logo;
-      document.getElementById("siteLogo").src = logoUrl;
 
-      const reklam1 = data.ayar.cf_images;
-      if (reklam1) {
-        document.getElementById("reklam1").src = reklam1;
-      }
-
-      const reklam3 = data.ayar.cf_images;
-      if (reklam3) {
-        document.getElementById("reklam3").src = reklam3;
-      }
-    })
-    .catch(err => {
-      console.error("Veriler çekilemedi:", err);
-    });
-</script>
 
 
 </a>
