@@ -4,6 +4,7 @@ export async function onRequest(context) {
   let title = "";
   let description = "";
   let logo = "";
+  let logowidth = "";
   let favicon = "";
   let amp = "";
 let footermetin = "";
