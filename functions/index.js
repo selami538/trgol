@@ -14,9 +14,11 @@ export async function onRequest(context) {
   let reklam2 = "";
   let reklam3 = "";
   let reklam4 = "";
+  let reklam5 = "";
   let hrefreklam1 = "";
   let hrefreklam2 = "";
   let hrefreklam4 = "";
+  let hrefreklam5 = "";
   let hrefpageskin = "";
 
   try {
@@ -40,6 +42,8 @@ export async function onRequest(context) {
     hrefpageskin = json?.ayar?.ayar_pageskin || hrefpageskin;
     reklam4 = json?.ayar?.ayar_reklamust2 || "";
     hrefreklam4 = json?.ayar?.ayar_ust2 || hrefreklam4;
+    reklam5 = json?.ayar?.ayar_reklamalt2 || "";
+    hrefreklam5 = json?.ayar?.ayar_alt2 || hrefreklam5;
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
@@ -330,6 +334,13 @@ ${
     hrefreklam2
       ? `<a href="${hrefreklam2}" target="_blank"><center><img src="${reklam2}" alt="reklamlar" /></center></a>`
       : `<center><img src="${reklam2}" alt="reklamlar" /></center>`
+  }
+</div>
+<div class="reklam-5" style="max-width:100%;height:100%;margin:0 auto;">
+  ${
+    hrefreklam5
+      ? `<a href="${hrefreklam5}" target="_blank"><center><img src="${reklam5}" alt="reklamlar" /></center></a>`
+      : `<center><img src="${reklam5}" alt="reklamlar" /></center>`
   }
 </div></div>
 <!-- footer reklam bitis-->
