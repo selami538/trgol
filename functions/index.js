@@ -5,6 +5,7 @@ export async function onRequest(context) {
   let description = "";
   let logo = "";
   let logowidth = "";
+  let logoheight = "";
   let favicon = "";
   let amp = "";
 let footermetin = "";
@@ -20,6 +21,7 @@ let footermetin = "";
     description = json?.ayar?.ayar_description || description;
     logo = json?.ayar?.ayar_logo || "";
     logowidth = json?.ayar?.logo_genislik || logowidth;
+    logoheight = json?.ayar?.logo_height || logoheight;
     favicon = json?.ayar?.ayar_favicon || "";
      amp = json?.ayar?.amp_guncel || amp;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
@@ -171,7 +173,7 @@ display: block;
 <!-- ÜST MENÜ -->
 <a href="/">
 <div class="logo">
-<img src="${logo}" id="siteLogo" loading="lazy" alt="logo" width="${logowidth}"/>
+<img src="${logo}" id="siteLogo" loading="lazy" alt="logo" width="${logowidth}" height="${logoheight}"/>
 </div>
 
 
