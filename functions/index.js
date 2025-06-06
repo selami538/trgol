@@ -139,7 +139,6 @@ ${
     ? `<a href="${hrefpageskin}" target="_blank" rel="noopener" aria-label="Reklam"><div class="sayfa-arka nomobile">`
     : `<div class="sayfa-arka nomobile">`
 }
-// Buraya <div> içeriği gelecek
 ${
   hrefpageskin ? `</div></a>` : `</div>`
 }
