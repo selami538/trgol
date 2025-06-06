@@ -1,8 +1,10 @@
 export async function onRequest(context) {
   const apiUrl = "https://apibaglan.site/api/verirepo.php";
 
-  let title = "Dengebet TV";
+  let title = "";
+  let description = "";
   let logo = "";
+  let favicon = "";
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
@@ -12,7 +14,9 @@ export async function onRequest(context) {
     const json = await response.json();
 
     title = json?.ayar?.ayar_title || title;
+    description = json?.ayar?.ayar_description || description;
     logo = json?.ayar?.ayar_logo || "";
+    favicon = json?.ayar?.ayar_favicon || "";
     reklam1 = json?.ayar?.ayar_reklam1 || "";
     reklam2 = json?.ayar?.ayar_reklam2 || "";
     reklam3 = json?.ayar?.ayar_reklam3 || "";
@@ -33,12 +37,11 @@ export async function onRequest(context) {
 <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/" />
 <title>${title}</title>
-<meta name="description" content="Dengebet TV ile bedava hd donmadan canlı maç izle. Dengebet altyapısı ile kurulan Dengebet TV ile tüm canlı müsabakaları izleyebilirsiniz." />
-<meta name="keywords" content="Dengebet TV, Dengebet, Dengebet tv, canlı maç izle, bein sports izle" />
-<meta property="og:title" content="Dengebet TV" />
-<meta property="og:description" content="Dengebet TV ile bedava hd donmadan canlı maç izle. Dengebet altyapısı ile kurulan Dengebet TV ile tüm canlı müsabakaları izleyebilirsiniz." />
+<meta name="description" content="${description}" />
+<meta property="og:title" content="${title}" />
+<meta property="og:description" content="${description}" />
 <meta property="og:type" content="website" />
-<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="${favicon}" type="image/x-icon" />
 <meta name="twitter:widgets:theme" content="dark">
 <style>
 .container-grid {
