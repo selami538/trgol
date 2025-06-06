@@ -209,14 +209,7 @@ display: block;
                         <div class="match-tab-box" style="display: block; width: 100%;">
                             <!-- Maçlar İçeriği Buraya Eklenecek -->
                             <div id="matches-content" style="width: 100%;">
-                                <script>
-                                    fetch('')
-                                        .then(response => response.text())
-                                        .then(data => {
-                                            document.getElementById('matches-content').innerHTML = data; // 'channel-list' yerine 'matches-content' kullanıldı
-                                        })
-                                        .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
-                                </script>
+                             
                             </div>
                         </div>
                     </div>
