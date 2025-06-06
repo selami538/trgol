@@ -318,7 +318,7 @@ display: block;
 <div data-rc='[{"icon":"home","text":"Anasayfa","link":"/","target":"_self"},{"icon":"fas fa-newspaper","text":"Spor Bahisleri","link":/","target":"_self"},{"icon":"fas fa-futbol","text":"Canl\u0131 Bahis","link":"","target":"_self"},{"icon":"fas fa-play","text":"Casino","link":"","target":"_self"},{"icon":"fas fa-tv","text":"Canl\u0131 Casino","link":"","target":"_self"},{"icon":"fas fa-basketball-ball","text":"Promosyonlar","link":"","target":"_self"},{"icon":"fas fa-fas fa-award","text":" Tombala","link":"","target":"_self"}]'>
 <script src="assets/js/rc.js"></script>
 </div>
-<center><img class="" src="${logo}" width="${logowidth}" height="${logoheight}" alt="Canlı maç yayınları" /></center>
+<center><img class="" src="${logo}" width="${logowidth}" alt="Canlı maç yayınları" /></center>
 <div class="copyright-text">
         <p>${footermetin}</p>
     </div>
