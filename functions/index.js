@@ -13,6 +13,9 @@ export async function onRequest(context) {
   let reklam1 = "";
   let reklam2 = "";
   let reklam3 = "";
+  let hrefreklam1 = "";
+  let hrefreklam2 = "";
+  let hrefpageskin = "";
 
   try {
     const response = await fetch(apiUrl);
@@ -28,8 +31,11 @@ export async function onRequest(context) {
     pageskincolor = json?.ayar?.ayar_pcolor || pageskincolor;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
+    hrefreklam1 = json?.ayar?.ayar_ust || hrefreklam1;
     reklam2 = json?.ayar?.ayar_reklam2 || "";
+    hrefreklam2 = json?.ayar?.ayar_alt || hrefreklam2;
     reklam3 = json?.ayar?.ayar_reklam3 || "";
+    hrefpageskin = json?.ayar?.ayar_pageskin || hrefpageskin;
 
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
@@ -128,7 +134,7 @@ display: block;
 }
 
         </style>
-<a href="https://dng.bet/" target="_blank" rel="noopener" aria-label="Reklam">
+<a href="${hrefpageskin}" target="_blank" rel="noopener" aria-label="Reklam">
 <div class="sayfa-arka nomobile">
 </div>
 <!-- STYLE LİNK -->
@@ -198,7 +204,7 @@ display: block;
 
 <!-- REKLAM -->
 <div style="margin: 10px; text-align: center;">
-    <a href="https://dng.bet/"
+    <a href="${hrefreklam1}"
     target="_blank">
     <img class="ads-img"
     src="${reklam1}"width="100%"/>
@@ -301,12 +307,11 @@ display: block;
 </script>
 <!-- Sekmeler Arasında Geçiş İçin JavaScript -->
 
-<!-- footer reklam -->
 <div class="reklam-3" style="max-width:100%;height:100%;margin:0 auto;">
-   
-        <img src="${reklam2}" alt="reklamlar"/>
- 
-</div>
+    <a href="${hrefreklam2}" target="_blank">
+        <center><img src="${reklam2}"  alt="reklamlar" /></center>
+    </a>
+</div></div>
 <!-- footer reklam bitis-->
 <footer>
   <div class="footer-links">
