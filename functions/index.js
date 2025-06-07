@@ -97,7 +97,6 @@ export async function onRequest(context) {
     console.error("API'den veri alınamadı:", e);
   }
 
-  // Örnek HTML cevabı (isteğe göre özelleştir)
   const html =
 <!DOCTYPE html>
 <html lang="tr">
