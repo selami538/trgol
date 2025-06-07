@@ -97,7 +97,8 @@ export async function onRequest(context) {
     console.error("API'den veri alınamadı:", e);
   }
 
-  const html =
+  // Örnek HTML cevabı (isteğe göre özelleştir)
+  const html =  `
 <!DOCTYPE html>
 <html lang="tr">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -343,16 +344,15 @@ ${
 
 </a>
 <ul>
- ${menuler.map(menu => 
+ ${menuler.map(menu => `
     <li class="blink">
       <a href="${menu.url}" target="_self" rel="">
         <i class="${menu.icon}"></i>
         <span>${menu.ad}</span>
       </a>
     </li>
-  ).join("")}
+  `).join("")}
 </ul>
-  `;
 </header>
 
 <style>
