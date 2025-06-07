@@ -352,7 +352,7 @@ ${
         <li class="blink">
           <a href="${menu.url}" target="_self" rel="">
             <i class="${menu.icon}"></i>
-            <span>${menu.ad}</span>
+            <span>${menu.ad}</span>  
           </a>
         </li>
       `).join("")}
