@@ -32,10 +32,12 @@ export async function onRequest(context) {
   let hrefreklam5 = "";
   let hrefreklam6 = "";
   let hrefpageskin = "";
+
+  // Menü verileri
+  let menuler = [];
   let menuicon = "";
   let menuurl = "";
   let menuad = "";
-  
 
   try {
     const response = await fetch(apiUrl);
@@ -47,7 +49,7 @@ export async function onRequest(context) {
     logowidth = json?.ayar?.logo_genislik || logowidth;
     logoheight = json?.ayar?.logo_height || logoheight;
     favicon = json?.ayar?.ayar_favicon || "";
-     amp = json?.ayar?.amp_guncel || amp;
+    amp = json?.ayar?.amp_guncel || amp;
     twitter = json?.ayar?.ayar_twitter || twitter;
     telegram = json?.ayar?.ayar_telegram || telegram;
     facebook = json?.ayar?.ayar_facebook || facebook;
@@ -72,12 +74,30 @@ export async function onRequest(context) {
     hrefreklam5 = json?.ayar?.ayar_alt2 || hrefreklam5;
     reklam6 = json?.ayar?.ayar_reklam4 || "";
     hrefreklam6 = json?.ayar?.ayar_footerlink || hrefreklam6;
-    menuicon = json?.menu?.menu_awesome || menuicon;
-    menuurl = json?.menu?.menu_url || menuurl;
-    menuad = json?.menu?.menu_ad || menuad;
+
+    // Menüleri dizi olarak al
+    if (Array.isArray(json.menu)) {
+      menuler = json.menu.map(item => ({
+        ad: item.menu_ad,
+        url: item.menu_url,
+        icon: item.menu_awesome
+      }));
+
+      // İlk menü elemanını değişkenlere ata (opsiyonel)
+      if (menuler.length > 0) {
+        menuad = menuler[0].ad || menuad;
+        menuurl = menuler[0].url || menuurl;
+        menuicon = menuler[0].icon || menuicon;
+      }
+    }
+
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
+
+  // burada menuler dizisini ya da diğer verileri istediğin gibi kullanabilirsin
+}
+
 
   const html = `
 <!DOCTYPE html>
