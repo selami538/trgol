@@ -43,51 +43,53 @@ export async function onRequest(context) {
     const response = await fetch(apiUrl);
     const json = await response.json();
 
-    title = json?.ayar?.ayar_title || title;
-    description = json?.ayar?.ayar_description || description;
-    logo = json?.ayar?.ayar_logo || "";
-    logowidth = json?.ayar?.logo_genislik || logowidth;
-    logoheight = json?.ayar?.logo_height || logoheight;
-    favicon = json?.ayar?.ayar_favicon || "";
-    amp = json?.ayar?.amp_guncel || amp;
-    twitter = json?.ayar?.ayar_twitter || twitter;
-    telegram = json?.ayar?.ayar_telegram || telegram;
-    facebook = json?.ayar?.ayar_facebook || facebook;
-    instagram = json?.ayar?.ayar_instagram || instagram;
-    youtube = json?.ayar?.ayar_youtube || youtube;
-    headerapi = json?.ayar?.ayar_api || headerapi;
-    bodyapi = json?.ayar?.ayar_body || bodyapi;
-    footerapi = json?.ayar?.ayar_footervole || footerapi;
-    analyticsapi = json?.ayar?.ayar_analystic || analyticsapi;
-    apilinkcikisi = json?.ayar?.ayar_linkcikis || apilinkcikisi;
-    pageskincolor = json?.ayar?.ayar_pcolor || pageskincolor;
-    footermetin = json?.ayar?.ayar_footermetin || footermetin;
-    reklam1 = json?.ayar?.ayar_reklam1 || "";
-    hrefreklam1 = json?.ayar?.ayar_ust || hrefreklam1;
-    reklam2 = json?.ayar?.ayar_reklam2 || "";
-    hrefreklam2 = json?.ayar?.ayar_alt || hrefreklam2;
-    reklam3 = json?.ayar?.ayar_reklam3 || "";
-    hrefpageskin = json?.ayar?.ayar_pageskin || hrefpageskin;
-    reklam4 = json?.ayar?.ayar_reklamust2 || "";
-    hrefreklam4 = json?.ayar?.ayar_ust2 || hrefreklam4;
-    reklam5 = json?.ayar?.ayar_reklamalt2 || "";
-    hrefreklam5 = json?.ayar?.ayar_alt2 || hrefreklam5;
-    reklam6 = json?.ayar?.ayar_reklam4 || "";
-    hrefreklam6 = json?.ayar?.ayar_footerlink || hrefreklam6;
+    // Ayar verileri
+    const ayar = json?.ayar || {};
+    title = ayar.ayar_title || "";
+    description = ayar.ayar_description || "";
+    logo = ayar.ayar_logo || "";
+    logowidth = ayar.logo_genislik || "";
+    logoheight = ayar.logo_height || "";
+    favicon = ayar.ayar_favicon || "";
+    amp = ayar.amp_guncel || "";
+    twitter = ayar.ayar_twitter || "";
+    telegram = ayar.ayar_telegram || "";
+    facebook = ayar.ayar_facebook || "";
+    instagram = ayar.ayar_instagram || "";
+    youtube = ayar.ayar_youtube || "";
+    headerapi = ayar.ayar_api || "";
+    bodyapi = ayar.ayar_body || "";
+    footerapi = ayar.ayar_footervole || "";
+    analyticsapi = ayar.ayar_analystic || "";
+    apilinkcikisi = ayar.ayar_linkcikis || "";
+    pageskincolor = ayar.ayar_pcolor || "";
+    footermetin = ayar.ayar_footermetin || "";
+    reklam1 = ayar.ayar_reklam1 || "";
+    hrefreklam1 = ayar.ayar_ust || "";
+    reklam2 = ayar.ayar_reklam2 || "";
+    hrefreklam2 = ayar.ayar_alt || "";
+    reklam3 = ayar.ayar_reklam3 || "";
+    hrefpageskin = ayar.ayar_pageskin || "";
+    reklam4 = ayar.ayar_reklamust2 || "";
+    hrefreklam4 = ayar.ayar_ust2 || "";
+    reklam5 = ayar.ayar_reklamalt2 || "";
+    hrefreklam5 = ayar.ayar_alt2 || "";
+    reklam6 = ayar.ayar_reklam4 || "";
+    hrefreklam6 = ayar.ayar_footerlink || "";
 
-    // Menüleri dizi olarak al
+    // Menü verileri
     if (Array.isArray(json.menu)) {
       menuler = json.menu.map(item => ({
-        ad: item.menu_ad,
-        url: item.menu_url,
-        icon: item.menu_awesome
+        ad: item.menu_ad || "",
+        url: item.menu_url || "",
+        icon: item.menu_awesome || ""
       }));
 
-      // İlk menü elemanını değişkenlere ata (opsiyonel)
+      // Opsiyonel: İlk menüyü ayrı al
       if (menuler.length > 0) {
-        menuad = menuler[0].ad || menuad;
-        menuurl = menuler[0].url || menuurl;
-        menuicon = menuler[0].icon || menuicon;
+        menuad = menuler[0].ad;
+        menuurl = menuler[0].url;
+        menuicon = menuler[0].icon;
       }
     }
 
@@ -95,11 +97,8 @@ export async function onRequest(context) {
     console.error("API'den veri alınamadı:", e);
   }
 
-  // burada menuler dizisini ya da diğer verileri istediğin gibi kullanabilirsin
-}
-
-
-  const html = `
+  // Örnek HTML cevabı (isteğe göre özelleştir)
+  const html =  `
 <!DOCTYPE html>
 <html lang="tr">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
