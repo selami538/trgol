@@ -20,10 +20,12 @@ export async function onRequest(context) {
   let reklam3 = "";
   let reklam4 = "";
   let reklam5 = "";
+  let reklam6 = "";
   let hrefreklam1 = "";
   let hrefreklam2 = "";
   let hrefreklam4 = "";
   let hrefreklam5 = "";
+  let hrefreklam6 = "";
   let hrefpageskin = "";
 
   try {
@@ -54,6 +56,8 @@ export async function onRequest(context) {
     hrefreklam4 = json?.ayar?.ayar_ust2 || hrefreklam4;
     reklam5 = json?.ayar?.ayar_reklamalt2 || "";
     hrefreklam5 = json?.ayar?.ayar_alt2 || hrefreklam5;
+    reklam6 = json?.ayar?.ayar_reklam4 || "";
+    hrefreklam6 = json?.ayar?.ayar_footerlink || hrefreklam6;
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
