@@ -13,6 +13,7 @@ export async function onRequest(context) {
   let facebook = "";
   let instagram = "";
   let youtube = "";
+  let headerapi = "";
   let pageskincolor = "";
   let footermetin = "";
   let reklam1 = "";
@@ -44,6 +45,7 @@ export async function onRequest(context) {
     facebook = json?.ayar?.ayar_facebook || facebook;
     instagram = json?.ayar?.ayar_instagram || instagram;
     youtube = json?.ayar?.ayar_youtube || youtube;
+    headerapi = json?.ayar?.ayar_api || headerapi;
     pageskincolor = json?.ayar?.ayar_pcolor || pageskincolor;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
@@ -155,6 +157,7 @@ display: block;
 }
 
         </style>
+        ${headerapi}
 ${
   hrefpageskin
     ? `<a href="${hrefpageskin}" target="_blank" rel="noopener" aria-label="Reklam"><div class="sayfa-arka nomobile">`
