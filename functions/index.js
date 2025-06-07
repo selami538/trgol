@@ -14,6 +14,10 @@ export async function onRequest(context) {
   let instagram = "";
   let youtube = "";
   let headerapi = "";
+  let bodyapi = "";
+  let footerapi = "";
+  let analyticsapi = "";
+  let apilinkcikisi = "";
   let pageskincolor = "";
   let footermetin = "";
   let reklam1 = "";
@@ -46,6 +50,10 @@ export async function onRequest(context) {
     instagram = json?.ayar?.ayar_instagram || instagram;
     youtube = json?.ayar?.ayar_youtube || youtube;
     headerapi = json?.ayar?.ayar_api || headerapi;
+    bodyapi = json?.ayar?.ayar_body || bodyapi;
+    footerapi = json?.ayar?.ayar_footervole || footerapi;
+    analyticsapi = json?.ayar?.ayar_analystic || analyticsapi;
+    apilinkcikisi = json?.ayar?.ayar_linkcikis || apilinkcikisi;
     pageskincolor = json?.ayar?.ayar_pcolor || pageskincolor;
     footermetin = json?.ayar?.ayar_footermetin || footermetin;
     reklam1 = json?.ayar?.ayar_reklam1 || "";
@@ -158,6 +166,7 @@ display: block;
 
         </style>
         ${headerapi}
+        ${analyticsapi}
 ${
   hrefpageskin
     ? `<a href="${hrefpageskin}" target="_blank" rel="noopener" aria-label="Reklam"><div class="sayfa-arka nomobile">`
@@ -172,7 +181,7 @@ ${
 </head>
 <body>
 
-
+${bodyapi}
 
 <!-- HEADER -->
 <style>
@@ -481,6 +490,8 @@ ${
 <div class="copyright-text">
         <p>${footermetin}</p>
     </div>
+    ${footerapi}
+    ${apilinkcikisi}
 </footer>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
