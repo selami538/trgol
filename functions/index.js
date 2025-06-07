@@ -32,6 +32,10 @@ export async function onRequest(context) {
   let hrefreklam5 = "";
   let hrefreklam6 = "";
   let hrefpageskin = "";
+  let menuicon = "";
+  let menuurl = "";
+  let menuad = "";
+  
 
   try {
     const response = await fetch(apiUrl);
@@ -68,6 +72,9 @@ export async function onRequest(context) {
     hrefreklam5 = json?.ayar?.ayar_alt2 || hrefreklam5;
     reklam6 = json?.ayar?.ayar_reklam4 || "";
     hrefreklam6 = json?.ayar?.ayar_footerlink || hrefreklam6;
+    menuicon = json?.menu?.menu_awesome || menuicon;
+    menuurl = json?.menu?.menu_url || menuurl;
+    menuad = json?.menu?.menu_ad || menuad;
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
@@ -318,12 +325,7 @@ ${
 
 </a>
 <ul>
-<li class="blink"><a href="/" target="_self" rel=""><i class="fas fa-home"> </i><span>Ana Sayfa</span></a></li>
-<li class="blink"><a href="https://dng.bet/" target="_self" rel=""><i class="fas fa-futbol"> </i><span>Bahis</span></a></li>
-<li class="blink"><a href="https://dng.bet/" target="_self" rel=""><i class="fas fa-coins"> </i><span>Canlı Bahis</span></a></li>
-<li class="blink"><a href="https://dng.bet/" target="_self" rel=""><i class="fas fa-dice-six"> </i><span>Canlı Casino</span></a></li>
-<li class="blink"><a href="https://dng.bet/" target="_self" rel=""><i class="fas fa-circle-notch fa-spin"> </i><span>Slot Oyunu</span></a></li>
-<li class="blink"><a href="https://dng.bet/" target="_self" rel=""><i class="fas fa-bullhorn"> </i><span>Bonuslar</span></a></li>
+<li class="blink"><a href="${menuurl}" target="_self" rel=""><i class="${menuicon}"> </i><span>${menuad}</span></a></li>
 </ul>
 </header>
 
