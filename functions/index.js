@@ -77,19 +77,15 @@ export async function onRequest(context) {
     reklam6 = ayar.ayar_reklam4 || "";
     hrefreklam6 = ayar.ayar_footerlink || "";
 
-    // Menü verileri, menu_sira ile birlikte al ve sayıya çevir
+    // Menü verileri
     if (Array.isArray(json.menu)) {
       menuler = json.menu.map(item => ({
         ad: item.menu_ad || "",
         url: item.menu_url || "",
-        icon: item.menu_awesome || "",
-        menu_sira: Number(item.menu_sira) || 0
+        icon: item.menu_awesome || ""
       }));
 
-      // Menüleri menu_sira'ya göre artan sırada sırala
-      menuler.sort((a, b) => a.menu_sira - b.menu_sira);
-
-      // Opsiyonel: İlk menüyü değişkenlere ata
+      // Opsiyonel: İlk menüyü ayrı al
       if (menuler.length > 0) {
         menuad = menuler[0].ad;
         menuurl = menuler[0].url;
@@ -102,7 +98,7 @@ export async function onRequest(context) {
   }
 
   // Örnek HTML cevabı (isteğe göre özelleştir)
-  const html =  `
+  const html =
 <!DOCTYPE html>
 <html lang="tr">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -348,15 +344,15 @@ ${
 
 </a>
 <ul>
-      ${menuler.map(menu => `
-        <li class="blink">
-          <a href="${menu.url}" target="_self" rel="">
-            <i class="${menu.icon}"></i>
-            <span>${menu.ad}</span>  
-          </a>
-        </li>
-      `).join("")}
-    </ul>
+ ${menuler.map(menu => 
+    <li class="blink">
+      <a href="${menu.url}" target="_self" rel="">
+        <i class="${menu.icon}"></i>
+        <span>${menu.ad}</span>
+      </a>
+    </li>
+  ).join("")}
+</ul>
   `;
 </header>
 
