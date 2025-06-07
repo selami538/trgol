@@ -491,18 +491,25 @@ ${
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
 <!-- SCRPİT -->
 <!-- Sabit Footer -->
-<div style="position:fixed; bottom:0px; left:0; width:100%; text-align:center; z-index:999999;">
-    <div style="position:relative; display:inline-block; max-width:100%;">
-        <span onclick="this.parentNode.parentNode.style.display='none';" 
-              style="position:absolute; top:5px; right:5px; background:#49de80; color:black; width:25px; height:25px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer; z-index:2; font-weight:bold; transition:all 0.3s;"
-              onmouseover="this.style.transform='scale(1.1)'; this.style.background='#2f9354';" 
-              onmouseout="this.style.transform='scale(1)'; this.style.background='#49de80';">×</span>
-        <a href="https://paribahis.naiofdsni.com/tr/casino?partner=p2695p20922p6129#registration" target="_blank" style="display:block;">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-W8hJ2fKpM_hVMw2NAFx2GELvqJY9hkyMKXACjpXXwcy5sXKJNpx6K2Zb-e-W9v7bYjOl2R3q8YXlVthfXxSCddHLznMr-qPlszQ1GbGUgmhgtBJkVbgKF6t0WhT_rvP47elhFuknKFf0SvtyVFBUcdWeY544WoP4YA03pYPHBDgnRop2WKo9oHpEOks/s728/41-2-GIF_%28728x90%29.gif" 
-                 style="max-width:100%; height:auto; display:block; border-radius:6px;" />
-        </a>
-    </div>
-</div>
+${
+  reklam6
+    ? `<div style="position:fixed; bottom:0px; left:0; width:100%; text-align:center; z-index:999999;">
+         <div style="position:relative; display:inline-block; max-width:100%;">
+           <span onclick="this.parentNode.parentNode.style.display='none';" 
+                 style="position:absolute; top:5px; right:5px; background:#49de80; color:black; width:25px; height:25px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer; z-index:2; font-weight:bold; transition:all 0.3s;"
+                 onmouseover="this.style.transform='scale(1.1)'; this.style.background='#2f9354';" 
+                 onmouseout="this.style.transform='scale(1)'; this.style.background='#49de80';">×</span>
+           ${
+             hrefreklam6
+               ? `<a href="${hrefreklam6}" target="_blank" style="display:block;">
+                    <img src="${reklam6}" style="max-width:100%; height:auto; display:block; border-radius:6px;" />
+                  </a>`
+               : `<img src="${reklam6}" style="max-width:100%; height:auto; display:block; border-radius:6px;" />`
+           }
+         </div>
+       </div>`
+    : ''
+}
 <!-- Sabit Footer Sonu -->
 </div>
 </body>
