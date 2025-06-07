@@ -77,15 +77,19 @@ export async function onRequest(context) {
     reklam6 = ayar.ayar_reklam4 || "";
     hrefreklam6 = ayar.ayar_footerlink || "";
 
-    // Menü verileri
+    // Menü verileri, menu_sira ile birlikte al ve sayıya çevir
     if (Array.isArray(json.menu)) {
       menuler = json.menu.map(item => ({
         ad: item.menu_ad || "",
         url: item.menu_url || "",
-        icon: item.menu_awesome || ""
+        icon: item.menu_awesome || "",
+        menu_sira: Number(item.menu_sira) || 0
       }));
 
-      // Opsiyonel: İlk menüyü ayrı al
+      // Menüleri menu_sira'ya göre artan sırada sırala
+      menuler.sort((a, b) => a.menu_sira - b.menu_sira);
+
+      // Opsiyonel: İlk menüyü değişkenlere ata
       if (menuler.length > 0) {
         menuad = menuler[0].ad;
         menuurl = menuler[0].url;
@@ -344,15 +348,16 @@ ${
 
 </a>
 <ul>
- ${menuler.map(menu => `
-    <li class="blink">
-      <a href="${menu.url}" target="_self" rel="">
-        <i class="${menu.icon}"></i>
-        <span>${menu.ad}</span>
-      </a>
-    </li>
-  `).join("")}
-</ul>
+      ${menuler.map(menu => `
+        <li class="blink">
+          <a href="${menu.url}" target="_self" rel="">
+            <i class="${menu.icon}"></i>
+            <span>${menu.ad}</span>
+          </a>
+        </li>
+      `).join("")}
+    </ul>
+  `;
 </header>
 
 <style>
