@@ -344,7 +344,14 @@ ${
 
 </a>
 <ul>
-<li class="blink"><a href="${menuurl}" target="_self" rel=""><i class="${menuicon}"> </i><span>${menuad}</span></a></li>
+ ${menuler.map(menu => `
+    <li class="blink">
+      <a href="${menu.url}" target="_self" rel="">
+        <i class="${menu.icon}"></i>
+        <span>${menu.ad}</span>
+      </a>
+    </li>
+  `).join("")}
 </ul>
 </header>
 
