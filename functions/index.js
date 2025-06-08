@@ -347,6 +347,7 @@ ${
 
 
 </a>
+
 <ul>
   ${menuler.map(menu => `
     <li class="blink">
@@ -357,7 +358,7 @@ ${
     </li>
   `).join("")}
 </ul>
-`;
+
 
 
 </header>
