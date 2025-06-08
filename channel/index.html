@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Dinamik Yayın Player</title>
+<style>
+  body { margin:0; padding:0; }
+</style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/clappr.js"></script>
+
+<script>
+fetch("https://apibaglan.site/api/domain.php")
+.then(res => res.json())
+.then(data => {
+    const baseurl = data.baseurl;
+
+    // URL parametrelerinden id al
+    const urlParams = new URLSearchParams(window.location.search);
+    let cid = urlParams.get("id") || "yayinzirve";
+    cid = cid.replace(".m3u8", "");
+
+    // Yayın kanalları listesi (örnek)
+    const kanalurl = {
+      "yayinzirve": "yayinzirve.m3u8",
+      "yayintv85": "yayintv85.m3u8",
+      // diğer kanallar...
+    };
+
+    // Seçilen yayının dosyası
+    let streamFile = kanalurl[cid] || kanalurl["yayinzirve"];
+
+    // Yayın tam URL'si
+    let streamUrl = baseurl + streamFile;
+
+    // Burada player.js'e müdahale etmiyoruz,
+    // sadece streamUrl'yi hazır ediyoruz.
+
+    console.log("Yayın URL'si:", streamUrl);
+
+    // Eğer player.js dışarıdan çalışıyorsa örneğin şöyle kullanabilirsin:
+    // window.startPlayer(streamUrl);
+
+    // Ya da player.js kendi içinde URL parametresini kullanıyorsa
+    // bu kısmı kendi player'ına bırakabilirsin.
+
+})
+.catch(err => {
+    console.error("Baseurl alınırken hata:", err);
+});
+</script>
+
+</body>
+</html>
