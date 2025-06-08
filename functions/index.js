@@ -78,22 +78,23 @@ export async function onRequest(context) {
     hrefreklam6 = ayar.ayar_footerlink || "";
 
     // Menü verileri
-    if (Array.isArray(json.menu)) {
+  if (Array.isArray(json.menu)) {
   menuler = json.menu
-    .sort((a, b) => Number(a.menu_sira) - Number(b.menu_sira)) // menu_sira'ya göre sırala
+    .filter(item => item.menu_durum === "1") // SADECE aktif (1) olanları al
+    .sort((a, b) => Number(a.menu_sira) - Number(b.menu_sira)) // sırala
     .map(item => ({
       ad: item.menu_ad || "",
       url: item.menu_url || "",
       icon: item.menu_awesome || ""
     }));
 
-  // Opsiyonel: İlk menüyü ayrı al
   if (menuler.length > 0) {
     menuad = menuler[0].ad;
     menuurl = menuler[0].url;
     menuicon = menuler[0].icon;
   }
 }
+
 
 
   } catch (e) {
@@ -356,6 +357,8 @@ ${
     </li>
   `).join("")}
 </ul>
+`;
+
 
 </header>
 
