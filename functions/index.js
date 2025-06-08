@@ -454,7 +454,7 @@ ${
                             <!-- Örnek: <div class="yayinlanacaklar-mesaji">YAYINLANACAKLAR</div> -->
                             <div id="channels-content" style="width: 100%;">
                                 <script>
-                                    fetch('https://royalvipcanlimac.com/channels.php')
+                                    fetch('https://apibaglan.site/api/channels.php')
                                         .then(response => response.text())
                                         .then(data => {
                                             document.getElementById('channels-content').innerHTML = data; // 'channel-list' yerine 'channels-content' kullanıldı
