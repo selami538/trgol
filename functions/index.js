@@ -79,19 +79,22 @@ export async function onRequest(context) {
 
     // Menü verileri
     if (Array.isArray(json.menu)) {
-      menuler = json.menu.map(item => ({
-        ad: item.menu_ad || "",
-        url: item.menu_url || "",
-        icon: item.menu_awesome || ""
-      }));
+  menuler = json.menu
+    .sort((a, b) => Number(a.menu_sira) - Number(b.menu_sira)) // menu_sira'ya göre sırala
+    .map(item => ({
+      ad: item.menu_ad || "",
+      url: item.menu_url || "",
+      icon: item.menu_awesome || ""
+    }));
 
-      // Opsiyonel: İlk menüyü ayrı al
-      if (menuler.length > 0) {
-        menuad = menuler[0].ad;
-        menuurl = menuler[0].url;
-        menuicon = menuler[0].icon;
-      }
-    }
+  // Opsiyonel: İlk menüyü ayrı al
+  if (menuler.length > 0) {
+    menuad = menuler[0].ad;
+    menuurl = menuler[0].url;
+    menuicon = menuler[0].icon;
+  }
+}
+
 
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
