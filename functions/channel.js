@@ -1,95 +1,74 @@
+export async function onRequest(context) {
+  const url = new URL(context.request.url);
+  const cid = url.searchParams.get("id") || "yayinzirve";
 
+  // API'den baseurl al
+  const domainApi = 'https://shiny-base-0e24.johntaylors029.workers.dev/';
+  let baseurl = 'https://fallbackdomain.com/'; // varsayılan fallback domain
+
+  try {
+    const res = await fetch(domainApi);
+    const json = await res.json();
+    baseurl = json.baseurl || baseurl;
+  } catch (e) {
+    console.error("API'den domain alınamadı:", e);
+  }
+
+  const kanalurl = {
+    "yayinzirve": "yayinzirve.m3u8", "yayinb2": "yayinb2.m3u8", "yayinb3": "yayinb3.m3u8",
+    "yayinb4": "yayinb4.m3u8", "yayinbm1": "yayinbm1.m3u8", "yayinbm2": "yayinbm2.m3u8",
+    "yayinss": "yayinss.m3u8", "yayinss2": "yayinss2.m3u8", "yayint1": "yayint1.m3u8",
+    "yayint2": "yayint2.m3u8", "yayint3": "yayint3.m3u8", "yayint4": "yayint4.m3u8",
+    "yayinsmarts": "yayinsmarts.m3u8", "yayineu1": "yayineu1.m3u8", "yayineu2": "yayineu2.m3u8",
+    "yayinb5": "yayinb5.m3u8", "yayinas": "yayinas.m3u8", "yayinsms2": "yayinsms2.m3u8",
+    "yayinatv": "yayinatv.m3u8", "yayintv8": "yayintv8.m3u8", "yayintv85": "yayintv85.m3u8",
+    "yayinnbatv": "yayinnbatv.m3u8", "yayinex1": "yayinex1.m3u8", "bs5": "bs5.m3u8",
+    "yayinex3": "yayinex3.m3u8", "yayinex4": "yayinex4.m3u8", "yayinex5": "yayinex5.m3u8",
+    "yayinex6": "yayinex6.m3u8", "yayinex7": "yayinex7.m3u8", "yayinex8": "yayinex8.m3u8",
+    "yayintrtspor": "yayintrtspor.m3u8", "yayintrtspor2": "yayintrtspor2.m3u8", "yayintrt1": "yayintrt1.m3u8",
+    "yayinf1": "yayinf1.m3u8"
+  };
+
+  const streamPath = kanalurl[cid.replace('.m3u8', '')] || 'yayinzirve.m3u8';
+  const streamUrl = baseurl + streamPath;
+
+  const html = `
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
+  <meta charset="UTF-8">
+  <title>Yayın</title>
+  <style>
+    body { margin: 0; padding: 0; }
     .player-poster[data-poster].clickable {
-        background-size: contain;
-        background-image: url("yayinonu.png");
+      background-size: contain;
+      background-image: url("/yayinonu.png");
     }
-
-    .media-control[data-media-control] .media-control-layer[data-controls] button.media-control-button[data-hd-indicator] {
-        display: block !important;
-        fill: rgb(173, 216, 230) !important;
-    }
-</style>
+  </style>
+  <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
 </head>
 <body>
+  <div id="player"></div>
+  <script>
+    new Clappr.Player({
+      source: "${streamUrl}",
+      parentId: "#player",
+      mimeType: "application/x-mpegURL",
+      width: '100%',
+      height: 450,
+      watermark: "/logo.png",
+      watermarkLink: "https://dng.bet/",
+      autoPlay: true
+    });
+  </script>
+</body>
+</html>`;
 
-<div id="channel-detail"></div>
-<div id="player"></div>
+  return new Response(html, {
+    headers: { "Content-Type": "text/html; charset=UTF-8" }
+  });
+}
 
-<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script>
-eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('5(\'4://3.2/1.0\');',6,6,'php|domain|workers.dev|shiny-base-0e24.johntaylors029|https|fetch'.split('|'),0,{}))    .then(response => response.json())
-        .then(data => {
-            var baseurl = data.baseurl;  // API'den gelen yayın domaini
-
-            var urlParams = new URLSearchParams(window.location.search);
-            var cid = urlParams.get("id") || "yayinzirve";
-            var ctitle = urlParams.get("title") || "";
-
-            // Kanal URL map'i
-            var kanalurl = {
-                "yayinzirve": "yayinzirve.m3u8", "yayinb2": "yayinb2.m3u8", "yayinb3": "yayinb3.m3u8",
-                "yayinb4": "yayinb4.m3u8", "yayinbm1": "yayinbm1.m3u8", "yayinbm2": "yayinbm2.m3u8",
-                "yayinss": "yayinss.m3u8", "yayinss2": "yayinss2.m3u8", "yayint1": "yayint1.m3u8",
-                "yayint2": "yayint2.m3u8", "yayint3": "yayint3.m3u8", "yayint4": "yayint4.m3u8",
-                "yayinsmarts": "yayinsmarts.m3u8", "yayineu1": "yayineu1.m3u8", "yayineu2": "yayineu2.m3u8",
-                "yayinb5": "yayinb5.m3u8", "yayinas": "yayinas.m3u8", "yayinsms2": "yayinsms2.m3u8",
-                "yayinatv": "yayinatv.m3u8", "yayintv8": "yayintv8.m3u8", "yayintv85": "yayintv85.m3u8",
-                "yayinnbatv": "yayinnbatv.m3u8", "yayinex1": "yayinex1.m3u8", "bs5": "bs5.m3u8",
-                "yayinex3": "yayinex3.m3u8", "yayinex4": "yayinex4.m3u8", "yayinex5": "yayinex5.m3u8",
-                "yayinex6": "yayinex6.m3u8", "yayinex7": "yayinex7.m3u8", "yayinex8": "yayinex8.m3u8",
-                "yayintrtspor": "yayintrtspor.m3u8", "yayintrtspor2": "yayintrtspor2.m3u8", "yayintrt1": "yayintrt1.m3u8",
-                "yayinf1": "yayinf1.m3u8"
-            };
-
-            // id parametresindeki .m3u8 uzantısını kaldır
-            cid = cid.replace(".m3u8", "");
-
-            // Seçilen kanalın .m3u8 dosyasını al, yoksa varsayılan "yayinzirve.m3u8"
-            var streamPath = kanalurl[cid] || "yayinzirve.m3u8";
-
-            // Yayın tam URL'si: API'den gelen baseurl + stream path
-            var streamUrl = baseurl + streamPath;
-
-            // Clappr Player'ı başlat
-            var player = new Clappr.Player({
-                source: streamUrl,
-                parentId: "#player",
-                mimeType: "application/x-mpegURL",
-                width: '100%',
-                height: 450,
-                watermark: "logo.png",
-                watermarkLink: "https://dng.bet/",
-                autoPlay: true
-            });
-
-            console.log("Yayın URL'si:", streamUrl);
-        })
-        .catch(error => {
-            console.error('API domain.php hatası:', error);
-            // Hata durumunda fallback yayın gösterilebilir
-            var fallbackUrl = "https://fallbackdomain.com/yayinzirve.m3u8"; // kendi yedek url'n
-            var player = new Clappr.Player({
-                source: fallbackUrl,
-                parentId: "#player",
-                mimeType: "application/x-mpegURL",
-                width: '100%',
-                height: 450,
-                autoPlay: true
-            });
-        });
-</script>
 
 
 <!--debug-->
