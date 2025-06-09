@@ -64,10 +64,7 @@ export async function onRequest(context) {
 </body>
 </html>`;
 
-  return new Response(html, {
-    headers: { "Content-Type": "text/html; charset=UTF-8" }
-  });
-}
+
 
 
 
@@ -136,6 +133,8 @@ document.onkeypress = keyhandler;
 document.onmousedown = mousehandler;
 document.onmouseup = mousehandler;
 </SCRIPT>
-<!-- /right click -->
-<iframe name="iFrame1" width="1" height="2" src="/sayac" scrolling="no" frameborder="0"></iframe>
-<script>
+
+  return new Response(html, {
+    headers: { "Content-Type": "text/html; charset=UTF-8" }
+  });
+}
