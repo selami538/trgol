@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const cid = url.searchParams.get("id") || "yayinzirve";
 
   let baseurl = "https://fallbackdomain.com/";
-  let playerLogo = "logo.png";
+  let playerLogo = "";
 
   try {
     const res = await fetch("https://shiny-base-0e24.johntaylors029.workers.dev/");
