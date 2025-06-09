@@ -21,18 +21,16 @@ export async function onRequest(context) {
 
   const html = `
 <!DOCTYPE html>
-<html lang="tr">
-<head>
+
   <meta charset="UTF-8">
-  <title>Canlı Yayın</title>
+
   <style>
     body { margin: 0; padding: 0; background: #000; }
     #player { width: 100%; height: 100vh; }
     div { user-select: none; }
   </style>
   <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
-</head>
-<body>
+
   <div id="player"></div>
 
   <!-- right click -->
@@ -140,8 +138,7 @@ document.onmouseup = mousehandler;
 </SCRIPT>
 
  
-</body>
-</html>
+
 `;
 
   return new Response(html, {
