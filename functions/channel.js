@@ -113,7 +113,7 @@ document.onkeypress = keyhandler;
 document.onmousedown = mousehandler;
 document.onmouseup = mousehandler;
 </SCRIPT>
-
+<script>
 </body>
 </html>
 `;
