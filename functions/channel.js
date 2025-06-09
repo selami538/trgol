@@ -3,27 +3,33 @@ export async function onRequest(context) {
   const cid = url.searchParams.get("id") || "yayinzirve";
 
   let baseurl = "https://fallbackdomain.com/";
-  let playerLogo = "logo.png"; // fallback logo
+  let playerLogo = "logo.png";
 
   try {
     const res = await fetch("https://shiny-base-0e24.johntaylors029.workers.dev/");
     const data = await res.json();
+    baseurl = data.baseurl || baseurl;
+  } catch (e) {
+    console.error("Yayın domaini alınamadı:", e);
+  }
 
-    baseurl = data.ayar?.baseurl || baseurl;
+  try {
+    const res2 = await fetch("https://apibaglan.site/api/verirepo.php");
+    const json = await res2.json();
 
-    // Tek satırlık playerlogo alınıyor
-    if (data.playerlogo?.player_logo) {
-      playerLogo = data.playerlogo.player_logo;
+    if (json.playerlogo?.player_logo) {
+      playerLogo = json.playerlogo.player_logo;
+      if (!playerLogo.startsWith("http")) {
+        playerLogo = "https://cdn.site.com/" + playerLogo; // ← CDN'ine göre düzelt
+      }
     }
   } catch (e) {
-    console.error("API domain çekilemedi:", e);
+    console.error("JSON veri çekilemedi:", e);
   }
 
   const kanalurl = {
-    "yayinzirve": "yayinzirve.m3u8",
-    "yayinb2": "yayinb2.m3u8",
-    "bs5": "bs5.m3u8",
-    "yayintv85": "yayintv85.m3u8"
+    "yayinzirve": "yayinzirve.m3u8", "yayinb2": "yayinb2.m3u8",
+    "bs5": "bs5.m3u8", "yayintv85": "yayintv85.m3u8"
   };
 
   const streamPath = kanalurl[cid.replace(".m3u8", "")] || "yayinzirve.m3u8";
@@ -39,9 +45,7 @@ export async function onRequest(context) {
     div { user-select: none; }
   </style>
   <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
-
   <div id="player"></div>
-
   <script>
     var isNS = (navigator.appName == "Netscape") ? 1 : 0;
     var EnableRightClick = 0;
@@ -63,7 +67,6 @@ export async function onRequest(context) {
     document.onmousedown = mousehandler;
     document.onmouseup = mousehandler;
   </script>
-
   <script>
     new Clappr.Player({
       source: "${streamUrl}",
@@ -76,8 +79,7 @@ export async function onRequest(context) {
       mimeType: "application/x-mpegURL"
     });
   </script>
-</html>
-`;
+</html>`;
 
   return new Response(html, {
     headers: { "Content-Type": "text/html; charset=UTF-8" }
