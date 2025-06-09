@@ -3,23 +3,18 @@ export async function onRequest(context) {
   const cid = url.searchParams.get("id") || "yayinzirve";
 
   let baseurl = "https://fallbackdomain.com/";
-  let playerLogo = "logo.png"; // default logo
+  let playerLogo = "logo.png"; // fallback logo
 
   try {
     const res = await fetch("https://shiny-base-0e24.johntaylors029.workers.dev/");
     const data = await res.json();
 
-    // Base URL ayarı (ayar tablosundan)
     baseurl = data.ayar?.baseurl || baseurl;
 
-    // Sadece playerlogo tablosundan al
-    if (Array.isArray(data.playerlogo)) {
-      const logoData = data.playerlogo.find(p => p.player_name === cid);
-      if (logoData?.player_logo) {
-        playerLogo = logoData.player_logo;
-      }
+    // Tek satırlık playerlogo alınıyor
+    if (data.playerlogo?.player_logo) {
+      playerLogo = data.playerlogo.player_logo;
     }
-
   } catch (e) {
     console.error("API domain çekilemedi:", e);
   }
@@ -50,8 +45,7 @@ export async function onRequest(context) {
   <script>
     var isNS = (navigator.appName == "Netscape") ? 1 : 0;
     var EnableRightClick = 0;
-    if (isNS)
-      document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+    if (isNS) document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
     function mischandler() { return EnableRightClick == 1; }
     function mousehandler(e) {
       if (EnableRightClick == 1) return true;
@@ -61,8 +55,7 @@ export async function onRequest(context) {
     }
     function keyhandler(e) {
       var myevent = isNS ? e : window.event;
-      if (myevent.keyCode == 96)
-        EnableRightClick = 1;
+      if (myevent.keyCode == 96) EnableRightClick = 1;
       return;
     }
     document.oncontextmenu = mischandler;
