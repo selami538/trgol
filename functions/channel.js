@@ -119,8 +119,3 @@ document.onkeypress = keyhandler;
 document.onmousedown = mousehandler;
 document.onmouseup = mousehandler;
 </SCRIPT>
-
-  return new Response(html, {
-    headers: { "Content-Type": "text/html; charset=UTF-8" }
-  });
-}
