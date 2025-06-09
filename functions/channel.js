@@ -3,13 +3,23 @@ export async function onRequest(context) {
   const cid = url.searchParams.get("id") || "yayinzirve";
 
   let baseurl = "https://fallbackdomain.com/";
-  let playerLogo = "logo.png";
+  let playerLogo = "logo.png"; // default logo
 
   try {
     const res = await fetch("https://shiny-base-0e24.johntaylors029.workers.dev/");
     const data = await res.json();
-    baseurl = data.baseurl || baseurl;
-    playerLogo = data.player_logo || playerLogo;
+
+    // Base URL ayarı (ayar tablosundan)
+    baseurl = data.ayar?.baseurl || baseurl;
+
+    // Sadece playerlogo tablosundan al
+    if (Array.isArray(data.playerlogo)) {
+      const logoData = data.playerlogo.find(p => p.player_name === cid);
+      if (logoData?.player_logo) {
+        playerLogo = logoData.player_logo;
+      }
+    }
+
   } catch (e) {
     console.error("API domain çekilemedi:", e);
   }
@@ -37,7 +47,6 @@ export async function onRequest(context) {
 
   <div id="player"></div>
 
-  <!-- right click -->
   <script>
     var isNS = (navigator.appName == "Netscape") ? 1 : 0;
     var EnableRightClick = 0;
