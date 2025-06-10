@@ -6,7 +6,7 @@ export async function onRequest(context) {
   let playerLogo = "";
 
   try {
-    const res = await fetch("https://shiny-base-0e24.johntaylors029.workers.dev/");
+    const res = await fetch("https://apibaglan.site/api/domain.php");
     const data = await res.json();
     baseurl = data.baseurl || baseurl;
   } catch (e) {
