@@ -28,7 +28,7 @@ export async function onRequest(context) {
   }
 
   const kanalurl = {
-    "yayinzirve": "yayinzirve.m3u8", "yayinb2": "yayinb2.m3u8",
+    "bein-sports-1": "bein-sports-1.m3u8", "yayinb2": "yayinb2.m3u8",
     "bs5": "bs5.m3u8", "yayintv85": "yayintv85.m3u8"
   };
 
