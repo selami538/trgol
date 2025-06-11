@@ -4,6 +4,7 @@ export async function onRequest(context) {
 
   let baseurl = "https://fallbackdomain.com/";
   let playerLogo = "";
+  let playerSite = "";
 
   try {
     const res = await fetch("https://apibaglan.site/api/domain.php");
@@ -23,6 +24,9 @@ export async function onRequest(context) {
         playerLogo = "https://cdn.site.com/" + playerLogo; // ← CDN'ine göre düzelt
       }
     }
+    if (json.playerlogo?.player_site) {
+  playerSite = json.playerlogo.player_site;
+}
   } catch (e) {
     console.error("JSON veri çekilemedi:", e);
   }
@@ -73,7 +77,7 @@ export async function onRequest(context) {
       parentId: "#player",
       autoPlay: true,
       watermark: "${playerLogo}",
-      watermarkLink: "https://dng.bet",
+      watermarkLink: "${playerSite}",
       width: "100%",
       height: "100%",
       mimeType: "application/x-mpegURL"
