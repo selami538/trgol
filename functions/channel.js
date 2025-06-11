@@ -60,6 +60,7 @@ export async function onRequest(context) {
   <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   <script>
     new Clappr.Player({
+    position: "${playerPosition}",
       source: "${streamUrl}",
       parentId: "#player",
       autoPlay: true,
