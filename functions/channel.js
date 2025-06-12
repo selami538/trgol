@@ -36,15 +36,15 @@ export async function onRequest(context) {
 
       if (id) {
         const data = {
-          AppId: "3",
-          AppVer: "1025",
+          AppId: "5000",
+          AppVer: "1",
           VpcVer: "1.0.12",
-          Language: "tr",
+          Language: "en",
           Token: "",
           VideoId: id
         };
 
-        fetch("https://melbet-017934.top/cinema", {
+        fetch("https://streamsport365.com/cinema", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
