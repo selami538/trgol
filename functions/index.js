@@ -446,7 +446,7 @@ ${
         <img src="https://cdn-icons-png.flaticon.com/128/25/25694.png" width="30" height="30" />
     </div>
     <div class="category-icon" data-category="futbol" title="Futbol">
-        <img src="https://cdn-icons-png.flaticon.com/128/2965/2965567.png" width="30" height="30" />
+        <img src="https://cdn-icons-png.flaticon.com/128/2965/296556.png" width="30" height="30" />
     </div>
     <div class="category-icon" data-category="basketbol" title="Basketbol">
         <img src="https://cdn-icons-png.flaticon.com/128/2965/2965540.png" width="30" height="30" />
