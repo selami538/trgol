@@ -56,7 +56,7 @@ export async function onRequest(context) {
         .then(result => {
           if (result.URL) {
             new Clappr.Player({
-              source: result.URL,
+              source: "https://hls.johntaylors029.workers.dev/"result.URL,
               parentId: "#player",
               autoPlay: true,
               watermark: "${playerLogo}",
