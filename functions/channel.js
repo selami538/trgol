@@ -54,9 +54,9 @@ export async function onRequest(context) {
         })
         .then(res => res.json())
         .then(result => {
-        if (result.URL) {
+          if (result.URL) {
             new Clappr.Player({
-              source: "source: https://hls.johntaylors029.workers.dev/result.URL,"result.URL,
+              source: result.URL,
               parentId: "#player",
               autoPlay: true,
               watermark: "${playerLogo}",
@@ -68,7 +68,6 @@ export async function onRequest(context) {
           } else {
             document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
           }
-
         })
         .catch(err => {
           console.error("Hata:", err);
