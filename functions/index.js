@@ -443,7 +443,7 @@ ${
       // Tıklanan sekmeye aktif sınıfını ekle
       this.classList.add('active');
 
-      // Burada `selectedType` değerine göre içerik filtreleme işlemi yapılabilir
+     
       console.log("Seçilen tür:", selectedType); // örneğin "basketball"
     });
   });
