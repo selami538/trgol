@@ -430,7 +430,14 @@ ${
                         <div class="match-tab-box" style="display: block; width: 100%;">
                             <!-- Maçlar İçeriği Buraya Eklenecek -->
                             <div id="matches-content" style="width: 100%;">
-                             
+                             <script>
+                                    fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            document.getElementById('matches-content').innerHTML = data; // 'channel-list' yerine 'matches-content' kullanıldı
+                                        })
+                                        .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
+                                </script>
                             </div>
                         </div>
                     </div>
