@@ -2,10 +2,9 @@ export async function onRequest(context) {
   const url = new URL(context.request.url);
   const id = url.searchParams.get("id");
 
-  let streamUrl = "";
   let playerLogo = "";
 
-  // 1. Logo bilgisini al
+  // Logo'yu çek
   try {
     const res2 = await fetch("https://apibaglan.site/api/verirepo.php");
     const json = await res2.json();
@@ -19,40 +18,6 @@ export async function onRequest(context) {
     console.error("Logo verisi alınamadı:", e);
   }
 
-  // 2. ID varsa stream URL'yi çek
-  if (id) {
-    try {
-      const cinemaRes = await fetch("https://streamsport365.com/cinema", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "*/*"
-        },
-        body: JSON.stringify({
-          AppId: "5000",
-          AppVer: "1",
-          VpcVer: "1.0.12",
-          Language: "en",
-          Token: "",
-          VideoId: id
-        })
-      });
-
-      const cinemaJson = await cinemaRes.json();
-      if (cinemaJson.URL) {
-        streamUrl = cinemaJson.URL;
-      }
-    } catch (e) {
-      console.error("Stream URL çekilemedi:", e);
-    }
-  }
-
-  // 3. Stream yoksa fallback göster
-  if (!streamUrl) {
-    return new Response("Yayın bulunamadı.", { status: 404 });
-  }
-
-  // 4. HTML Player çıktısı
   const html = `
 <!DOCTYPE html>
 <html>
@@ -67,19 +32,54 @@ export async function onRequest(context) {
   <body>
     <div id="player"></div>
     <script>
-      new Clappr.Player({
-        source: "${streamUrl}",
-        parentId: "#player",
-        autoPlay: true,
-        watermark: "${playerLogo}",
-        watermarkLink: "https://dng.bet",
-        width: "100%",
-        height: "100%",
-        mimeType: "application/x-mpegURL"
-      });
+      const id = "${id}";
+
+      if (id) {
+        const data = {
+          AppId: "5000",
+          AppVer: "1",
+          VpcVer: "1.0.12",
+          Language: "en",
+          Token: "",
+          VideoId: id
+        };
+
+        fetch("https://streamsport365.com/cinema", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result => {
+          if (result.URL) {
+            new Clappr.Player({
+              source: result.URL,
+              parentId: "#player",
+              autoPlay: true,
+              watermark: "${playerLogo}",
+              watermarkLink: "https://dng.bet",
+              width: "100%",
+              height: "100%",
+              mimeType: "application/x-mpegURL"
+            });
+          } else {
+            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+          }
+        })
+        .catch(err => {
+          console.error("Hata:", err);
+          document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
+        });
+      } else {
+        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
+      }
     </script>
   </body>
-</html>`;
+</html>
+`;
 
   return new Response(html, {
     headers: { "Content-Type": "text/html; charset=UTF-8" }
