@@ -54,20 +54,27 @@ export async function onRequest(context) {
         })
         .then(res => res.json())
         .then(result => {
-          if (result.URL) {
-            new Clappr.Player({
-              source: "https://hls.johntaylors029.workers.dev/"result.URL,
-              parentId: "#player",
-              autoPlay: true,
-              watermark: "${playerLogo}",
-              watermarkLink: "https://dng.bet",
-              width: "100%",
-              height: "100%",
-              mimeType: "application/x-mpegURL"
-            });
-          } else {
-            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
-          }
+         if (result.URL) {
+  // Eğer URL "http" ile başlamıyorsa proxy ekle
+  let finalUrl = result.URL;
+  if (!finalUrl.startsWith("http")) {
+    finalUrl = "https://hls.johntaylors029.workers.dev" + finalUrl;
+  }
+
+  new Clappr.Player({
+    source: finalUrl,
+    parentId: "#player",
+    autoPlay: true,
+    watermark: "${playerLogo}",
+    watermarkLink: "https://dng.bet",
+    width: "100%",
+    height: "100%",
+    mimeType: "application/x-mpegURL"
+  });
+} else {
+  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+}
+
         })
         .catch(err => {
           console.error("Hata:", err);
