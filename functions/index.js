@@ -418,7 +418,14 @@ ${
                 <span>Kanallar</span>
             </div>
         </div>
-
+ <div class="category-filter" style="margin: 10px 0; text-align: center;">
+            <select id="categorySelect" style="padding: 5px 10px; border-radius: 5px;">
+                <option value="all">Tümü</option>
+                <option value="futbol">Futbol</option>
+                <option value="basketbol">Basketbol</option>
+                <option value="voleybol">Voleybol</option>
+            </select>
+        </div>
 <!-- Maçlar Sekmesi İçeriği -->
 <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
     <div class="live-list-grid" style="width: 100%;">
