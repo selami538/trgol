@@ -404,9 +404,10 @@ ${
     </center>
  <!-- PLAYER -->
 
-<!-- Maçlar ve Kanallar Sekmeleri -->
+<!-- Maç/Kanallar Sekmesi -->
 <div class="player-channel-area" style="width: 100%; height: auto;">
     <div class="live-list radarOn" style="width: 100%;">
+
         <!-- Sekme Başlıkları -->
         <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
@@ -418,12 +419,14 @@ ${
                 <span>Kanallar</span>
             </div>
         </div>
- <div class="category-filter" style="margin: 10px 0; text-align: center;">
-            <select id="categorySelect" style="padding: 5px 10px; border-radius: 5px;">
+
+        <!-- Kategori Dropdown -->
+        <div style="margin: 10px 0; text-align: center;">
+            <select id="categoryFilter" style="padding: 6px 12px; border-radius: 5px;">
                 <option value="all">Tümü</option>
-                <option value="futbol">Futbol</option>
-                <option value="basketbol">Basketbol</option>
-                <option value="voleybol">Voleybol</option>
+                <option value="Futbol">Futbol</option>
+                <option value="Basketbol">Basketbol</option>
+                <option value="Voleybol">Voleybol</option>
             </select>
         </div>
 <!-- Maçlar Sekmesi İçeriği -->
