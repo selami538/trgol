@@ -29,8 +29,6 @@ export async function onRequest(context) {
     </style>
    <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js" defer></script>
   </head>
-  <body>
-    <div id="player"></div>
     <script>
       const id = "${id}";
 
@@ -44,7 +42,7 @@ export async function onRequest(context) {
           VideoId: id
         };
 
-        fetch("https://shiny-base-0e24.johntaylors029.workers.dev/cinema", {
+        fetch("https://streamsport365.com/cinema", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -77,6 +75,8 @@ export async function onRequest(context) {
         document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
       }
     </script>
+  <body>
+    <div id="player"></div>
   </body>
 </html>
 `;
