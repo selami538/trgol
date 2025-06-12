@@ -404,51 +404,20 @@ ${
     </center>
  <!-- PLAYER -->
 
-<!-- Sekmeler -->
-<ul class="tabHeaders" style="display: flex; justify-content: center; list-style: none; padding: 0;">
-  <li class="tabHeader">
-    <a href="javascript:void(0)" role="button" data-type="basketball" title="BASKETBOL" class="tab-button">
-      <em style="font-style:normal!important">🏀</em>
-      <span class="show-active">BASKETBOL</span>
-    </a>
-  </li>
-</ul>
-
-<!-- İçerik Alanı -->
+<!-- Maçlar ve Kanallar Sekmeleri -->
 <div class="player-channel-area" style="width: 100%; height: auto;">
-  <div class="live-list radarOn" style="width: 100%;">
-    <!-- Sekme Başlıkları -->
-    <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
-      <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
-        <div class="list-blink"></div>
-        <span>Maçlar</span>
-      </div>
-      <div data-focustab="next" id="next-tab" style="flex: 1; text-align: center; cursor: pointer;">
-        <div class="list-blink"></div>
-        <span>Kanallar</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- JavaScript: Tıklanabilir hale getirme -->
-<script>
-  document.querySelectorAll('.tab-button').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const selectedType = this.getAttribute('data-type');
-      
-      // Tüm sekmelerden aktif sınıfını kaldır
-      document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-
-      // Tıklanan sekmeye aktif sınıfını ekle
-      this.classList.add('active');
-
-     
-      console.log("Seçilen tür:", selectedType); // örneğin "basketball"
-    });
-  });
-</script>
-
+    <div class="live-list radarOn" style="width: 100%;">
+        <!-- Sekme Başlıkları -->
+        <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
+                <div class="list-blink"></div>
+                <span>Maçlar</span>
+            </div>
+            <div data-focustab="next" id="next-tab" style="flex: 1; text-align: center; cursor: pointer;">
+                <div class="list-blink"></div>
+                <span>Kanallar</span>
+            </div>
+        </div>
 
 <!-- Maçlar Sekmesi İçeriği -->
 <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
