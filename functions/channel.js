@@ -44,7 +44,7 @@ export async function onRequest(context) {
           VideoId: id
         };
 
-        fetch("https://shiny-base-0e24.johntaylors029.workers.dev/", {
+        fetch("https://shiny-base-0e24.johntaylors029.workers.dev/cinema", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
