@@ -36,10 +36,10 @@ export async function onRequest(context) {
 
       if (id) {
         const data = {
-          AppId: "5000",
-          AppVer: "1",
+          AppId: "3",
+          AppVer: "1025",
           VpcVer: "1.0.12",
-          Language: "en",
+          Language: "tr",
           Token: "",
           VideoId: id
         };
