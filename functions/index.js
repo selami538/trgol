@@ -438,58 +438,56 @@ ${
   background: #fff; /* varsa */
 }
 </style>
-                 <!-- Dikey Menü -->
-<div class="vertical-menu">
-  <div class="menu-item active" data-matchfilter="Futbol" title="Futbol">
-    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975687.png" alt="Futbol" />
-  </div>
-  <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
-    <img src="https://cdn-icons-png.flaticon.com/512/3200/3200786.png" alt="Buz Hokeyi" />
-  </div>
-  <div class="menu-item" data-matchfilter="Basketbol" title="Basketbol">
-    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975773.png" alt="Basketbol" />
-  </div>
-  <div class="menu-item" data-matchfilter="Tenis" title="Tenis">
-    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975765.png" alt="Tenis" />
-  </div>
-  <div class="menu-item" data-matchfilter="Voleybol" title="Voleybol">
-    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975755.png" alt="Voleybol" />
-  </div>
-  <div class="menu-item" data-matchfilter="Masa Tenisi" title="Masa Tenisi">
-    <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="Masa Tenisi" />
-  </div>
-  <div class="menu-item" data-matchfilter="FIFA" title="FIFA">
-    <img src="https://cdn-icons-png.flaticon.com/512/4328/4328399.png" alt="FIFA" />
-  </div>
-  <div class="menu-item" data-matchfilter="e-Sporlar" title="e-Sporlar">
-    <img src="https://cdn-icons-png.flaticon.com/512/2872/2872330.png" alt="e-Sporlar" />
-  </div>
-</div>
+             <!-- İçerik Alanı: Menü + Maçlar Yan Yana -->
+<div style="display: flex; align-items: flex-start; gap: 10px;">
 
-<!-- Maçlar İçeriği -->
-<div id="matches-content" style="margin-left: 60px;"></div>
+  <!-- Dikey Menü -->
+  <div class="vertical-menu">
+    <div class="menu-item active" data-matchfilter="Futbol" title="Futbol">
+      <img src="https://cdn-icons-png.flaticon.com/512/1975/1975687.png" alt="Futbol" />
+    </div>
+    <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
+      <img src="https://cdn-icons-png.flaticon.com/512/3200/3200786.png" alt="Buz Hokeyi" />
+    </div>
+    <div class="menu-item" data-matchfilter="Basketbol" title="Basketbol">
+      <img src="https://cdn-icons-png.flaticon.com/512/1975/1975773.png" alt="Basketbol" />
+    </div>
+    <div class="menu-item" data-matchfilter="Tenis" title="Tenis">
+      <img src="https://cdn-icons-png.flaticon.com/512/1975/1975765.png" alt="Tenis" />
+    </div>
+    <div class="menu-item" data-matchfilter="Voleybol" title="Voleybol">
+      <img src="https://cdn-icons-png.flaticon.com/512/1975/1975755.png" alt="Voleybol" />
+    </div>
+    <div class="menu-item" data-matchfilter="Masa Tenisi" title="Masa Tenisi">
+      <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="Masa Tenisi" />
+    </div>
+    <div class="menu-item" data-matchfilter="FIFA" title="FIFA">
+      <img src="https://cdn-icons-png.flaticon.com/512/4328/4328399.png" alt="FIFA" />
+    </div>
+    <div class="menu-item" data-matchfilter="e-Sporlar" title="e-Sporlar">
+      <img src="https://cdn-icons-png.flaticon.com/512/2872/2872330.png" alt="e-Sporlar" />
+    </div>
+  </div>
+
+  <!-- Maçlar İçeriği -->
+  <div id="matches-content" style="flex-grow: 1;"></div>
+</div>
 
 <!-- CSS -->
 <style>
   .vertical-menu {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    width: 50px;
     background: #000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    z-index: 9999;
+    padding: 10px 5px;
+    border-radius: 10px;
+    gap: 10px;
   }
 
   .menu-item {
     width: 40px;
     height: 40px;
-    margin: 8px 0;
     cursor: pointer;
     opacity: 0.5;
     transition: 0.3s;
@@ -525,20 +523,18 @@ ${
       const menuItems = document.querySelectorAll('.menu-item');
       menuItems.forEach(item => {
         item.addEventListener('click', function () {
-          // Aktifliği değiştir
           menuItems.forEach(i => i.classList.remove('active'));
           this.classList.add('active');
-
           const category = this.getAttribute('data-matchfilter');
           filterMatches(category);
         });
       });
 
-      // İlk açılışta sadece futbol
       filterMatches("Futbol");
     })
     .catch(error => console.error('Veri yüklenirken hata:', error));
 </script>
+
 
 
 
