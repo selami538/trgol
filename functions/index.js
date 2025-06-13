@@ -438,18 +438,79 @@ ${
   background: #fff; /* varsa */
 }
 </style>
-                    <div style="text-align:center; margin-bottom: 10px;">
-                      <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
-                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;"> <em style="font-style: normal !important;">⚽</em> Futbol </button>
-                      <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
-                      <button id="btn-tenis" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Tenis</button>
-                      <button id="btn-voleybol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Voleybol</button>
-                      <button id="btn-buzhokeyi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Buz Hokeyi</button>
-                    </div>
+                   <!-- Kategori Sekmeleri -->
+<div class="list-tabbed">
+  <div class="tab-item active" data-matchfilter="" title="Tüm maçları göster">
+    Tümü
+    <div class="list-count">18 Maç</div>
+  </div>
+  <div class="tab-item" data-matchfilter="Futbol" title="Futbol">
+    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_1"></use></svg>
+    <div class="list-count">4 Maç</div>
+  </div>
+  <div class="tab-item" data-matchfilter="Basketbol" title="Basketbol">
+    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_3"></use></svg>
+    <div class="list-count">7 Maç</div>
+  </div>
+  <div class="tab-item" data-matchfilter="Tenis" title="Tenis">
+    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_4"></use></svg>
+    <div class="list-count">0 Maç</div>
+  </div>
+  <div class="tab-item" data-matchfilter="Voleybol" title="Voleybol">
+    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_6"></use></svg>
+    <div class="list-count">0 Maç</div>
+  </div>
+  <div class="tab-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
+    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_2"></use></svg>
+    <div class="list-count">0 Maç</div>
+  </div>
+</div>
 
-                    <!-- Maçlar İçeriği Buraya Eklenecek -->
-                    <div id="matches-content" style="width: 100%;">
-               <script>
+<!-- Maçlar İçeriği Buraya Eklenecek -->
+<div id="matches-content" style="width: 100%;"></div>
+
+<!-- CSS -->
+<style>
+  .list-tabbed {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+  }
+  .tab-item {
+    flex-shrink: 0;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    min-width: 80px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+  }
+  .tab-item .icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  .tab-item .list-count {
+    font-size: 12px;
+    color: #999;
+    margin-top: 3px;
+  }
+  .tab-item.active {
+    border-color: #007bff;
+    background-color: #e9f4ff;
+  }
+</style>
+
+<!-- JS -->
+<script>
   fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
     .then(response => response.text())
     .then(data => {
@@ -459,7 +520,7 @@ ${
         const matches = document.querySelectorAll("#matches-content .single-match");
         matches.forEach(match => {
           const type = match.getAttribute("data-matchtype");
-          if (type === category) {
+          if (!category || type === category) {
             match.style.display = "flex";
           } else {
             match.style.display = "none";
@@ -467,18 +528,23 @@ ${
         });
       }
 
-      // Butonlara tıklama olaylarını tanımla
-      document.getElementById('btn-futbol').addEventListener('click', () => filterMatches('Futbol'));
-      document.getElementById('btn-basketbol').addEventListener('click', () => filterMatches('Basketbol'));
-      document.getElementById('btn-tenis').addEventListener('click', () => filterMatches('Tenis'));
-      document.getElementById('btn-voleybol').addEventListener('click', () => filterMatches('Voleybol'));
-      document.getElementById('btn-buzhokeyi').addEventListener('click', () => filterMatches('Buz Hokeyi'));
+      // Sekme tıklama
+      document.querySelectorAll('.tab-item').forEach(item => {
+        item.addEventListener('click', function () {
+          document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+          this.classList.add('active');
 
-      // ✔️ Sayfa ilk yüklendiğinde sadece Futbol göster
+          const filter = this.getAttribute('data-matchfilter');
+          filterMatches(filter);
+        });
+      });
+
+      // Sayfa yüklenince Futbol göster
       filterMatches('Futbol');
     })
     .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
 </script>
+
 
 
                     </div>
