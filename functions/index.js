@@ -432,7 +432,14 @@ ${
                     <!-- Kategori Butonları -->
                     <div style="text-align:center; margin-bottom: 10px;">
                       <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
-                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Futbol</button>
+                    <div class="filter-buttons" style="margin: 10px 0; display:flex; gap:10px;">
+  <!-- Futbol Butonu -->
+  <button id="btn-futbol" style="cursor:pointer; display:flex; align-items:center; gap:6px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm4.146 4.146l-1.33 2.664 2.247 1.48-1.956 1.516-2.33-.532-2.33.532-1.956-1.516 2.247-1.48-1.33-2.664 2.8-.298L8 2l1.346 2.448 2.8.298z"/>
+    </svg>
+    Futbol
+  </button>
                       <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
                     </div>
 
