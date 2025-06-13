@@ -443,11 +443,12 @@ ${
 
   <!-- Dikey Menü -->
  <div class="vertical-menu">
-    <div class="menu-item active" data-matchfilter="Futbol" title="Futbol">
-      <svg class="icon" width="24" height="24">
-        <use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_1"></use>
-      </svg>
-    </div>
+   <div class="menu-item" data-matchfilter="Futbol" title="Futbol">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512" fill="#ffffff">
+    <path d="M256 8C119.1 8 8 119.1 8 256s111.1 248 248 248 248-111.1 248-248S392.9 8 256 8zm0 48c28.3 0 55.6 4.9 81 13.9l-28.7 78.3h-104l-28.7-78.3C200.4 60.9 227.7 56 256 56zM72 256c0-20.7 2.7-40.8 7.8-60l77.5 26.9 27.2 99.6-58.1 62.8C93.3 353.4 72 307.3 72 256zm184 184c-27.7 0-54.1-5.4-78.3-15.1l59.4-64.3h86.3l59.4 64.3C310.1 434.6 283.7 440 256 440zm72.6-117.5H183.4l-23.2-85.1 87.8-63.6 87.8 63.6-23.2 85.1zm87.3 34.7-58.1-62.8 27.2-99.6 77.5-26.9c5.1 19.2 7.8 39.3 7.8 60 0 51.3-21.3 97.4-54.4 129.3z"/>
+  </svg>
+</div>
+
     <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
       <img src="https://cdn-icons-png.flaticon.com/512/3200/3200786.png" alt="Buz Hokeyi" />
     </div>
