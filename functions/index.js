@@ -430,6 +430,14 @@ ${
                   <div class="match-tab-box" style="display: block; width: 100%;">
                     
                     <!-- Kategori Butonları -->
+                    <style>
+                    .kategori-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff; /* varsa */
+}
+</style>
                     <div style="text-align:center; margin-bottom: 10px;">
                       <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
                       <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;"> <em style="font-style: normal !important;">⚽</em> Futbol </button>
