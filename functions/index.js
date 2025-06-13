@@ -468,7 +468,7 @@ ${
         </svg>
     </div>
     <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32" fill="#ffffff">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 32 32" fill="#ffffff">
       <path d="M20.576 18.001c-11.365 0-20.576-3.699-20.576-8.263v13.413h0.059c0 4.881 9.188 8.849 20.518 8.849s20.518-3.909 20.518-8.849v0-13.413c0.059 4.565-9.153 8.263-20.518 8.263z"></path>
         <path d="M41.153 8.263c0 4.564-9.212 8.263-20.576 8.263s-20.576-3.7-20.576-8.263c0-4.564 9.212-8.263 20.576-8.263s20.576 3.7 20.576 8.263z"></path>
         </svg>
