@@ -432,16 +432,7 @@ ${
                     <!-- Kategori Butonları -->
                     <div style="text-align:center; margin-bottom: 10px;">
                       <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
-                    <div class="filter-buttons" style="margin: 10px 0; display:flex; gap:10px;">
-  <!-- Futbol Butonu -->
-<!-- Google Fonts CDN -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-
-<!-- Buton -->
-<button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor: pointer; font-family: 'Poppins', sans-serif; display: flex; align-items: center; gap: 6px;">
-  <em style="font-style: normal !important;">⚽</em> Futbol
-</button>
-
+                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Futbol</button>
                       <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
                     </div>
 
