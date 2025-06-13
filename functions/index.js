@@ -432,7 +432,7 @@ ${
                     <!-- Kategori Butonları -->
                     <div style="text-align:center; margin-bottom: 10px;">
                       <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
-                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Futbol</button>
+                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;"> <em style="font-style: normal !important;">⚽</em> Futbol </button>
                       <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
                     </div>
 
