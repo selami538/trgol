@@ -449,38 +449,40 @@ ${
 
                     <!-- Maçlar İçeriği Buraya Eklenecek -->
                     <div id="matches-content" style="width: 100%;">
-                      <script>
-                        fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
-                          .then(response => response.text())
-                          .then(data => {
-                            document.getElementById('matches-content').innerHTML = data;
+                   <script>
+  fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('matches-content').innerHTML = data;
 
-                            // Filtreleme fonksiyonu (matches.php çıktısındaki maçlarda data-matchtype attribute olmalı)
-                            function filterMatches(category) {
-                              const matches = document.querySelectorAll("#matches-content .single-match");
-                              matches.forEach(match => {
-                                const type = match.getAttribute("data-matchtype");
-                                if (category === "Hepsi" || type === category) {
-                                  match.style.display = "flex";
-                                } else {
-                                  match.style.display = "none";
-                                }
-                              });
-                            }
+      function filterMatches(category) {
+        const matches = document.querySelectorAll("#matches-content .single-match");
+        matches.forEach(match => {
+          const type = match.getAttribute("data-matchtype");
+          if (category === "Hepsi" || type === category) {
+            match.style.display = "flex";
+          } else {
+            match.style.display = "none";
+          }
+        });
+      }
 
-                            // Butonlara event dinleyici ata
-                            document.getElementById('btn-hepsi').addEventListener('click', () => filterMatches('Hepsi'));
-                            document.getElementById('btn-futbol').addEventListener('click', () => filterMatches('Futbol'));
-                            document.getElementById('btn-basketbol').addEventListener('click', () => filterMatches('Basketbol'));
-                            document.getElementById('btn-tenis').addEventListener('click', () => filterMatches('Tenis'));
-                            document.getElementById('btn-voleybol').addEventListener('click', () => filterMatches('Voleybol'));
-                            document.getElementById('btn-buzhokeyi').addEventListener('click', () => filterMatches('Buz Hokeyi'));
+      document.getElementById('btn-hepsi').addEventListener('click', () => filterMatches('Hepsi'));
+      document.getElementById('btn-futbol').addEventListener('click', () => filterMatches('Futbol'));
+      document.getElementById('btn-basketbol').addEventListener('click', () => filterMatches('Basketbol'));
+      document.getElementById('btn-tenis').addEventListener('click', () => filterMatches('Tenis'));
+      document.getElementById('btn-voleybol').addEventListener('click', () => filterMatches('Voleybol'));
+      document.getElementById('btn-buzhokeyi').addEventListener('click', () => filterMatches('Buz Hokeyi'));
 
-                            
-                            
-                          })
-                          .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
-                      </script>
+      // ✔️ Tüm maçları başlangıçta gizle
+      const allMatches = document.querySelectorAll("#matches-content .single-match");
+      allMatches.forEach(match => {
+        match.style.display = "none";
+      });
+    })
+    .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
+</script>
+
                     </div>
 
                   </div>
