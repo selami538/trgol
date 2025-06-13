@@ -434,6 +434,9 @@ ${
                       <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
                       <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;"> <em style="font-style: normal !important;">⚽</em> Futbol </button>
                       <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
+                      <button id="btn-tenis" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Tenis</button>
+                      <button id="btn-voleybol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Voleybol</button>
+                      <button id="btn-buzhokeyi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Buz Hokeyi</button>
                     </div>
 
                     <!-- Maçlar İçeriği Buraya Eklenecek -->
@@ -461,6 +464,9 @@ ${
                             document.getElementById('btn-hepsi').addEventListener('click', () => filterMatches('Hepsi'));
                             document.getElementById('btn-futbol').addEventListener('click', () => filterMatches('Futbol'));
                             document.getElementById('btn-basketbol').addEventListener('click', () => filterMatches('Basketbol'));
+                            document.getElementById('btn-tenis').addEventListener('click', () => filterMatches('Tenis'));
+                            document.getElementById('btn-voleybol').addEventListener('click', () => filterMatches('Voleybol'));
+                            document.getElementById('btn-buzhokeyi').addEventListener('click', () => filterMatches('Buz Hokeyi'));
 
                             // Sayfa açılır açılmaz hepsini göster
                             filterMatches('Hepsi');
