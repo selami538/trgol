@@ -476,8 +476,8 @@ ${
                             document.getElementById('btn-voleybol').addEventListener('click', () => filterMatches('Voleybol'));
                             document.getElementById('btn-buzhokeyi').addEventListener('click', () => filterMatches('Buz Hokeyi'));
 
-                            // Sayfa açılır açılmaz hepsini göster
-                            filterMatches('Hepsi');
+                            
+                            
                           })
                           .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
                       </script>
