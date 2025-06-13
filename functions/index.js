@@ -438,74 +438,72 @@ ${
   background: #fff; /* varsa */
 }
 </style>
-                   <!-- Kategori Sekmeleri -->
-<div class="list-tabbed">
-  <div class="tab-item active" data-matchfilter="" title="Tüm maçları göster">
-    Tümü
-    <div class="list-count">18 Maç</div>
+                 <!-- Dikey Menü -->
+<div class="vertical-menu">
+  <div class="menu-item active" data-matchfilter="Futbol" title="Futbol">
+    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975687.png" alt="Futbol" />
   </div>
-  <div class="tab-item" data-matchfilter="Futbol" title="Futbol">
-    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_1"></use></svg>
-    <div class="list-count">4 Maç</div>
+  <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
+    <img src="https://cdn-icons-png.flaticon.com/512/3200/3200786.png" alt="Buz Hokeyi" />
   </div>
-  <div class="tab-item" data-matchfilter="Basketbol" title="Basketbol">
-    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_3"></use></svg>
-    <div class="list-count">7 Maç</div>
+  <div class="menu-item" data-matchfilter="Basketbol" title="Basketbol">
+    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975773.png" alt="Basketbol" />
   </div>
-  <div class="tab-item" data-matchfilter="Tenis" title="Tenis">
-    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_4"></use></svg>
-    <div class="list-count">0 Maç</div>
+  <div class="menu-item" data-matchfilter="Tenis" title="Tenis">
+    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975765.png" alt="Tenis" />
   </div>
-  <div class="tab-item" data-matchfilter="Voleybol" title="Voleybol">
-    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_6"></use></svg>
-    <div class="list-count">0 Maç</div>
+  <div class="menu-item" data-matchfilter="Voleybol" title="Voleybol">
+    <img src="https://cdn-icons-png.flaticon.com/512/1975/1975755.png" alt="Voleybol" />
   </div>
-  <div class="tab-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
-    <svg class="icon"><use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_2"></use></svg>
-    <div class="list-count">0 Maç</div>
+  <div class="menu-item" data-matchfilter="Masa Tenisi" title="Masa Tenisi">
+    <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="Masa Tenisi" />
+  </div>
+  <div class="menu-item" data-matchfilter="FIFA" title="FIFA">
+    <img src="https://cdn-icons-png.flaticon.com/512/4328/4328399.png" alt="FIFA" />
+  </div>
+  <div class="menu-item" data-matchfilter="e-Sporlar" title="e-Sporlar">
+    <img src="https://cdn-icons-png.flaticon.com/512/2872/2872330.png" alt="e-Sporlar" />
   </div>
 </div>
 
-<!-- Maçlar İçeriği Buraya Eklenecek -->
-<div id="matches-content" style="width: 100%;"></div>
+<!-- Maçlar İçeriği -->
+<div id="matches-content" style="margin-left: 60px;"></div>
 
 <!-- CSS -->
 <style>
-  .list-tabbed {
+  .vertical-menu {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 50px;
+    background: #000;
     display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    scroll-behavior: smooth;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 9999;
   }
-  .tab-item {
-    flex-shrink: 0;
-    padding: 10px;
-    background: white;
-    border-radius: 6px;
-    text-align: center;
+
+  .menu-item {
+    width: 40px;
+    height: 40px;
+    margin: 8px 0;
     cursor: pointer;
-    min-width: 80px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    opacity: 0.5;
+    transition: 0.3s;
   }
-  .tab-item .icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 5px;
-    display: block;
+
+  .menu-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
-  .tab-item .list-count {
-    font-size: 12px;
-    color: #999;
-    margin-top: 3px;
-  }
-  .tab-item.active {
-    border-color: #007bff;
-    background-color: #e9f4ff;
+
+  .menu-item.active {
+    opacity: 1;
+    filter: brightness(1.5);
   }
 </style>
 
@@ -520,30 +518,28 @@ ${
         const matches = document.querySelectorAll("#matches-content .single-match");
         matches.forEach(match => {
           const type = match.getAttribute("data-matchtype");
-          if (!category || type === category) {
-            match.style.display = "flex";
-          } else {
-            match.style.display = "none";
-          }
+          match.style.display = (type === category) ? "flex" : "none";
         });
       }
 
-      // Sekme tıklama
-      document.querySelectorAll('.tab-item').forEach(item => {
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach(item => {
         item.addEventListener('click', function () {
-          document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+          // Aktifliği değiştir
+          menuItems.forEach(i => i.classList.remove('active'));
           this.classList.add('active');
 
-          const filter = this.getAttribute('data-matchfilter');
-          filterMatches(filter);
+          const category = this.getAttribute('data-matchfilter');
+          filterMatches(category);
         });
       });
 
-      // Sayfa yüklenince Futbol göster
-      filterMatches('Futbol');
+      // İlk açılışta sadece futbol
+      filterMatches("Futbol");
     })
-    .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
+    .catch(error => console.error('Veri yüklenirken hata:', error));
 </script>
+
 
 
 
