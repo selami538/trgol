@@ -407,6 +407,7 @@ ${
 <!-- Maçlar ve Kanallar Sekmeleri -->
 <div class="player-channel-area" style="width: 100%; height: auto;">
     <div class="live-list radarOn" style="width: 100%;">
+
         <!-- Sekme Başlıkları -->
         <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
@@ -418,10 +419,11 @@ ${
                 <span>Kanallar</span>
             </div>
         </div>
-               <div style="text-align:center; margin: 10px 0;">
-            <button onclick="filterMatches('Futbol')" style="margin: 0 5px;">Futbol</button>
-            <button onclick="filterMatches('Basketbol')" style="margin: 0 5px;">Basketbol</button>
-            <button onclick="filterMatches('Hepsi')" style="margin: 0 5px;">Tümü</button>
+
+        <!-- Kategori Butonları -->
+        <div style="text-align:center; margin: 10px 0;">
+            <button id="futbolBtn" style="margin: 0 5px;">Futbol</button>
+            <button id="basketbolBtn" style="margin: 0 5px;">Basketbol</button>
         </div>
 
 <!-- Maçlar Sekmesi İçeriği -->
