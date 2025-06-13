@@ -15,7 +15,7 @@ export async function onRequest(context) {
         : "https://cdn.site.com/" + json.playerlogo.player_logo;
     }
   } catch (e) {
-    console.error("Logo verisi alınamadı:", e);
+    console.error("Logo verisi alınamadıı:", e);
   }
 
   const html = `
