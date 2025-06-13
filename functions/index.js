@@ -364,9 +364,9 @@ ${
 </header>
 
 <style>
-    .single-match:nth-child(odd) {
-    background: linear-gradient(135deg,transparent,rgba(255,255,255,0.1));
-}
+  .single-match:nth-child(odd) {
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+  }
 </style>
 
 <!-- REKLAM -->
@@ -393,105 +393,133 @@ ${
 
 <!-- PLAYER -->
 <div class="container-grid player-grid">
-    <center>
-        <div class="live-player" data-loadbalancer="1" data-loadbalancerdomain="osflare.work">
-            <div class="player-attributes">
-                <center>
-                    <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="" allowfullscreen=""></iframe>
-                </center>
-            </div>
-        </div>
-    </center>
- <!-- PLAYER -->
+  <center>
+    <div class="live-player" data-loadbalancer="1" data-loadbalancerdomain="osflare.work">
+      <div class="player-attributes">
+        <center>
+          <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="" allowfullscreen=""></iframe>
+        </center>
+      </div>
+    </div>
+  </center>
+  <!-- PLAYER -->
 
-<!-- Maçlar ve Kanallar Sekmeleri -->
-<div class="player-channel-area" style="width: 100%; height: auto;">
+  <!-- Maçlar ve Kanallar Sekmeleri -->
+  <div class="player-channel-area" style="width: 100%; height: auto;">
     <div class="live-list radarOn" style="width: 100%;">
-        <!-- Sekme Başlıkları -->
-        <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
-            <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
-                <div class="list-blink"></div>
-                <span>Maçlar</span>
-            </div>
-            <div data-focustab="next" id="next-tab" style="flex: 1; text-align: center; cursor: pointer;">
-                <div class="list-blink"></div>
-                <span>Kanallar</span>
-            </div>
+      <!-- Sekme Başlıkları -->
+      <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
+          <div class="list-blink"></div>
+          <span>Maçlar</span>
         </div>
+        <div data-focustab="next" id="next-tab" style="flex: 1; text-align: center; cursor: pointer;">
+          <div class="list-blink"></div>
+          <span>Kanallar</span>
+        </div>
+      </div>
 
-<!-- Maçlar Sekmesi İçeriği -->
-<div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
-    <div class="live-list-grid" style="width: 100%;">
-        <div class="list-tabbed"></div>
-        <div class="list-area" style="width: 100%;">
+      <!-- Maçlar Sekmesi İçeriği -->
+      <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
+        <div class="live-list-grid" style="width: 100%;">
+          <div class="list-tabbed"></div>
+          <div class="list-area" style="width: 100%;">
             <div class="bet-matches" style="width: 100%;">
-                <div id="real-matches" class="real-matches" style="width: 100%;">
-                    <div class="match-cover" style="width: 100%;">
-                        <div class="match-tab-box" style="display: block; width: 100%;">
-                            <!-- Maçlar İçeriği Buraya Eklenecek -->
-                            <div id="matches-content" style="width: 100%;">
-                             <script>
-                                    fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
-                                        .then(response => response.text())
-                                        .then(data => {
-                                            document.getElementById('matches-content').innerHTML = data; // 'channel-list' yerine 'matches-content' kullanıldı
-                                        })
-                                        .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
-                                </script>
-                            </div>
-                        </div>
+              <div id="real-matches" class="real-matches" style="width: 100%;">
+                <div class="match-cover" style="width: 100%;">
+                  <div class="match-tab-box" style="display: block; width: 100%;">
+                    
+                    <!-- Kategori Butonları -->
+                    <div style="text-align:center; margin-bottom: 10px;">
+                      <button id="btn-hepsi" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Hepsi</button>
+                      <button id="btn-futbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Futbol</button>
+                      <button id="btn-basketbol" style="margin: 0 5px; padding: 5px 10px; cursor:pointer;">Basketbol</button>
                     </div>
+
+                    <!-- Maçlar İçeriği Buraya Eklenecek -->
+                    <div id="matches-content" style="width: 100%;">
+                      <script>
+                        fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
+                          .then(response => response.text())
+                          .then(data => {
+                            document.getElementById('matches-content').innerHTML = data;
+
+                            // Filtreleme fonksiyonu (matches.php çıktısındaki maçlarda data-matchtype attribute olmalı)
+                            function filterMatches(category) {
+                              const matches = document.querySelectorAll("#matches-content .single-match");
+                              matches.forEach(match => {
+                                const type = match.getAttribute("data-matchtype");
+                                if (category === "Hepsi" || type === category) {
+                                  match.style.display = "flex";
+                                } else {
+                                  match.style.display = "none";
+                                }
+                              });
+                            }
+
+                            // Butonlara event dinleyici ata
+                            document.getElementById('btn-hepsi').addEventListener('click', () => filterMatches('Hepsi'));
+                            document.getElementById('btn-futbol').addEventListener('click', () => filterMatches('Futbol'));
+                            document.getElementById('btn-basketbol').addEventListener('click', () => filterMatches('Basketbol'));
+
+                            // Sayfa açılır açılmaz hepsini göster
+                            filterMatches('Hepsi');
+                          })
+                          .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
+                      </script>
+                    </div>
+
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Kanallar Sekmesi İçeriği -->
+      <div id="next-content" data-tabbed="next" style="width: 100%; display: none;">
+        <div class="live-list-grid" style="width: 100%;">
+          <div class="list-tabbed"></div>
+          <div class="list-area" style="width: 100%;">
+            <div class="bet-matches" style="width: 100%;">
+              <div id="channel-matches" class="real-matches" style="width: 100%;">
+                <div class="match-cover" style="width: 100%;">
+                  <div class="match-tab-box" style="display: block; width: 100%;">
+                    <div id="channels-content" style="width: 100%;">
+                      <script>
+                        fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/channels.php')
+                          .then(response => response.text())
+                          .then(data => {
+                            document.getElementById('channels-content').innerHTML = data;
+                          })
+                          .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
-<!-- Kanallar Sekmesi İçeriği -->
-<div id="next-content" data-tabbed="next" style="width: 100%; display: none;">
-    <div class="live-list-grid" style="width: 100%;">
-        <div class="list-tabbed"></div>
-        <div class="list-area" style="width: 100%;">
-            <div class="bet-matches" style="width: 100%;">
-                <div id="channel-matches" class="real-matches" style="width: 100%;">
-                    <div class="match-cover" style="width: 100%;">
-                        <div class="match-tab-box" style="display: block; width: 100%;">
-                            <!-- YAYINLANACAKLAR mesajını kaldırmak için bu kısmı kontrol edin -->
-                            <!-- Eğer burada bir mesaj varsa, onu kaldırın -->
-                            <!-- Örnek: <div class="yayinlanacaklar-mesaji">YAYINLANACAKLAR</div> -->
-                            <div id="channels-content" style="width: 100%;">
-                                <script>
-                                    fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/channels.php')
-                                        .then(response => response.text())
-                                        .then(data => {
-                                            document.getElementById('channels-content').innerHTML = data; // 'channel-list' yerine 'channels-content' kullanıldı
-                                        })
-                                        .catch(error => console.error('Dosya yüklenirken hata oluştu:', error));
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div></div></div>
-    
 <!-- Sekmeler Arasında Geçiş İçin JavaScript -->
 <script>
-    document.getElementById('live-tab').addEventListener('click', function() {
-        document.getElementById('live-content').style.display = 'block';
-        document.getElementById('next-content').style.display = 'none';
-    });
+  document.getElementById('live-tab').addEventListener('click', function() {
+    document.getElementById('live-content').style.display = 'block';
+    document.getElementById('next-content').style.display = 'none';
+  });
 
-    document.getElementById('next-tab').addEventListener('click', function() {
-        document.getElementById('live-content').style.display = 'none';
-        document.getElementById('next-content').style.display = 'block';
-    });
+  document.getElementById('next-tab').addEventListener('click', function() {
+    document.getElementById('live-content').style.display = 'none';
+    document.getElementById('next-content').style.display = 'block';
+  });
 </script>
-<!-- Sekmeler Arasında Geçiş İçin JavaScript -->
 
 ${
   reklam2
@@ -517,25 +545,27 @@ ${
     : ''
 }
 <!-- footer reklam bitis-->
+
 <footer>
   <div class="footer-links">
-<a href="https://dng.bet/" target="_blank" rel="noopener">Bahis</a>
-<a href="https://dng.bet/" target="_blank" rel="noopener">Canlı Bahis</a>
-<a href="https://dng.bet/" target="_blank" rel="noopener">Casino</a>
-<a href="https://dng.bet/" target="_blank" rel="noopener">Canlı Casino</a>
-<a href="https://dng.bet/" target="_blank" rel="noopener">Slot Oyunu</a>
-<a href="https://dng.bet/" target="_blank" rel="noopener">Bonuslar</a>
-</div>
-<div data-rc='[{"icon":"home","text":"Anasayfa","link":"/","target":"_self"},{"icon":"fas fa-newspaper","text":"Spor Bahisleri","link":/","target":"_self"},{"icon":"fas fa-futbol","text":"Canl\u0131 Bahis","link":"","target":"_self"},{"icon":"fas fa-play","text":"Casino","link":"","target":"_self"},{"icon":"fas fa-tv","text":"Canl\u0131 Casino","link":"","target":"_self"},{"icon":"fas fa-basketball-ball","text":"Promosyonlar","link":"","target":"_self"},{"icon":"fas fa-fas fa-award","text":" Tombala","link":"","target":"_self"}]'>
-<script src="assets/js/rc.js"></script>
-</div>
-<center><img class="" src="${logo}" width="${logowidth}" alt="Canlı maç yayınları" /></center>
-<div class="copyright-text">
-        <p>${footermetin}</p>
-    </div>
-    ${footerapi}
-    ${apilinkcikisi}
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Bahis</a>
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Canlı Bahis</a>
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Casino</a>
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Canlı Casino</a>
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Slot Oyunu</a>
+    <a href="https://dng.bet/" target="_blank" rel="noopener">Bonuslar</a>
+  </div>
+  <div data-rc='[{"icon":"home","text":"Anasayfa","link":"/","target":"_self"},{"icon":"fas fa-newspaper","text":"Spor Bahisleri","link":"/","target":"_self"},{"icon":"fas fa-futbol","text":"Canlı Bahis","link":"","target":"_self"},{"icon":"fas fa-play","text":"Casino","link":"","target":"_self"},{"icon":"fas fa-tv","text":"Canlı Casino","link":"","target":"_self"},{"icon":"fas fa-basketball-ball","text":"Promosyonlar","link":"","target":"_self"},{"icon":"fas fa-fas fa-award","text":" Tombala","link":"","target":"_self"}]'>
+    <script src="assets/js/rc.js"></script>
+  </div>
+  <center><img class="" src="${logo}" width="${logowidth}" alt="Canlı maç yayınları" /></center>
+  <div class="copyright-text">
+    <p>${footermetin}</p>
+  </div>
+  ${footerapi}
+  ${apilinkcikisi}
 </footer>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
@@ -546,7 +576,7 @@ ${
 <script src="assets/js/playeroptions238603860.js?v=1"></script>
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
-<!-- SCRPİT -->
+
 <!-- Sabit Footer -->
 ${
   reklam6
@@ -571,6 +601,7 @@ ${
 </div>
 </body>
 </html>
+
  `;
 
   return new Response(html, {
