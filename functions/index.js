@@ -418,6 +418,11 @@ ${
                 <span>Kanallar</span>
             </div>
         </div>
+               <div style="text-align:center; margin: 10px 0;">
+            <button onclick="filterMatches('Futbol')" style="margin: 0 5px;">Futbol</button>
+            <button onclick="filterMatches('Basketbol')" style="margin: 0 5px;">Basketbol</button>
+            <button onclick="filterMatches('Hepsi')" style="margin: 0 5px;">Tümü</button>
+        </div>
 
 <!-- Maçlar Sekmesi İçeriği -->
 <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
