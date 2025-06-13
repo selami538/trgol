@@ -442,9 +442,11 @@ ${
 <div style="display: flex; align-items: flex-start; gap: 10px;">
 
   <!-- Dikey Menü -->
-  <div class="vertical-menu">
+ <div class="vertical-menu">
     <div class="menu-item active" data-matchfilter="Futbol" title="Futbol">
-      <img src="https://cdn-icons-png.flaticon.com/512/1975/1975687.png" alt="Futbol" />
+      <svg class="icon" width="24" height="24">
+        <use xlink:href="https://www.taraftarium24-182.top/view/theme/v1/assets/images/icons.svg#sports_1"></use>
+      </svg>
     </div>
     <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
       <img src="https://cdn-icons-png.flaticon.com/512/3200/3200786.png" alt="Buz Hokeyi" />
