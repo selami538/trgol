@@ -502,17 +502,15 @@ ${
 <!-- CSS -->
 <style>
 .vertical-menu {
-  position: absolute;
-  left: -70px; /* tablonun hemen soluna gelir */
-  top: 0;
-  background: rgba(35, 41, 47, .2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 5px;
-  border-radius: 10px;
-  gap: 10px;
-}
+position: sticky;
+    background: rgba(35, 41, 47, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 10px;
+    gap: 10px;
+  }
 
   .menu-item {
     width: 20px;
