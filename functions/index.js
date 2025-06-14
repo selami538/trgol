@@ -502,7 +502,7 @@ ${
 <!-- CSS -->
 <style>
   .vertical-menu {
-    position: fixed;
+  
     background: rgba(35, 41, 47, .2);
     display: flex;
     flex-direction: column;
@@ -513,6 +513,7 @@ ${
   }
 
   .menu-item {
+  position: fixed;
     width: 20px;
     height: 30px;
     cursor: pointer;
