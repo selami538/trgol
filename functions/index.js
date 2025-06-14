@@ -501,7 +501,7 @@ ${
 <!-- CSS -->
 <style>
   .vertical-menu {
-  
+      position: absolute;
     background: rgba(35, 41, 47, .2);
     display: flex;
     flex-direction: column;
