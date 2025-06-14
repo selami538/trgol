@@ -501,16 +501,20 @@ ${
 
 <!-- CSS -->
 <style>
-  .vertical-menu {
-  
-    background: rgba(35, 41, 47, .2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 5px;
-    border-radius: 10px;
-    gap: 10px;
-  }
+ .vertical-menu {
+  position: fixed; /* veya sticky */
+  top: 20px;        /* Ekranın üstünden biraz boşluk */
+  left: 10px;       /* Ekranın solundan biraz boşluk */
+  background: rgba(35, 41, 47, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 5px;
+  border-radius: 10px;
+  gap: 10px;
+  z-index: 1000;    /* Üstte görünmesi için */
+}
+
 
   .menu-item {
     width: 20px;
