@@ -432,7 +432,7 @@ ${
                     <!-- Kategori Butonları -->
                     <style>
                     .kategori-bar {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 999;
   background: #fff; /* varsa */
@@ -501,7 +501,6 @@ ${
 <!-- CSS -->
 <style>
   .vertical-menu {
-      position: absolute;
     background: rgba(35, 41, 47, .2);
     display: flex;
     flex-direction: column;
