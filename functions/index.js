@@ -533,7 +533,7 @@ ${
 
 <!-- JS -->
 <script>
-  fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/matches.php')
+  fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://voleapi.buzz/api/matches.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('matches-content').innerHTML = data;
