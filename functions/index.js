@@ -529,7 +529,7 @@ ${
     opacity: 1;
     filter: brightness(1.5);
   }
-  .kategori-menu {
+  .vertical-menu {
   position: sticky;
   top: 0; /* Sayfa kayınca en üstte sabitlenir */
   background: white; /* Arka plan ekle görünmez olmasın */
