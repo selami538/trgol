@@ -503,7 +503,6 @@ ${
 <style>
   .vertical-menu {
     position: fixed;
-    top: 0;
     background: rgba(35, 41, 47, .2);
     display: flex;
     flex-direction: column;
