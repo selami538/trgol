@@ -502,6 +502,8 @@ ${
 <!-- CSS -->
 <style>
   .vertical-menu {
+    position: fixed;
+    top: 0;
     background: rgba(35, 41, 47, .2);
     display: flex;
     flex-direction: column;
@@ -529,13 +531,6 @@ ${
     opacity: 1;
     filter: brightness(1.5);
   }
-  .vertical-menu {
-  position: sticky;
-  top: 0; /* Sayfa kayınca en üstte sabitlenir */
-  background: white; /* Arka plan ekle görünmez olmasın */
-  padding: 10px;
-  z-index: 1000; /* Üstte kalması için */
-}
 </style>
 
 <!-- JS -->
