@@ -468,10 +468,9 @@ ${
         </svg>
     </div>
     <div class="menu-item" data-matchfilter="Buz Hokeyi" title="Buz Hokeyi">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32" fill="#ffffff">
-      <path d="M20.576 18.001c-11.365 0-20.576-3.699-20.576-8.263v13.413h0.059c0 4.881 9.188 8.849 20.518 8.849s20.518-3.909 20.518-8.849v0-13.413c0.059 4.565-9.153 8.263-20.518 8.263z"></path>
-        <path d="M41.153 8.263c0 4.564-9.212 8.263-20.576 8.263s-20.576-3.7-20.576-8.263c0-4.564 9.212-8.263 20.576-8.263s20.576 3.7 20.576 8.263z"></path>
-        </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="vertical-align: middle; margin-right: 4px;" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M2 20h20v2H2v-2zm16.5-3.8c-.6 0-1.1-.2-1.5-.5L13 11.8l1.4-1.4 4 4 .1.1c.2.2.5.3.9.3s.6-.1.9-.3c.2-.2.3-.5.3-.9s-.1-.6-.3-.9L15.8 9.3l1.4-1.4 4.2 4.2c.6.6.9 1.4.9 2.2s-.3 1.6-.9 2.2c-.5.5-1.3.9-2.1.9zM3.7 16c-.4 0-.7-.1-1-.4-.3-.3-.4-.6-.4-1s.1-.7.4-1L14.6 1.3c.2-.2.5-.3.7-.3.3 0 .5.1.7.3l1 1c.4.4.4 1 0 1.4L5.1 16c-.3.3-.6.4-1 .4z"/>
+  </svg>
     </div>
    
     <div class="menu-item" data-matchfilter="Voleybol" title="Voleybol">
