@@ -529,6 +529,13 @@ ${
     opacity: 1;
     filter: brightness(1.5);
   }
+  .kategori-menu {
+  position: sticky;
+  top: 0; /* Sayfa kayınca en üstte sabitlenir */
+  background: white; /* Arka plan ekle görünmez olmasın */
+  padding: 10px;
+  z-index: 1000; /* Üstte kalması için */
+}
 </style>
 
 <!-- JS -->
