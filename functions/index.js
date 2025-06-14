@@ -501,10 +501,10 @@ ${
 
 <!-- CSS -->
 <style>
- .vertical-menu {
-  position: fixed; /* veya sticky */
-  top: 20px;        /* Ekranın üstünden biraz boşluk */
-  left: 10px;       /* Ekranın solundan biraz boşluk */
+.vertical-menu {
+  position: absolute;
+  left: -70px; /* tablonun hemen soluna gelir */
+  top: 0;
   background: rgba(35, 41, 47, .2);
   display: flex;
   flex-direction: column;
@@ -512,9 +512,7 @@ ${
   padding: 10px 5px;
   border-radius: 10px;
   gap: 10px;
-  z-index: 1000;    /* Üstte görünmesi için */
 }
-
 
   .menu-item {
     width: 20px;
