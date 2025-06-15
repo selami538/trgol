@@ -234,8 +234,7 @@ ${bodyapi}
 }
 </style>
 <div class="header-top">
-<div class="header-text"style="">  <p>Güncel adresimiz: <a href="https://${hostname}" target="_blank" rel="noopener" style="color:white;">${hostname}</a></p>
-      - Sonraki adresimiz: <a href="https://${nextDomain}" target="_blank" rel="noopener" style="color:white;">${nextDomain}</a> olacaktır.
+<div class="header-text"style="">  <p>Güncel adresimiz: <a href="https://${hostname}" target="_blank" rel="noopener" style="color:white;">${hostname}</a> - Sonraki adresimiz: <a href="https://${nextDomain}" target="_blank" rel="noopener" style="color:white;">${nextDomain}</a> olacaktır.</p>
     
     </div>
 <div class="social-area">
