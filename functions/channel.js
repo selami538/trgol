@@ -17,10 +17,10 @@ export async function onRequest(context) {
           : json.playerlogo.player_logo;
       }
 
-       if (json.playerlogo.player_logoyer) {
-        playerLogoyer = json.playerlogo.player_logoyer.startsWith("http")
-          ? json.playerlogo.player_logoyer
-          : "" + json.playerlogo.player_logoyer;
+       if (json.playerlogo.player_logoyeriki) {
+        playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
+          ? json.playerlogo.player_logoyeriki
+          : "" + json.playerlogo.player_logoyeriki;
       }
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
