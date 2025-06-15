@@ -20,8 +20,9 @@ export async function onRequest(context) {
       if (json.playerlogo.player_logoyeriki) {
         playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
           ? json.playerlogo.player_logoyeriki
-          : json.playerlogo.player_logoyeriki;
+          : "" + json.playerlogo.player_logoyeriki;
       }
+
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
       }
@@ -30,24 +31,27 @@ export async function onRequest(context) {
     console.error("Veriler alınamadı:", e);
   }
 
+  const adUrl = "https://file-examples.com/storage/fe0dfd4118684df6f98d216/2017/04/file_example_MP4_480_1_5MG.mp4";
+
   const html = `
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <style>
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; }
     </style>
-    <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
   </head>
   <body>
     <div id="player"></div>
     <script>
       const id = "${id}";
-      const playerLogo = \`${playerLogo}\`;
-      const playerLogoyer = \`${playerLogoyer}\`;
-      const playerSite = \`${playerSite}\`;
+      const adUrl = "${adUrl}";
+      const watermark = "${playerLogo}";
+      const watermarkLink = "${playerSite}";
+      const position = "${playerLogoyer}" || "top-right";
 
       if (id) {
         const data = {
@@ -70,25 +74,28 @@ export async function onRequest(context) {
         .then(res => res.json())
         .then(result => {
           if (result.URL) {
-            const playerOptions = {
-              source: result.URL,
+            const mainStream = result.URL;
+
+            const player = new Clappr.Player({
+              source: adUrl || mainStream,
               parentId: "#player",
-              position: playerLogoyer,
               autoPlay: true,
               width: "100%",
               height: "100%",
-              mimeType: "application/x-mpegURL"
-            };
+              watermark: watermark || undefined,
+              watermarkLink: watermarkLink || undefined,
+              position: position || "top-right",
+              mimeType: adUrl ? "video/mp4" : "application/x-mpegURL"
+            });
 
-            // watermark sadece varsa ekle
-            if (playerLogo && playerLogo.trim() !== "") {
-              playerOptions.watermark = playerLogo;
-              if (playerSite && playerSite.trim() !== "") {
-                playerOptions.watermarkLink = playerSite;
-              }
+            // Eğer reklam varsa, bitince ana yayını yükle
+            if (adUrl) {
+              player.on(Clappr.Events.PLAYER_ENDED, () => {
+                player.load(mainStream);
+                player.play();
+              });
             }
 
-            new Clappr.Player(playerOptions);
           } else {
             document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
           }
