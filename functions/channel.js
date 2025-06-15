@@ -54,24 +54,29 @@ export async function onRequest(context) {
     <style>
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; position: relative; }
-      #ad-timer, #skip-btn {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(0,0,0,0.75);
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        z-index: 9999;
-      }
-      #skip-btn {
-        display: none;
-        margin-top: 5px;
-        cursor: pointer;
-        background: #d33;
-      }
+    #ad-timer, #skip-btn {
+  position: absolute;
+  right: 10px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+#ad-timer {
+  bottom: 40px; /* üstte kalacak */
+}
+
+#skip-btn {
+  bottom: 10px; /* altta kalacak */
+  display: none;
+  cursor: pointer;
+  background: #d33;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   </head>
