@@ -408,7 +408,7 @@ ${
     <div class="live-player" data-loadbalancer="1" data-loadbalancerdomain="osflare.work">
       <div class="player-attributes">
         <center>
-          <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="" allowfullscreen=""></iframe>
+          <iframe id="macth-video" name="macth-video" width="100%" height="450" scrolling="no" frameborder="0" src="channel?id=bein-sports-1" allowfullscreen=""></iframe>
         </center>
       </div>
     </div>
