@@ -17,10 +17,10 @@ export async function onRequest(context) {
           : json.playerlogo.player_logo;
       }
 
-       if (json.playerlogo.player_logoyeriki) {
+      if (json.playerlogo.player_logoyeriki) {
         playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
           ? json.playerlogo.player_logoyeriki
-          : "" + json.playerlogo.player_logoyeriki;
+          : json.playerlogo.player_logoyeriki;
       }
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
@@ -34,7 +34,7 @@ export async function onRequest(context) {
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <style>
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; }
@@ -45,6 +45,9 @@ export async function onRequest(context) {
     <div id="player"></div>
     <script>
       const id = "${id}";
+      const playerLogo = \`${playerLogo}\`;
+      const playerLogoyer = \`${playerLogoyer}\`;
+      const playerSite = \`${playerSite}\`;
 
       if (id) {
         const data = {
@@ -67,17 +70,25 @@ export async function onRequest(context) {
         .then(res => res.json())
         .then(result => {
           if (result.URL) {
-            new Clappr.Player({
+            const playerOptions = {
               source: result.URL,
               parentId: "#player",
-              position: "${playerLogoyer}",
+              position: playerLogoyer,
               autoPlay: true,
-              watermark: "${playerLogo}",
-              watermarkLink: "${playerSite}",
               width: "100%",
               height: "100%",
               mimeType: "application/x-mpegURL"
-            });
+            };
+
+            // watermark sadece varsa ekle
+            if (playerLogo && playerLogo.trim() !== "") {
+              playerOptions.watermark = playerLogo;
+              if (playerSite && playerSite.trim() !== "") {
+                playerOptions.watermarkLink = playerSite;
+              }
+            }
+
+            new Clappr.Player(playerOptions);
           } else {
             document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
           }
