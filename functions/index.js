@@ -3,9 +3,11 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const hostname = url.hostname;
 
+  // Sayı artışı işlemi düzgün tanımlandı
   const nextDomain = hostname.replace(/(\d+)(?!.*\d)/, (match) => {
     return String(parseInt(match) + 1);
-  
+  });
+
   const apiUrl = "https://apibaglan.site/api/verirepo.php";
 
   let title = "";
