@@ -72,7 +72,7 @@ export async function onRequest(context) {
             new Clappr.Player({
               source: result.URL,
               parentId: "#player",
-              position: "${playerlogoyer",
+              position: "${playerlogoyer}",
               autoPlay: true,
               watermark: "${playerLogo}",
               watermarkLink: "${playerSite}",
