@@ -14,13 +14,13 @@ export async function onRequest(context) {
       if (json.playerlogo.player_logo) {
         playerLogo = json.playerlogo.player_logo.startsWith("http")
           ? json.playerlogo.player_logo
-          : "https://cdn.site.com/" + json.playerlogo.player_logo;
+          : json.playerlogo.player_logo;
       }
 
       if (json.playerlogo.player_logoyer) {
         playerLogoyer = json.playerlogo.player_logoyer.startsWith("http")
           ? json.playerlogo.player_logoyer
-          : "https://cdn.site.com/" + json.playerlogo.player_logoyer;
+          :  json.playerlogo.player_logoyer;
       }
 
       if (json.playerlogo.player_site) {
