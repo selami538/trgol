@@ -5,6 +5,8 @@ export async function onRequest(context) {
   let playerLogo = "";
   let playerLogoyer = "";
   let playerSite = "";
+  let reklamVideo = "";
+  let reklamSure = 0;
 
   try {
     const res2 = await fetch("https://apibaglan.site/api/verirepo.php");
@@ -20,18 +22,24 @@ export async function onRequest(context) {
       if (json.playerlogo.player_logoyeriki) {
         playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
           ? json.playerlogo.player_logoyeriki
-          : "" + json.playerlogo.player_logoyeriki;
+          : json.playerlogo.player_logoyeriki;
       }
 
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
       }
+
+      if (json.playerlogo.player_reklamvideo) {
+        reklamVideo = json.playerlogo.player_reklamvideo;
+      }
+
+      if (json.playerlogo.player_reklamsure) {
+        reklamSure = parseInt(json.playerlogo.player_reklamsure) || 0;
+      }
     }
   } catch (e) {
     console.error("Veriler alınamadı:", e);
   }
-
-  const adUrl = "https://apibaglan.site/voleadmin/file_example_MP4_480_1_5MG.mp4";
 
   const html = `
 <!DOCTYPE html>
@@ -42,16 +50,50 @@ export async function onRequest(context) {
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   </head>
   <body>
     <div id="player"></div>
     <script>
       const id = "${id}";
-      const adUrl = "${adUrl}";
-      const watermark = "${playerLogo}";
-      const watermarkLink = "${playerSite}";
-      const position = "${playerLogoyer}" || "top-right";
+      const reklamVideo = "${reklamVideo}";
+      const reklamSure = ${reklamSure};
+
+      function startMainPlayer(mainUrl) {
+        const options = {
+          source: mainUrl,
+          parentId: "#player",
+          autoPlay: true,
+          width: "100%",
+          height: "100%",
+          mimeType: "application/x-mpegURL"
+        };
+
+        ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
+        ${playerSite ? `options.watermarkLink = "${playerSite}";` : ""}
+        ${playerLogoyer ? `options.position = "${playerLogoyer}";` : ""}
+
+        new Clappr.Player(options);
+      }
+
+      function startAdThenMain(mainUrl) {
+        if (reklamVideo && reklamSure > 0) {
+          const adPlayer = new Clappr.Player({
+            source: reklamVideo,
+            parentId: "#player",
+            autoPlay: true,
+            width: "100%",
+            height: "100%"
+          });
+
+          setTimeout(() => {
+            adPlayer.destroy();
+            startMainPlayer(mainUrl);
+          }, reklamSure * 1000);
+        } else {
+          startMainPlayer(mainUrl);
+        }
+      }
 
       if (id) {
         const data = {
@@ -74,28 +116,7 @@ export async function onRequest(context) {
         .then(res => res.json())
         .then(result => {
           if (result.URL) {
-            const mainStream = result.URL;
-
-            const player = new Clappr.Player({
-              source: adUrl || mainStream,
-              parentId: "#player",
-              autoPlay: true,
-              width: "100%",
-              height: "100%",
-              watermark: watermark || undefined,
-              watermarkLink: watermarkLink || undefined,
-              position: position || "top-right",
-              mimeType: adUrl ? "video/mp4" : "application/x-mpegURL"
-            });
-
-            // Eğer reklam varsa, bitince ana yayını yükle
-            if (adUrl) {
-              player.on(Clappr.Events.PLAYER_ENDED, () => {
-                player.load(mainStream);
-                player.play();
-              });
-            }
-
+            startAdThenMain(result.URL);
           } else {
             document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
           }
