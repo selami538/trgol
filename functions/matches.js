@@ -182,7 +182,7 @@ export async function onRequest(context) {
           if (result.URL) {
             startAdThenMain(result.URL);
           } else {
-            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı.Yayın aktif olduğunda buradan izleyebilirsiniz.</h2>";
           }
         })
         .catch(err => {
