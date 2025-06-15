@@ -3,20 +3,43 @@ export async function onRequest(context) {
   const id = url.searchParams.get("id");
 
   let playerLogo = "";
+  let playerLogoyer = "";
+  let playerSite = "";
 
-  // Logo'yu çek
   try {
     const res2 = await fetch("https://apibaglan.site/api/verirepo.php");
     const json = await res2.json();
 
-    if (json.playerlogo?.player_logo) {
-      playerLogo = json.playerlogo.player_logo.startsWith("http")
-        ? json.playerlogo.player_logo
-        : "https://cdn.site.com/" + json.playerlogo.player_logo;
+    if (json.playerlogo) {
+      // player_logo
+      if (json.playerlogo.player_logo) {
+        playerLogo = json.playerlogo.player_logo.startsWith("http")
+          ? json.playerlogo.player_logo
+          : "https://cdn.site.com/" + json.playerlogo.player_logo;
+      }
+
+      // player_logoyer
+      if (json.playerlogo.player_logoyer) {
+        playerLogoyer = json.playerlogo.player_logoyer.startsWith("http")
+          ? json.playerlogo.player_logoyer
+          : "https://cdn.site.com/" + json.playerlogo.player_logoyer;
+      }
+
+      // player_site
+      if (json.playerlogo.player_site) {
+        playerSite = json.playerlogo.player_site;
+      }
     }
   } catch (e) {
-    console.error("Logo verisi alınamadıı:", e);
+    console.error("Veriler alınamadı:", e);
   }
+
+  // Geriye döndür
+  return new Response(JSON.stringify({ playerLogo, playerLogoyer, playerSite }), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
 
   const html = `
 <!DOCTYPE html>
@@ -58,9 +81,10 @@ export async function onRequest(context) {
             new Clappr.Player({
               source: result.URL,
               parentId: "#player",
+              position: "${playerlogoyer",
               autoPlay: true,
               watermark: "${playerLogo}",
-              watermarkLink: "https://dng.bet",
+              watermarkLink: "${playerSite}",
               width: "100%",
               height: "100%",
               mimeType: "application/x-mpegURL"
