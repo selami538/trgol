@@ -31,7 +31,7 @@ export async function onRequest(context) {
     console.error("Veriler alınamadı:", e);
   }
 
-  const adUrl = "https://file-examples.com/storage/fe0dfd4118684df6f98d216/2017/04/file_example_MP4_480_1_5MG.mp4";
+  const adUrl = "https://apibaglan.site/voleadmin/file_example_MP4_480_1_5MG.mp4";
 
   const html = `
 <!DOCTYPE html>
