@@ -23,7 +23,7 @@ export async function onRequest(context) {
       if (json.playerlogo.player_logoyeriki) {
         playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
           ? json.playerlogo.player_logoyeriki
-          : json.playerlogo.player_logoyeriki;
+          : "" + json.playerlogo.player_logoyeriki;
       }
 
       if (json.playerlogo.player_site) {
@@ -35,11 +35,11 @@ export async function onRequest(context) {
       }
 
       if (json.playerlogo.player_reklamsure) {
-        reklamSure = parseInt(json.playerlogo.player_reklamsure) || 0;
+        reklamSure = parseInt(json.playerlogo.player_reklamsure);
       }
 
       if (json.playerlogo.player_reklamdurum) {
-        reklamDurum = parseInt(json.playerlogo.player_reklamdurum) || 0;
+        reklamDurum = parseInt(json.playerlogo.player_reklamdurum);
       }
     }
   } catch (e) {
@@ -54,11 +54,11 @@ export async function onRequest(context) {
     <style>
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; position: relative; }
-      #ad-timer {
+      #ad-timer, #skip-btn {
         position: absolute;
         bottom: 10px;
         right: 10px;
-        background: rgba(0,0,0,0.7);
+        background: rgba(0,0,0,0.75);
         color: #fff;
         padding: 8px 12px;
         border-radius: 8px;
@@ -66,19 +66,27 @@ export async function onRequest(context) {
         font-size: 14px;
         z-index: 9999;
       }
+      #skip-btn {
+        display: none;
+        margin-top: 5px;
+        cursor: pointer;
+        background: #d33;
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   </head>
   <body>
     <div id="player">
-      <div id="ad-timer" style="display: none;">Reklam geçilebilir: ${reklamSure} saniye</div>
+      <div id="ad-timer" style="display: none;"></div>
+      <div id="skip-btn" onclick="skipAd()">Reklamı Atla</div>
     </div>
-
     <script>
       const id = "${id}";
       const reklamVideo = "${reklamVideo}";
       const reklamSure = ${reklamSure};
       const reklamDurum = ${reklamDurum};
+      let adPlayer = null;
+      let countdown = null;
 
       function startMainPlayer(mainUrl) {
         const options = {
@@ -97,9 +105,21 @@ export async function onRequest(context) {
         new Clappr.Player(options);
       }
 
+      function skipAd() {
+        if (adPlayer) {
+          adPlayer.destroy();
+        }
+        clearInterval(countdown);
+        document.getElementById("ad-timer").style.display = "none";
+        document.getElementById("skip-btn").style.display = "none";
+        startMainPlayer(window.mainStreamUrl);
+      }
+
       function startAdThenMain(mainUrl) {
+        window.mainStreamUrl = mainUrl;
+
         if (reklamDurum === 1 && reklamVideo && reklamSure > 0) {
-          const adPlayer = new Clappr.Player({
+          adPlayer = new Clappr.Player({
             source: reklamVideo,
             parentId: "#player",
             autoPlay: true,
@@ -108,19 +128,25 @@ export async function onRequest(context) {
           });
 
           const timerDiv = document.getElementById("ad-timer");
+          const skipBtn = document.getElementById("skip-btn");
+
           let remaining = reklamSure;
           timerDiv.style.display = "block";
-          timerDiv.innerText = "Reklam geçilebilir: " + remaining + " saniye";
+          timerDiv.innerText = "Reklamın bitmesine kalan süre: " + remaining + " saniye";
 
-          const countdown = setInterval(() => {
+          countdown = setInterval(() => {
             remaining--;
             if (remaining <= 0) {
               clearInterval(countdown);
               adPlayer.destroy();
               timerDiv.style.display = "none";
+              skipBtn.style.display = "none";
               startMainPlayer(mainUrl);
             } else {
-              timerDiv.innerText = "Reklam geçilebilir: " + remaining + " saniye";
+              timerDiv.innerText = "Reklamın bitmesine kalan süre: " + remaining + " saniye";
+              if (remaining <= reklamSure - 5) {
+                skipBtn.style.display = "block";
+              }
             }
           }, 1000);
         } else {
