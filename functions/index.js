@@ -1,4 +1,11 @@
 export async function onRequest(context) {
+  const { request } = context;
+  const url = new URL(request.url);
+  const hostname = url.hostname;
+
+  const nextDomain = hostname.replace(/(\d+)(?!.*\d)/, (match) => {
+    return String(parseInt(match) + 1);
+  
   const apiUrl = "https://apibaglan.site/api/verirepo.php";
 
   let title = "";
@@ -225,7 +232,10 @@ ${bodyapi}
 }
 </style>
 <div class="header-top">
-<div class="header-text"style=""><a href="/" target="_blank" rel="noopener"style="color:white;font-size: 15px;">Bir sonra ki alan adımız bir sayı artarak devam edecektir.</a></div>
+<div class="header-text"style="">  <p>Güncel adresimiz: <a href="https://${hostname}" target="_blank" rel="noopener" style="color:white;">${hostname}</a></p>
+      <p>Sonraki adresimiz: <a href="https://${nextDomain}" target="_blank" rel="noopener" style="color:white;">${nextDomain}</a></p>
+      <p><a href="/" target="_blank" rel="noopener" style="color:white;font-size:15px;">Bir sonraki alan adımız bir sayı artarak devam edecektir.</a></p>
+    </div>
 <div class="social-area">
 ${
   twitter 
