@@ -11,18 +11,21 @@ export async function onRequest(context) {
     const json = await res2.json();
 
     if (json.playerlogo) {
+      // player_logo
       if (json.playerlogo.player_logo) {
         playerLogo = json.playerlogo.player_logo.startsWith("http")
           ? json.playerlogo.player_logo
           : "https://cdn.site.com/" + json.playerlogo.player_logo;
       }
 
+      // player_logoyer
       if (json.playerlogo.player_logoyer) {
         playerLogoyer = json.playerlogo.player_logoyer.startsWith("http")
           ? json.playerlogo.player_logoyer
           : "https://cdn.site.com/" + json.playerlogo.player_logoyer;
       }
 
+      // player_site
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
       }
@@ -31,6 +34,11 @@ export async function onRequest(context) {
     console.error("Veriler alınamadı:", e);
   }
 
+  // Geriye döndür
+  return new Response(JSON.stringify({ playerLogo, playerLogoyer, playerSite }), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
   const html = `
 <!DOCTYPE html>
