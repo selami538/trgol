@@ -76,10 +76,7 @@ export async function onRequest(context) {
   cursor: pointer;
   background: #d33;
 }
- .player-poster[data-poster].clickable {
-        background-size: contain;
-        background-image: url("https://taraftarium24-183.top/assets/img/player_logo_685038cc2200c.png");
-    }
+
 
 
     </style>
@@ -98,22 +95,24 @@ export async function onRequest(context) {
       let adPlayer = null;
       let countdown = null;
 
-      function startMainPlayer(mainUrl) {
-        const options = {
-          source: mainUrl,
-          parentId: "#player",
-          autoPlay: true,
-          width: "100%",
-          height: "100%",
-          mimeType: "application/x-mpegURL"
-        };
+    function startMainPlayer(mainUrl) {
+  const options = {
+    source: mainUrl,
+    parentId: "#player",
+    autoPlay: true,
+    width: "100%",
+    height: "100%",
+    mimeType: "application/x-mpegURL",
+    poster: "https://taraftarium24-183.top/assets/img/player_logo_685038cc2200c.png"
+  };
 
-        ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
-        ${playerSite ? `options.watermarkLink = "${playerSite}";` : ""}
-        ${playerLogoyer ? `options.position = "${playerLogoyer}";` : ""}
+  ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
+  ${playerSite ? `options.watermarkLink = "${playerSite}";` : ""}
+  ${playerLogoyer ? `options.position = "${playerLogoyer}";` : ""}
 
-        new Clappr.Player(options);
-      }
+  new Clappr.Player(options);
+}
+
 
       function skipAd() {
         if (adPlayer) {
