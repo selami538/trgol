@@ -8,6 +8,7 @@ export async function onRequest(context) {
   let reklamVideo = "";
   let reklamSure = 0;
   let reklamDurum = 0;
+  let playerPoster = "";
 
   try {
     const res2 = await fetch("https://apibaglan.site/api/verirepo.php");
@@ -15,15 +16,11 @@ export async function onRequest(context) {
 
     if (json.playerlogo) {
       if (json.playerlogo.player_logo) {
-        playerLogo = json.playerlogo.player_logo.startsWith("http")
-          ? json.playerlogo.player_logo
-          : json.playerlogo.player_logo;
+        playerLogo = json.playerlogo.player_logo;
       }
 
       if (json.playerlogo.player_logoyeriki) {
-        playerLogoyer = json.playerlogo.player_logoyeriki.startsWith("http")
-          ? json.playerlogo.player_logoyeriki
-          : "" + json.playerlogo.player_logoyeriki;
+        playerLogoyer = json.playerlogo.player_logoyeriki;
       }
 
       if (json.playerlogo.player_site) {
@@ -41,6 +38,10 @@ export async function onRequest(context) {
       if (json.playerlogo.player_reklamdurum) {
         reklamDurum = parseInt(json.playerlogo.player_reklamdurum);
       }
+
+      if (json.playerlogo.player_arkaplan) {
+        playerPoster = json.playerlogo.player_arkaplan;
+      }
     }
   } catch (e) {
     console.error("Veriler alınamadı:", e);
@@ -54,31 +55,29 @@ export async function onRequest(context) {
     <style>
       body { margin: 0; padding: 0; background: #000; }
       #player { width: 100%; height: 100vh; position: relative; }
-    #ad-timer, #skip-btn {
-  position: absolute;
-  right: 10px;
-  background: rgba(0,0,0,0.75);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  z-index: 9999;
-}
 
-#ad-timer {
-  bottom: 40px; /* üstte kalacak */
-}
+      #ad-timer, #skip-btn {
+        position: absolute;
+        right: 10px;
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 9999;
+      }
 
-#skip-btn {
-  bottom: 10px; /* altta kalacak */
-  display: none;
-  cursor: pointer;
-  background: #d33;
-}
+      #ad-timer {
+        bottom: 40px;
+      }
 
-
-
+      #skip-btn {
+        bottom: 10px;
+        display: none;
+        cursor: pointer;
+        background: #d33;
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   </head>
@@ -95,24 +94,23 @@ export async function onRequest(context) {
       let adPlayer = null;
       let countdown = null;
 
-    function startMainPlayer(mainUrl) {
-  const options = {
-    source: mainUrl,
-    parentId: "#player",
-    autoPlay: true,
-    width: "100%",
-    height: "100%",
-    mimeType: "application/x-mpegURL",
-    poster: "https://dengetv53.live/yayinonu.png"
-  };
+      function startMainPlayer(mainUrl) {
+        const options = {
+          source: mainUrl,
+          parentId: "#player",
+          autoPlay: true,
+          width: "100%",
+          height: "100%",
+          mimeType: "application/x-mpegURL"
+        };
 
-  ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
-  ${playerSite ? `options.watermarkLink = "${playerSite}";` : ""}
-  ${playerLogoyer ? `options.position = "${playerLogoyer}";` : ""}
+        ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
+        ${playerSite ? `options.watermarkLink = "${playerSite}";` : ""}
+        ${playerLogoyer ? `options.position = "${playerLogoyer}";` : ""}
+        ${playerPoster ? `options.poster = "${playerPoster}";` : ""}
 
-  new Clappr.Player(options);
-}
-
+        new Clappr.Player(options);
+      }
 
       function skipAd() {
         if (adPlayer) {
