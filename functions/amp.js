@@ -67,7 +67,7 @@ export async function onRequest(context) {
     <div class="overlay">
       <h1>📲 Güncel Giriş Sayfamıza Hoş Geldiniz</h1>
       <p>Web sitemize erişim için aşağıdaki butona tıklayın. Giriş adresi her zaman günceldir.</p>
-      <a href="${escapeHtml(girisLinki)}" class="btn" target="_blank" rel="noopener noreferrer">👉 Şimdi Giriş Yap</a>
+      <a href="${escapeHtml(güncelDomain)}" class="btn" target="_blank" rel="noopener noreferrer">👉 Şimdi Giriş Yap</a>
     </div>
   </body>
   </html>
