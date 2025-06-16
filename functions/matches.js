@@ -103,7 +103,7 @@ export async function onRequest(context) {
     width: "100%",
     height: "100%",
     mimeType: "application/x-mpegURL",
-    poster: "https://taraftarium24-183.top/assets/img/player_logo_685038cc2200c.png"
+    poster: "https://dengetv53.live/yayinonu.png"
   };
 
   ${playerLogo ? `options.watermark = "${playerLogo}";` : ""}
