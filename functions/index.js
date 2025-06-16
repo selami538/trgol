@@ -3,6 +3,14 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const hostname = url.hostname;
 
+  // --- www ile başlayan domain varsa www'yi kaldırıp yönlendir ---
+  if (hostname.startsWith("www.")) {
+    const newHost = hostname.replace(/^www\./, "");
+    const redirectUrl = `${url.protocol}//${newHost}${url.pathname}${url.search}`;
+    return Response.redirect(redirectUrl, 301);
+  }
+  // --- www yönlendirme son ---
+
   // Sayı artışı işlemi düzgün tanımlandı
   const nextDomain = hostname.replace(/(\d+)(?!.*\d)/, (match) => {
     return String(parseInt(match) + 1);
@@ -87,31 +95,30 @@ export async function onRequest(context) {
     hrefreklam6 = ayar.ayar_footerlink || "";
 
     // Menü verileri
-  if (Array.isArray(json.menu)) {
-  menuler = json.menu
-    .filter(item => item.menu_durum === "1") // SADECE aktif (1) olanları al
-    .sort((a, b) => Number(a.menu_sira) - Number(b.menu_sira)) // sırala
-    .map(item => ({
-      ad: item.menu_ad || "",
-      url: item.menu_url || "",
-      icon: item.menu_awesome || ""
-    }));
+    if (Array.isArray(json.menu)) {
+      menuler = json.menu
+        .filter(item => item.menu_durum === "1") // SADECE aktif (1) olanları al
+        .sort((a, b) => Number(a.menu_sira) - Number(b.menu_sira)) // sırala
+        .map(item => ({
+          ad: item.menu_ad || "",
+          url: item.menu_url || "",
+          icon: item.menu_awesome || ""
+        }));
 
-  if (menuler.length > 0) {
-    menuad = menuler[0].ad;
-    menuurl = menuler[0].url;
-    menuicon = menuler[0].icon;
-  }
-}
-
-
+      if (menuler.length > 0) {
+        menuad = menuler[0].ad;
+        menuurl = menuler[0].url;
+        menuicon = menuler[0].icon;
+      }
+    }
 
   } catch (e) {
     console.error("API'den veri alınamadı:", e);
   }
 
-  // Örnek HTML cevabı (isteğe göre özelleştir)
-  const html =  `
+  // Burada istediğin şekilde html vs oluşturabilirsin
+  // Örnek:
+  const html = `
 <!DOCTYPE html>
 <html lang="tr">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
