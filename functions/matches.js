@@ -76,6 +76,11 @@ export async function onRequest(context) {
   cursor: pointer;
   background: #d33;
 }
+ .player-poster[data-poster].clickable {
+        background-size: contain;
+        background-image: url("https://taraftarium24-183.top/assets/img/player_logo_685038cc2200c.png");
+    }
+
 
     </style>
     <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
