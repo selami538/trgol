@@ -551,7 +551,7 @@ ${
 
 <!-- JS -->
 <script>
-  fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://royalvipcanlimac.com/matches.php')
+  fetch('https://royalvipcanlimac.com/matches.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('matches-content').innerHTML = data;
