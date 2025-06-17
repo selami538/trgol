@@ -63,6 +63,8 @@ export async function onRequest(context) {
 
     // Ayar verileri
     const ayar = json?.ayar || {};
+    const playerlogo = json?.playerlogo || {};
+
     title = ayar.ayar_title || "";
     description = ayar.ayar_description || "";
     logo = ayar.ayar_logo || "";
@@ -70,7 +72,10 @@ export async function onRequest(context) {
     logoheight = ayar.logo_height || "";
     favicon = ayar.ayar_favicon || "";
     amp = ayar.amp_guncel || "";
-    canlisonuc = ayar.iletisim_mesaj || "";
+
+    // Burada canlisonuc artık playerlogo içinden geliyor
+    canlisonuc = playerlogo.canlisonuc || "";
+
     twitter = ayar.ayar_twitter || "";
     telegram = ayar.ayar_telegram || "";
     facebook = ayar.ayar_facebook || "";
