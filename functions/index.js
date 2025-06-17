@@ -25,6 +25,7 @@ export async function onRequest(context) {
   let logoheight = "";
   let favicon = "";
   let amp = "";
+  let canlisonuc = "";
   let twitter = "";
   let telegram = "";
   let facebook = "";
@@ -69,6 +70,7 @@ export async function onRequest(context) {
     logoheight = ayar.logo_height || "";
     favicon = ayar.ayar_favicon || "";
     amp = ayar.amp_guncel || "";
+    canlisonuc = ayar.iletisim_mesaj || "";
     twitter = ayar.ayar_twitter || "";
     telegram = ayar.ayar_telegram || "";
     facebook = ayar.ayar_facebook || "";
@@ -668,13 +670,14 @@ ${
   <div class="footer-links">
     ${menuler.map(menu => ` <a href="${menu.url}" target="_blank" rel="noopener">${menu.ad}</a>`).join("")}
    
-  </div><div style="position: relative; width: 100%; height: 150px;">
+  </div>${ canlisonuc ? `<div style="position: relative; width: 100%; height: 150px;">
   <iframe src="https://www.sporx.com/_iframe/mac-merkezi/scoreboard.php" width="100%" height="100%" frameborder="0"></iframe>
   <div style="position: absolute; top: 0; left: 0; 
               width: 100%; height: 100%; 
               background: transparent; 
               z-index: 9999;"></div>
-</div>
+</div>    : ''
+}
   </div>
   <center><img class="" src="${logo}" width="${logowidth}" alt="Canlı maç yayınları" /></center>
   <div class="copyright-text">
