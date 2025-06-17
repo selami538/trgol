@@ -74,7 +74,7 @@ export async function onRequest(context) {
     amp = ayar.amp_guncel || "";
 
     // Burada canlisonuc artık playerlogo içinden geliyor
-    canlisonuc = playerlogo.canlisonuc || "";
+    canlisonuc = playerlogo.iletisim_mesaj || "";
 
     twitter = ayar.ayar_twitter || "";
     telegram = ayar.ayar_telegram || "";
