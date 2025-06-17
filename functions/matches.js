@@ -161,39 +161,46 @@ export async function onRequest(context) {
         }
       }
 
-      if (id) {
-        const data = {
-          AppId: "5000",
-          AppVer: "1",
-          VpcVer: "1.0.12",
-          Language: "en",
-          Token: "",
-          VideoId: id
-        };
+    if (id) {
+  if (id === "bein-sports-1") {
+    startAdThenMain("https://volestream.volestream.lat/hls/bein-sports-1.m3u8");
+  } else if (id === "bein-sports-2") {
+    startAdThenMain("https://volestream.volestream.lat/hls/bein-sports-2.m3u8");
+  } else {
+    const data = {
+      AppId: "5000",
+      AppVer: "1",
+      VpcVer: "1.0.12",
+      Language: "en",
+      Token: "",
+      VideoId: id
+    };
 
-        fetch("https://streamsport365.com/cinema", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "*/*"
-          },
-          body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(result => {
-          if (result.URL) {
-            startAdThenMain(result.URL);
-          } else {
-            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
-          }
-        })
-        .catch(err => {
-          console.error("Hata:", err);
-          document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
-        });
+    fetch("https://streamsport365.com/cinema", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "*/*"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if (result.URL) {
+        startAdThenMain(result.URL);
       } else {
-        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
+        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
       }
+    })
+    .catch(err => {
+      console.error("Hata:", err);
+      document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
+    });
+  }
+} else {
+  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
+}
+
     </script>
   </body>
 </html>
