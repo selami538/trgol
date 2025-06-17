@@ -161,12 +161,25 @@ export async function onRequest(context) {
         }
       }
 
-    if (id) {
-  if (id === "bein-sports-1") {
-    startAdThenMain("https://volestream.volestream.lat/hls/bein-sports-1.m3u8");
-  } else if (id === "bein-sports-2") {
-    startAdThenMain("https://volestream.volestream.lat/hls/bein-sports-2.m3u8");
+  if (id) {
+  if (id === "bein-sports-1" || id === "bein-sports-2") {
+    fetch("https://www.voleapi.buzz/load/yayinlink.php")
+      .then(res => res.json())
+      .then(data => {
+        const baseUrl = data.deismackanal || "https://volestream.volestream.lat/hls/";
+        const streamUrl = baseUrl.endsWith("/")
+          ? baseUrl + id + ".m3u8"
+          : baseUrl + "/" + id + ".m3u8";
+
+        startAdThenMain(streamUrl);
+      })
+      .catch(err => {
+        console.error("Base URL alınamadı, fallback URL kullanılıyor:", err);
+        const fallbackUrl = "https://volestream.volestream.lat/hls/" + id + ".m3u8";
+        startAdThenMain(fallbackUrl);
+      });
   } else {
+    // Eski API ile devam et
     const data = {
       AppId: "5000",
       AppVer: "1",
@@ -200,6 +213,7 @@ export async function onRequest(context) {
 } else {
   document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
 }
+
 
     </script>
   </body>
