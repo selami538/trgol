@@ -676,7 +676,7 @@ ${
     ${menuler.map(menu => ` <a href="${menu.url}" target="_blank" rel="noopener">${menu.ad}</a>`).join("")}
    
   </div>${
-  canlisonuc
+  canlisonuc == 0
     ? `<div style="position: relative; width: 100%; height: 150px;">
          <iframe src="https://www.sporx.com/_iframe/mac-merkezi/scoreboard.php" width="100%" height="100%" frameborder="0"></iframe>
          <div style="position: absolute; top: 0; left: 0; 
@@ -686,6 +686,7 @@ ${
        </div>`
     : ''
 }
+
 
   </div>
   <center><img class="" src="${logo}" width="${logowidth}" alt="Canlı maç yayınları" /></center>
