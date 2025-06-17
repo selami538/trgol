@@ -166,7 +166,7 @@ if (id) {
     fetch("https://www.voleapi.buzz/load/yayinlink.php")
       .then(res => res.json())
       .then(data => {
-        const baseUrl = data.deismackanal || "https://volestream.volestream.lat/hls/";
+        const baseUrl = data.deismackanal || "";
         const streamUrl = baseUrl.endsWith("/")
           ? baseUrl + id + ".m3u8"
           : baseUrl + "/" + id + ".m3u8";
@@ -175,7 +175,7 @@ if (id) {
       })
       .catch(err => {
         console.error("Base URL alınamadı, fallback URL kullanılıyor:", err);
-        const fallbackUrl = "https://volestream.volestream.lat/hls/" + id + ".m3u8";
+        const fallbackUrl = "" + id + ".m3u8";
         startAdThenMain(fallbackUrl);
       });
   } else {
