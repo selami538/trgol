@@ -220,3 +220,12 @@ if (id && validIds.includes(id)) {
 } else {
   document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
 }
+   </script>
+  </body>
+</html>
+`;
+
+  return new Response(html, {
+    headers: { "Content-Type": "text/html; charset=UTF-8" }
+  });
+}
