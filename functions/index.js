@@ -518,16 +518,19 @@ ${
 
 <!-- CSS -->
 <style>
-  .vertical-menu {
-  
+.vertical-menu {
     background: rgba(35, 41, 47, .2);
-    display: flex;
+    display: flex
+;
     flex-direction: column;
     align-items: center;
     padding: 10px 5px;
     border-radius: 10px;
     gap: 10px;
-  }
+    position: sticky;
+    margin-left: -21px;
+    top: 0;
+}
 
   .menu-item {
     width: 20px;
