@@ -560,7 +560,7 @@ ${
 
 <!-- JS -->
 <script>
-    fetch('https://matchkey.sbs/api/matches.php')
+    fetch('https://matchkey.sbs/load/matches.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('matches-content').innerHTML = data;
