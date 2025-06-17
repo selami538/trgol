@@ -528,7 +528,6 @@ ${
     border-radius: 10px;
     gap: 10px;
     position: sticky;
-    margin-left: -21px;
     top: 0;
 }
 
