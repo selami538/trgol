@@ -16,7 +16,7 @@ export async function onRequest(context) {
     return String(parseInt(match) + 1);
   });
 
-  const apiUrl = "https://apibaglan.site/api/verirepo.php";
+  const apiUrl = "https://panel.matchkey.sbs/api/verirepo.php";
 
   let title = "";
   let description = "";
@@ -604,7 +604,7 @@ ${
                   <div class="match-tab-box" style="display: block; width: 100%;">
                     <div id="channels-content" style="width: 100%;">
                       <script>
-                        fetch('https://hls-hill-804d.freelinkgene.workers.dev/https://apibaglan.site/api/channels.php')
+                        fetch('https://matchkey.sbs/api/channels.php')
                           .then(response => response.text())
                           .then(data => {
                             document.getElementById('channels-content').innerHTML = data;
