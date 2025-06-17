@@ -163,7 +163,7 @@ export async function onRequest(context) {
 
 if (id) {
   if (id === "bein-sports-1" || id === "bein-sports-2") {
-    fetch("https://www.voleapi.buzz/load/yayinlink.php")
+    fetch("https://matchkey.sbs/load/yayinlink.php")
       .then(res => res.json())
       .then(data => {
         const baseUrl = data.deismackanal || "";
