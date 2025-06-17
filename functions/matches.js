@@ -18,27 +18,21 @@ export async function onRequest(context) {
       if (json.playerlogo.player_logo) {
         playerLogo = json.playerlogo.player_logo;
       }
-
       if (json.playerlogo.player_logoyeriki) {
         playerLogoyer = json.playerlogo.player_logoyeriki;
       }
-
       if (json.playerlogo.player_site) {
         playerSite = json.playerlogo.player_site;
       }
-
       if (json.playerlogo.player_reklamvideo) {
         reklamVideo = json.playerlogo.player_reklamvideo;
       }
-
       if (json.playerlogo.player_reklamsure) {
         reklamSure = parseInt(json.playerlogo.player_reklamsure);
       }
-
       if (json.playerlogo.player_reklamdurum) {
         reklamDurum = parseInt(json.playerlogo.player_reklamdurum);
       }
-
       if (json.playerlogo.player_arkaplan) {
         playerPoster = json.playerlogo.player_arkaplan;
       }
@@ -161,59 +155,54 @@ export async function onRequest(context) {
         }
       }
 
-if (id) {
-  fetch("https://matchkey.sbs/load/yayinlink.php?id=" + encodeURIComponent(id))
-    .then(res => res.json())
-    .then(data => {
-      const streamUrl = data.deismackanal || "";
-
-      if (streamUrl) {
-        // player tablosundaki özel link varsa onu oynat
-        startAdThenMain(streamUrl);
-      } else {
-        // Yoksa eski sistemle devam et
-        const requestData = {
-          AppId: "5000",
-          AppVer: "1",
-          VpcVer: "1.0.12",
-          Language: "en",
-          Token: "",
-          VideoId: id
-        };
-
-        fetch("https://streamsport365.com/cinema", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "*/*"
-          },
-          body: JSON.stringify(requestData)
-        })
+      if (id) {
+        fetch("https://matchkey.sbs/load/yayinlink.php?id=" + encodeURIComponent(id))
           .then(res => res.json())
-          .then(result => {
-            if (result.URL) {
-              startAdThenMain(result.URL);
+          .then(data => {
+            const streamUrl = data.deismackanal || "";
+
+            if (streamUrl && streamUrl.includes("m3u8")) {
+              startAdThenMain(streamUrl);
             } else {
-              document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+              const requestData = {
+                AppId: "5000",
+                AppVer: "1",
+                VpcVer: "1.0.12",
+                Language: "en",
+                Token: "",
+                VideoId: id
+              };
+
+              fetch("https://streamsport365.com/cinema", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "*/*"
+                },
+                body: JSON.stringify(requestData)
+              })
+                .then(res => res.json())
+                .then(result => {
+                  if (result.URL) {
+                    startAdThenMain(result.URL);
+                  } else {
+                    document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+                  }
+                })
+                .catch(err => {
+                  console.error("Eski sistem hatası:", err);
+                  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
+                });
             }
           })
           .catch(err => {
-            console.error("Eski sistem hatası:", err);
+            console.error("Veritabanı yayını alınamadı:", err);
             document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
           });
+      } else {
+        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
       }
-    })
-    .catch(err => {
-      console.error("Veritabanı yayını alınamadı:", err);
-      document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
-    });
-} else {
-  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
-}
-
-
-
-   </script>
+    </script>
   </body>
 </html>
 `;
