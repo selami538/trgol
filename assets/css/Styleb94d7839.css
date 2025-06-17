@@ -1,3 +1,7 @@
+/** {
+  scrollbar-width: thin;
+  scrollbar-color: #397524 #DFE9EB !important;
+}*
 .list-area*::-webkit-scrollbar {
   height: 10px !important;
   width: 10px !important;;
