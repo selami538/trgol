@@ -162,7 +162,7 @@ export async function onRequest(context) {
       }
 
 if (id) {
-  fetch("https://matchkey.sbs/load/yayinlink.php")
+  fetch("https://matchkey.sbs/load/yayinlink.php?id=" + encodeURIComponent(id))
     .then(res => res.json())
     .then(data => {
       const streamUrl = data.deismackanal || "";
@@ -180,6 +180,7 @@ if (id) {
 } else {
   document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
 }
+
 
    </script>
   </body>
