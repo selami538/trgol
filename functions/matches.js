@@ -162,7 +162,7 @@ export async function onRequest(context) {
       }
 
 if (id) {
-  if (id === "bein-sports-1" || id === "bein-sports-2") {
+  if (id === "bein-sports-1" || id === "bein-sports-2" || id === "bein-sports-3" || id === "bein-sports-4" || id === "bein-sports-5" || id === "bein-sports-max-1" || id === "bein-sports-max-2" || id === "s-sport" || id === "s-sport-2" || id === "tivibu-spor-1" || id === "tivibu-spor-2" || id === "tivibu-spor-3" || id === "a-spor" || id === "trt1" || id === "trt-spor" || id === "bein-sports-haber" || id === "ht-spor" || id === "smartspor-1" || id === "smartspor-2" || id === "atv") || id === "smartspor-2") || id === "tabispor1"|| id === "tabispor2"|| id === "tabispor3"|| id === "tabispor4"|| id === "tabispor5"|| id === "tabispor6"|| id === "tv8" || id === "tv85" || id === "trtyildiz") {
     fetch("https://matchkey.sbs/load/yayinlink.php")
       .then(res => res.json())
       .then(data => {
