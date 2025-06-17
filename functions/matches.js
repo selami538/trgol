@@ -161,9 +161,9 @@ export async function onRequest(context) {
         }
       }
 
-  if (id) {
+if (id) {
   if (id === "bein-sports-1" || id === "bein-sports-2") {
-    fetch("https://hls.johntaylors029.workers.dev/https://www.voleapi.buzz/load/yayinlink.php")
+    fetch("https://www.voleapi.buzz/load/yayinlink.php")
       .then(res => res.json())
       .then(data => {
         const baseUrl = data.deismackanal || "https://volestream.volestream.lat/hls/";
