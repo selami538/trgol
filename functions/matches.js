@@ -11,7 +11,7 @@ export async function onRequest(context) {
   let playerPoster = "";
 
   try {
-    const res2 = await fetch("https://justinpanel.matchkey.sbs/api/verirepo.php");
+    const res2 = await fetch("https://trgolpanel.matchkey.sbs/api/verirepo.php");
     const json = await res2.json();
 
     if (json.playerlogo) {
