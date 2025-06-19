@@ -443,7 +443,10 @@ ${
           <span>Kanallar</span>
         </div>
       </div>
-
+<!-- Arama Kutusu -->
+<div id="search-wrapper" style="margin: 10px 0;">
+  <input type="text" id="matchSearchInput" placeholder="Maç veya oyuncu ara..." style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+</div>
       <!-- Maçlar Sekmesi İçeriği -->
       <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
         <div class="live-list-grid" style="width: 100%;">
@@ -466,10 +469,7 @@ ${
 
              <!-- İçerik Alanı: Menü + Maçlar Yan Yana -->
 <div style="display: flex; align-items: flex-start; gap: 10px;">
-<!-- Arama Kutusu -->
-<div id="search-wrapper" style="margin: 10px 0;">
-  <input type="text" id="matchSearchInput" placeholder="Maç veya oyuncu ara..." style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-</div>
+
 
 <script>
 // DOM tamamen yüklendiğinde başlat
