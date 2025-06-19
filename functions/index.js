@@ -713,18 +713,18 @@ ${
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
 <script>
-document.getElementById("matchSearchInput").addEventListener("input", function () {
-  const searchText = this.value.toLowerCase();
-  const matches = document.querySelectorAll("#matches-content .match-item");
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    let matches = document.querySelectorAll('.single-match');
 
-  matches.forEach(function (match) {
-    const matchText = match.textContent.toLowerCase();
-    if (matchText.startsWith(searchText)) {
-      match.style.display = "block";
-    } else {
-      match.style.display = "none";
-    }
-  });
+    matches.forEach(function(match) {
+        let text = match.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            match.style.display = 'flex';
+        } else {
+            match.style.display = 'none';
+        }
+    });
 });
 </script>
 
