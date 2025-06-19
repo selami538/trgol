@@ -429,56 +429,30 @@ ${
   </center>
   <!-- PLAYER -->
 
-<!-- Maçlar Sekmesi İçeriği -->
-<div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
-  <div class="live-list-grid" style="width: 100%;">
-    <div class="list-tabbed"></div>
+  <!-- Maçlar ve Kanallar Sekmeleri -->
+  <div class="player-channel-area" style="width: 100%; height: auto;">
+    <div class="live-list radarOn" style="width: 100%;">
+      <!-- Sekme Başlıkları -->
+      <div class="head-grid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div class="active" data-focustab="live" id="live-tab" style="flex: 1; text-align: center; cursor: pointer;">
+          <div class="list-blink"></div>
+          <span>Maçlar</span>
+        </div>
+        <div data-focustab="next" id="next-tab" style="flex: 1; text-align: center; cursor: pointer;">
+          <div class="list-blink"></div>
+          <span>Kanallar</span>
+        </div>
+      </div>
 
-    <!-- 🔍 Arama kutusu -->
-    <div style="text-align: center; padding: 10px 0;">
-      <input
-        type="text"
-        id="match-search"
-        placeholder="Maç ara..."
-        style="padding: 8px; width: 80%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px;"
-      />
-    </div>
-
-    <div class="list-area" style="width: 100%;">
-      <div class="bet-matches" style="width: 100%;">
-        <div id="real-matches" class="real-matches" style="width: 100%;">
-          <!-- Maç Listesi -->
-          <div class="match-cover" style="width: 100%;">
-            <div class="match-tab-box" style="display: block; width: 100%;">
-              <!-- Maç içerikleri buraya geliyor -->
-              <!-- Örnek Maç -->
-              <!--
-              <div>
-                <span>Futbol</span>
-                <span>Kosta Rika</span>
-              </div>
-              -->
-      
-
-<!-- 🔍 Arama JS -->
-<script>
-  const searchInput = document.getElementById("match-search");
-
-  searchInput.addEventListener("input", function () {
-    const searchTerm = this.value.trim().toLowerCase();
-    const matches = document.querySelectorAll("#real-matches .match-tab-box > div");
-
-    matches.forEach(match => {
-      const text = match.innerText.trim().toLowerCase();
-
-      // Sadece boş olmayan maçları kontrol et
-      if (text.length > 0) {
-        match.style.display = text.includes(searchTerm) ? "block" : "none";
-      }
-    });
-  });
-</script>
-
+      <!-- Maçlar Sekmesi İçeriği -->
+      <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
+        <div class="live-list-grid" style="width: 100%;">
+          <div class="list-tabbed"></div>
+          <div class="list-area" style="width: 100%;">
+            <div class="bet-matches" style="width: 100%;">
+              <div id="real-matches" class="real-matches" style="width: 100%;">
+                <div class="match-cover" style="width: 100%;">
+                  <div class="match-tab-box" style="display: block; width: 100%;">
                     
                     <!-- Kategori Butonları -->
                     <style>
