@@ -434,7 +434,7 @@ ${
   <div class="live-list-grid" style="width: 100%;">
     <div class="list-tabbed"></div>
 
-    <!-- 🔍 Arama kutusu (scroll alanı dışında, yukarıda) -->
+    <!-- 🔍 Arama kutusu -->
     <div style="text-align: center; padding: 10px 0;">
       <input
         type="text"
@@ -451,19 +451,30 @@ ${
           <div class="match-cover" style="width: 100%;">
             <div class="match-tab-box" style="display: block; width: 100%;">
               <!-- Maç içerikleri buraya geliyor -->
-       
+              <!-- Örnek Maç -->
+              <!--
+              <div>
+                <span>Futbol</span>
+                <span>Kosta Rika</span>
+              </div>
+              -->
+      
 
 <!-- 🔍 Arama JS -->
 <script>
-  document.getElementById("match-search").addEventListener("input", function () {
-    const searchTerm = this.value.trim().toLowerCase();
+  const searchInput = document.getElementById("match-search");
 
-    // Maç öğelerini al
+  searchInput.addEventListener("input", function () {
+    const searchTerm = this.value.trim().toLowerCase();
     const matches = document.querySelectorAll("#real-matches .match-tab-box > div");
 
     matches.forEach(match => {
-      const text = match.innerText.toLowerCase();
-      match.style.display = text.includes(searchTerm) ? "block" : "none";
+      const text = match.innerText.trim().toLowerCase();
+
+      // Sadece boş olmayan maçları kontrol et
+      if (text.length > 0) {
+        match.style.display = text.includes(searchTerm) ? "block" : "none";
+      }
     });
   });
 </script>
