@@ -173,35 +173,36 @@ export async function onRequest(context) {
                 VideoId: id
               };
 
-              fetch("https://streamsport365.com/cinema", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "*/*"
-                },
-                body: JSON.stringify(requestData)
-              })
-                .then(res => res.json())
-                .then(result => {
-                  if (result.URL) {
-                    startAdThenMain(result.URL);
-                  } else {
-                    document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
-                  }
-                })
-                .catch(err => {
-                  console.error("Eski sistem hatası:", err);
-                  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
-                });
-            }
-          })
-          .catch(err => {
-            console.error("Veritabanı yayını alınamadı:", err);
-            document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
-          });
-      } else {
-        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>ID eksik</h2>";
+            fetch("https://streamsport365.com/cinema", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "*/*"
+  },
+  body: JSON.stringify(requestData)
+})
+  .then(res => res.json())
+  .then(async result => {
+    if (result.URL) {
+      try {
+        // m3u8 çözümleme (ön yükleme)
+        await fetch(result.URL, { method: "GET", cache: "no-store" });
+
+        // reklam sonra ana yayını başlat
+        startAdThenMain(result.URL);
+      } catch (preloadError) {
+        console.error("m3u8 ön yükleme hatası:", preloadError);
+        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın yüklenemedi</h2>";
       }
+    } else {
+      document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın bulunamadı</h2>";
+    }
+  })
+  .catch(err => {
+    console.error("Eski sistem hatası:", err);
+    document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
+  });
+
     </script>
   </body>
 </html>
