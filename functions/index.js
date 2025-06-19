@@ -433,32 +433,32 @@ ${
 <div id="live-content" class="active" data-tabbed="live" style="width: 100%; display: block;">
   <div class="live-list-grid" style="width: 100%;">
     <div class="list-tabbed"></div>
+
+    <!-- 🔍 Arama kutusu (scroll alanı dışında, yukarıda) -->
+    <div style="text-align: center; padding: 10px 0;">
+      <input
+        type="text"
+        id="match-search"
+        placeholder="Maç ara..."
+        style="padding: 8px; width: 80%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px;"
+      />
+    </div>
+
     <div class="list-area" style="width: 100%;">
       <div class="bet-matches" style="width: 100%;">
         <div id="real-matches" class="real-matches" style="width: 100%;">
-
-          <!-- 🔍 Arama kutusu -->
-          <div style="text-align: center; padding: 10px;">
-            <input
-              type="text"
-              id="match-search"
-              placeholder="Maç ara..."
-              style="padding: 8px; width: 80%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px;"
-            />
-          </div>
-
           <!-- Maç Listesi -->
           <div class="match-cover" style="width: 100%;">
             <div class="match-tab-box" style="display: block; width: 100%;">
               <!-- Maç içerikleri buraya geliyor -->
-  
+       
 
 <!-- 🔍 Arama JS -->
 <script>
   document.getElementById("match-search").addEventListener("input", function () {
     const searchTerm = this.value.trim().toLowerCase();
 
-    // Maç öğeleri
+    // Maç öğelerini al
     const matches = document.querySelectorAll("#real-matches .match-tab-box > div");
 
     matches.forEach(match => {
@@ -467,6 +467,7 @@ ${
     });
   });
 </script>
+
                     
                     <!-- Kategori Butonları -->
                     <style>
