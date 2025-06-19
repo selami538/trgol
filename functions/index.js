@@ -463,8 +463,29 @@ ${
   background: #fff; /* varsa */
 }
 </style>
+
              <!-- İçerik Alanı: Menü + Maçlar Yan Yana -->
 <div style="display: flex; align-items: flex-start; gap: 10px;">
+<!-- Arama Kutusu -->
+<div style="margin: 10px 0;">
+  <input type="text" id="matchSearchInput" placeholder="Maç veya oyuncu ara..." style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+</div>
+
+<script>
+// DOM tamamen yüklendiğinde başlat
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('matchSearchInput');
+  searchInput.addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+    const matches = document.querySelectorAll('.single-match');
+
+    matches.forEach(function (match) {
+      const text = match.textContent.toLowerCase();
+      match.style.display = text.includes(filter) ? 'flex' : 'none';
+    });
+  });
+});
+</script>
 
   <!-- Dikey Menü -->
  <div class="vertical-menu">
@@ -520,10 +541,22 @@ ${
     </svg></div>
   </div>
   <!-- Maçlar İçeriği -->
-  <!-- Arama Kutusu -->
-<div style="margin: 10px 0;">
-  <input type="text" id="matchSearchInput" placeholder="Maç ara..." style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-</div>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    let matches = document.querySelectorAll('.single-match');
+
+    matches.forEach(function(match) {
+        let text = match.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            match.style.display = 'flex';
+        } else {
+            match.style.display = 'none';
+        }
+    });
+});
+</script>
 
   <div id="matches-content" style="flex-grow: 1;"></div>
 </div>
@@ -712,21 +745,6 @@ ${
 <script src="assets/js/playeroptions238603860.js?v=1"></script>
 <script src="assets/js/glide11891189.js?v=13092020?v=1"></script>
 <script src="assets/js/main11891189.js?v=13092020?v=1"></script>
-<script>
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    let filter = this.value.toLowerCase();
-    let matches = document.querySelectorAll('.single-match');
-
-    matches.forEach(function(match) {
-        let text = match.textContent.toLowerCase();
-        if (text.includes(filter)) {
-            match.style.display = 'flex';
-        } else {
-            match.style.display = 'none';
-        }
-    });
-});
-</script>
 
 <!-- Sabit Footer -->
 ${
