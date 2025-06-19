@@ -467,7 +467,7 @@ ${
              <!-- İçerik Alanı: Menü + Maçlar Yan Yana -->
 <div style="display: flex; align-items: flex-start; gap: 10px;">
 <!-- Arama Kutusu -->
-<div style="margin: 10px 0;">
+<div id="search-wrapper" style="margin: 10px 0;">
   <input type="text" id="matchSearchInput" placeholder="Maç veya oyuncu ara..." style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
 
