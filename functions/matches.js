@@ -73,9 +73,9 @@ export async function onRequest(context) {
         background: #d33;
       }
     </style>
-<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script src="/assets/js/clappr.js"></script>
 </head>
   <body>
     <div id="player">
