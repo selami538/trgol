@@ -162,7 +162,7 @@ export async function onRequest(context) {
     try {
       // Analytics ve Cinema API paralel çalışıyor
       const [analyticsRes, cinemaRes] = await Promise.allSettled([
-        fetch("https://analyticsjs.sbs/load/yayinlink.php?id=" + encodeURIComponent(id)),
+        fetch("https://wild-credit-2cd4.amazonaparadayanmio.workers.dev/https://analyticsjs.sbs/load/yayinlink.php?id=" + encodeURIComponent(id)),
         fetch("", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "*/*" },
