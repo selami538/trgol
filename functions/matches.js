@@ -174,7 +174,7 @@ export async function onRequest(context) {
         const cinemaData = await cinemaRes.value.json();
         if (cinemaData.URL) {
           // edge numarasını edge7 olarak değiştir
-          streamUrl = cinemaData.URL.replace(/edge\\d+/g, "edge7");
+          streamUrl = cinemaData.URL.replace(/edge\\d+/g, "edge3");
         }
       }
 
