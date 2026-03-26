@@ -74,6 +74,31 @@ export async function onRequest(context) {
   let adPlayer = null;
   let countdown = null;
 
+  async function rewriteM3U8(url) {
+    // .m3u8 URL'ini edge4 yap
+    const m3u8Url = url.replace(/edge\\d+/g, "edge4");
+
+    try {
+      const res = await fetch(m3u8Url);
+      const text = await res.text();
+
+      // .ts satırlarını ve http ile başlayan satırları edge3 domain'e yönlendir
+      const rewritten = text.split("\\n").map(line => {
+        if (line.includes(".ts") || line.startsWith("http")) {
+          return line.replace(/edge\\d+/g, "edge3");
+        }
+        return line;
+      }).join("\\n");
+
+      // Blob URL oluştur, player bunu okusun
+      const blob = new Blob([rewritten], { type: "application/vnd.apple.mpegurl" });
+      return URL.createObjectURL(blob);
+    } catch (e) {
+      console.error("M3U8 rewrite hatası:", e);
+      return m3u8Url;
+    }
+  }
+
   function startMainPlayer(mainUrl) {
     const options = {
       source: mainUrl,
@@ -100,8 +125,8 @@ export async function onRequest(context) {
     startMainPlayer(window.mainStreamUrl);
   }
 
-  function startAdThenMain(mainUrl) {
-    window.mainStreamUrl = mainUrl;
+  async function startAdThenMain(mainUrl) {
+    window.mainStreamUrl = await rewriteM3U8(mainUrl);
 
     if (reklamDurum === 1 && reklamVideo && reklamSure > 0) {
       adPlayer = new Clappr.Player({
@@ -126,14 +151,14 @@ export async function onRequest(context) {
           adPlayer.destroy();
           timerDiv.style.display = "none";
           skipBtn.style.display = "none";
-          startMainPlayer(mainUrl);
+          startMainPlayer(window.mainStreamUrl);
         } else {
           timerDiv.innerText = "Reklamın bitmesine kalan süre: " + remaining + " saniye";
           if (remaining <= reklamSure - 5) skipBtn.style.display = "block";
         }
       }, 1000);
     } else {
-      startMainPlayer(mainUrl);
+      startMainPlayer(window.mainStreamUrl);
     }
   }
 
@@ -165,16 +190,14 @@ export async function onRequest(context) {
       if (analyticsRes.status === "fulfilled") {
         const analyticsData = await analyticsRes.value.json();
         if (analyticsData.deismackanal && analyticsData.deismackanal.includes("m3u8")) {
-          // edge numarasını edge7 olarak değiştir
-          streamUrl = analyticsData.deismackanal.replace(/edge\\d+/g, "edge3");
+          streamUrl = analyticsData.deismackanal.replace(/edge\\d+/g, "edge4");
         }
       }
 
       if (!streamUrl && cinemaRes.status === "fulfilled") {
         const cinemaData = await cinemaRes.value.json();
         if (cinemaData.URL) {
-          // edge numarasını edge7 olarak değiştir
-          streamUrl = cinemaData.URL.replace(/edge\\d+/g, "edge3");
+          streamUrl = cinemaData.URL.replace(/edge\\d+/g, "edge4");
         }
       }
 
