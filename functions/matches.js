@@ -75,22 +75,49 @@ export async function onRequest(context) {
     </div>
 
     <script>
-      const KANAL_ID     = ${JSON.stringify(id || "")};
-      const reklamVideo  = ${JSON.stringify(reklamVideo)};
-      const reklamSure   = ${reklamSure};
-      const reklamDurum  = ${reklamDurum};
-      const playerLogo   = ${JSON.stringify(playerLogo)};
-      const playerSite   = ${JSON.stringify(playerSite)};
+      const KANAL_ID      = ${JSON.stringify(id || "")};
+      const reklamVideo   = ${JSON.stringify(reklamVideo)};
+      const reklamSure    = ${reklamSure};
+      const reklamDurum   = ${reklamDurum};
+      const playerLogo    = ${JSON.stringify(playerLogo)};
+      const playerSite    = ${JSON.stringify(playerSite)};
       const playerLogoyer = ${JSON.stringify(playerLogoyer)};
       const playerPoster  = ${JSON.stringify(playerPoster)};
 
       let adPlayer   = null;
       let mainPlayer = null;
       let countdown  = null;
+      let retryCount = 0;
+      const MAX_RETRY   = 5;
+      const RETRY_DELAY = 3000;
 
       function showError(msg) {
         document.getElementById("player").innerHTML =
           '<p style="color:white;text-align:center;margin-top:20px;font-family:Arial;font-size:18px">' + msg + '</p>';
+      }
+
+      function showRetryMessage(current, max) {
+        let overlay = document.getElementById("retry-overlay");
+        if (!overlay) {
+          overlay = document.createElement("div");
+          overlay.id = "retry-overlay";
+          overlay.style.cssText = [
+            "position:absolute","top:50%","left:50%",
+            "transform:translate(-50%,-50%)",
+            "background:rgba(0,0,0,0.75)","color:#fff",
+            "padding:16px 24px","border-radius:10px",
+            "font-family:Arial","font-size:16px",
+            "text-align:center","z-index:9999"
+          ].join(";");
+          document.getElementById("player").appendChild(overlay);
+        }
+        overlay.style.display = "block";
+        overlay.innerHTML = "⏳ Yayına bağlanılıyor... (" + current + "/" + max + ")";
+      }
+
+      function hideRetryMessage() {
+        const overlay = document.getElementById("retry-overlay");
+        if (overlay) overlay.style.display = "none";
       }
 
       function startMainPlayer(mainUrl) {
@@ -98,6 +125,11 @@ export async function onRequest(context) {
         console.log("Ana yayın başlatılıyor:", mainUrl);
 
         try {
+          if (mainPlayer) {
+            try { mainPlayer.destroy(); } catch(e) {}
+            mainPlayer = null;
+          }
+
           const options = {
             source: mainUrl,
             parentId: "#player",
@@ -108,21 +140,39 @@ export async function onRequest(context) {
             hlsjsConfig: {
               enableWorker: true,
               lowLatencyMode: true,
-              backBufferLength: 90
+              backBufferLength: 90,
+              manifestLoadingMaxRetry: 5,
+              manifestLoadingRetryDelay: 2000,
+              levelLoadingMaxRetry: 5,
+              fragLoadingMaxRetry: 5
             }
           };
 
-          if (playerLogo)     options.watermark     = playerLogo;
-          if (playerSite)     options.watermarkLink  = playerSite;
-          if (playerLogoyer)  options.position       = playerLogoyer;
-          if (playerPoster)   options.poster         = playerPoster;
+          if (playerLogo)    options.watermark     = playerLogo;
+          if (playerSite)    options.watermarkLink  = playerSite;
+          if (playerLogoyer) options.position       = playerLogoyer;
+          if (playerPoster)  options.poster         = playerPoster;
 
           mainPlayer = new Clappr.Player(options);
 
           mainPlayer.on(Clappr.Events.PLAYER_ERROR, function(e) {
-            console.error("Player hatası:", e);
-            showError("Yayın yüklenirken bir hata oluştu.");
+            console.warn("Player hatası:", e, "| Deneme:", retryCount + 1);
+
+            if (retryCount < MAX_RETRY) {
+              retryCount++;
+              showRetryMessage(retryCount, MAX_RETRY);
+              setTimeout(() => { startMainPlayer(mainUrl); }, RETRY_DELAY);
+            } else {
+              retryCount = 0;
+              showError("Yayın şu an yüklenemiyor. Lütfen daha sonra tekrar deneyin.");
+            }
           });
+
+          mainPlayer.on(Clappr.Events.PLAYER_PLAY, function() {
+            retryCount = 0;
+            hideRetryMessage();
+          });
+
         } catch(e) {
           console.error("Player oluşturulamadı:", e);
           showError("Player başlatılamadı.");
