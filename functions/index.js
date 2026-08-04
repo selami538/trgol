@@ -224,6 +224,7 @@ export async function onRequest(context) {
     listereklamlink:  ayar.ayar_listelink || "",
      textreklam:      ayar.ayar_textreklam || "",
     textreklamlink:      ayar.ayar_textreklamlink || "",
+    textreklamrenk:      ayar.metin_reklam_bg || "",
 
     matchesUrl:   "https://teletv5.top/load/matches.php",
     channelsUrl:  "https://teletv5.top/load/channels.php",
@@ -252,7 +253,7 @@ function getTema2Html(params) {
     favicon, amp, ampAktif, canlisonuc, twitter, telegram, facebook, instagram, youtube,
     headerapi, bodyapi, footerapi, analyticsapi, apilinkcikisi, pageskincolor,
     footermetin, reklam1, reklam2, reklam3, reklam4, reklam5, reklam6,
-    hrefreklam1, hrefreklam2, hrefreklam4, hrefreklam5, hrefreklam6, reklampmobil, reklampmobilac, textreklam, textreklamlink,
+    hrefreklam1, hrefreklam2, hrefreklam4, hrefreklam5, hrefreklam6, reklampmobil, reklampmobilac, textreklam, textreklamlink, textreklamrenk,
     listereklam, listereklamlink,
     hrefpageskin, menuler, matchesUrl, channelsUrl, kanallar, macKapa
   } = params;
@@ -481,7 +482,7 @@ function getTema2Html(params) {
 .channel-ad-item img { display: block; width: 100%; height: auto; border-radius: 4px; }
 
         .hellobar {
-    background: var(--bg-glass);
+    background-color: ${textreklamrenk};
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     color: #fff;
