@@ -529,7 +529,7 @@ export async function onRequest(context) {
 
           console.error("Yayın yüklenirken hata:", err);
 
-          document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası</h2>";
+          document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px'>Yayın hatası kısa süreli bakım çalışması</h2>";
 
         }
 
