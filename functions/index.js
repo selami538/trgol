@@ -226,8 +226,8 @@ export async function onRequest(context) {
     textreklamlink:      ayar.ayar_textreklamlink || "",
     textreklamrenk:      ayar.metin_reklam_bg || "",
 
-    matchesUrl:   "https://teletv5.top/load/matches.php",
-    channelsUrl:  "https://teletv5.top/load/channels.php",
+    matchesUrl:   "https://teletv15.top/load/matches.php",
+    channelsUrl:  "https://teletv15.top/load/channels.php",
     kanallar:      apiKanallari,
     menuler: Array.isArray(json.menu)
       ? json.menu
